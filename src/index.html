@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Yuichi Hagio">
+    <meta name="keywords" content="HTML, JavaScript, CSS, Accessibility, Offline, Progressive Web">
+    <meta name="description" content="Party planning web application">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" media="screen">
+    <title>Utage</title>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        padding: 20px;
+        height: 100%;
+      }
+
+      body { 
+        background-image: url('./images/body_bg_60_quality.jpeg') ;
+        background-position: center center;
+        background-repeat:  no-repeat;
+        background-attachment: fixed;
+        background-size:  cover;
+        background-color: #999;
+      }
+
+      /*@media screen and (orientation: portrait) {
+        body {
+          background-image:url('./images/body_bg_60_portrait.jpeg');
+        }
+      }
+      @media screen and (orientation: landscape){
+        body {
+          background-image:url('./images/body_bg_60_landscape.jpeg');
+        }
+      }*/
+
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .mainContianer {
+        min-height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="mainContianer"></div>
+  </body>
+</html>
