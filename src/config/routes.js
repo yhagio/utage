@@ -7,6 +7,7 @@ import EventPage from '../containers/EventPage/EventPageContainer';
 import SignOut from '../containers/SignOut/SignOutContainer';
 import NewEvent from '../containers/NewEvent/NewEventContainer';
 import Account from '../containers/Account/AccountContainer';
+import GoogleMap from '../containers/GoogleMap/GoogleMapContainer';
 
 export default function getRoutes () {
   return (
@@ -17,6 +18,7 @@ export default function getRoutes () {
         <Route path='/account' component={ Account }/>
         <Route path='/events/:id' component={ EventPage }/>
         <Route path='/new-event' component={ NewEvent }/>
+        <Route path='/map' component={ GoogleMap }/>
         <Route path='/signout' component={ SignOut }/>
         <Route path='*' component={ Home }/>
       </Route>

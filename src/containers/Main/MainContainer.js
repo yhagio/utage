@@ -4,7 +4,11 @@ const MainContainer = React.createClass({
   render() {
     return (
       <div>
-        <h1>Main</h1>
+        <header>
+          <nav>
+
+          </nav>
+        </header>
         { this.props.children }
       </div>
     );
