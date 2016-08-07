@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import GoogleMap from '../../components/GoogleMap/GoogleMaps';
+import { GoogleMap } from 'components';
 import {
   container,
   title,

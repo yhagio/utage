@@ -1,11 +1,20 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { signoutAndUnauth } from 'redux/modules/users';
+import { Signout } from 'components';
 
 const SignOutContainer = React.createClass({
-  render() {
-    return (
-      <div>SignOut</div>
-    );
-  }
-});
+  propTypes: {
+    dispatch: PropTypes.func.isRequired,
+  },
 
-export default SignOutContainer;
+  componentDidMount () {
+    this.props.dispatch(signoutAndUnauth());
+  },
+
+  render () {
+    return <Signout />
+  },
+})
+
+export default connect()(SignOutContainer)
