@@ -7,6 +7,10 @@
     <meta name="description" content="Party planning web application">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo&libraries=geometry,places,visualization">
+    </script>
     <title>Utage</title>
     <style>
       html {
@@ -14,17 +18,18 @@
       }
 
       body {
-        padding: 20px;
         height: 100%;
+        font-family: 'Lato', sans-serif;
+        color: #fff;
       }
 
       body { 
-        background-image: url('./images/body_bg_60_quality.jpeg') ;
+        background-image: url('./images/nightParty-min.jpeg') ;
         background-position: center center;
         background-repeat:  no-repeat;
         background-attachment: fixed;
         background-size:  cover;
-        background-color: #999;
+        background-color: #333;
       }
 
       /*@media screen and (orientation: portrait) {
@@ -38,6 +43,10 @@
         }
       }*/
 
+      li {
+        list-style: none;
+      }
+
       a {
         text-decoration: none;
         color: #333;
@@ -45,6 +54,9 @@
 
       .mainContianer {
         min-height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
       }
     </style>
   </head>

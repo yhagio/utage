@@ -1,61 +1,61 @@
-import React, {PropTypes as T} from 'react'
-import ReactDOM from 'react-dom'
+// import React, {PropTypes as T} from 'react'
+// import ReactDOM from 'react-dom'
 
-import {ScriptCache} from '../../helpers/ScriptCache'
-import GoogleApi from '../../helpers/GoogleApi'
+// import {ScriptCache} from '../../helpers/ScriptCache'
+// import GoogleApi from '../../helpers/GoogleApi'
 
-const defaultMapConfig = {}
-const defaultCreateCache = (options) => {
-    options = options || {};
-    const apiKey = options.apiKey;
-    const libraries = options.libraries || ['places'];
+// const defaultMapConfig = {}
+// const defaultCreateCache = (options) => {
+//     options = options || {};
+//     const apiKey = options.apiKey;
+//     const libraries = options.libraries || ['places'];
 
-    return ScriptCache({
-        google: GoogleApi({apiKey: apiKey, libraries: libraries})
-    });
-};
+//     return ScriptCache({
+//         google: GoogleApi({apiKey: apiKey, libraries: libraries})
+//     });
+// };
 
-export const wrapper = (options) => (WrappedComponent) => {
-    const apiKey = options.apiKey;
-    const libraries = options.libraries || ['places'];
-    const createCache = options.createCache || defaultCreateCache;
+// export const wrapper = (options) => (WrappedComponent) => {
+//     const apiKey = options.apiKey;
+//     const libraries = options.libraries || ['places'];
+//     const createCache = options.createCache || defaultCreateCache;
 
-    class Wrapper extends React.Component {
-        constructor(props, context) {
-            super(props, context);
+//     class Wrapper extends React.Component {
+//         constructor(props, context) {
+//             super(props, context);
 
-            this.scriptCache = createCache(options);
-            this.scriptCache.google.onLoad(this.onLoad.bind(this))
+//             this.scriptCache = createCache(options);
+//             this.scriptCache.google.onLoad(this.onLoad.bind(this))
 
-            this.state = {
-                loaded: false,
-                map: null,
-                google: null
-            }
-        }
+//             this.state = {
+//                 loaded: false,
+//                 map: null,
+//                 google: null
+//             }
+//         }
 
-        onLoad(err, tag) {
-            this._gapi = window.google;
+//         onLoad(err, tag) {
+//             this._gapi = window.google;
 
-            this.setState({loaded: true, google: this._gapi})
-        }
+//             this.setState({loaded: true, google: this._gapi})
+//         }
 
-        render() {
-            const props = Object.assign({}, this.props, {
-                loaded: this.state.loaded,
-                google: window.google
-            });
+//         render() {
+//             const props = Object.assign({}, this.props, {
+//                 loaded: this.state.loaded,
+//                 google: window.google
+//             });
 
-            return (
-                <div>
-                    <WrappedComponent {...props}/>
-                    <div ref='map'/>
-                </div>
-            )
-        }
-    }
+//             return (
+//                 <div>
+//                     <WrappedComponent {...props}/>
+//                     <div ref='map'/>
+//                 </div>
+//             )
+//         }
+//     }
 
-    return Wrapper;
-}
+//     return Wrapper;
+// }
 
-export default wrapper;
+// export default wrapper;

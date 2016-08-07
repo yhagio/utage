@@ -54,7 +54,13 @@ const base = {
     loaders: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       { test: /\.css$/, loader: 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]' },
-      { test: /\.png$/, loader: "url-loader?limit=100000&mimetype=image/png" }
+      { test: /\.png$/, loader: "url-loader?limit=100000&mimetype=image/png" },
+      { test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+      }
     ]
   },
   resolve: {

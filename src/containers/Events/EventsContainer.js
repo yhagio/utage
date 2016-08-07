@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
+import {
+  container
+} from './styles.css';
 
-const HomeContainer = React.createClass({
+const EventsContainer = React.createClass({
   render() {
     return (
-      <div>
+      <div className={ container }>
         <h1>Events</h1>
         <ul>
           <li>
@@ -23,4 +26,4 @@ const HomeContainer = React.createClass({
   }
 });
 
-export default HomeContainer;
+export default EventsContainer;

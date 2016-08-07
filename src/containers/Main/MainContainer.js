@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react';
+import Nav from '../Nav/NavContainer';
+import { main } from './styles.css'
 
 const MainContainer = React.createClass({
   render() {
     return (
-      <div>
-        <header>
-          <nav>
-
-          </nav>
-        </header>
+      <div className={ main }>
+        <Nav />
         { this.props.children }
       </div>
     );
