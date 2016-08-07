@@ -16,15 +16,11 @@ const NavContainer = React.createClass({
           <a
             className={ menuItem }
             role="button"
-            href="/#">Home</a>          
+            href="/#">Home</a>
           <a
             className={ menuItem }
             role="button"
-            href="/#/signup">Sign up</a>
-          <a
-            className={ menuItem }
-            role="button"
-            href="/#/signin">Sign in</a>  
+            href="/#/authenticate">Sign in</a>  
           <a
             className={ menuItem }
             role="button"
@@ -32,11 +28,11 @@ const NavContainer = React.createClass({
           <a
             className={ menuItem }
             role="button"
-            href="/#/events/10">Create event</a>
+            href="/#/new-event">Create event</a>
           <a
             className={ menuItem }
             role="button"
-            href="/#/events/10">Account</a>
+            href="/#/account">Account</a>
         </ul>
       </nav>
     );
