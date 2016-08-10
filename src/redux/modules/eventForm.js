@@ -81,6 +81,10 @@ function submissionError (error) {
   };
 }
 
+export function createEvent () {
+
+}
+
 const initialState = {
   title: '',
   description: '',

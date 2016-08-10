@@ -25,13 +25,15 @@ NewEventForm.propTypes = {
   limit: number.isRequired,
   startDate: string.isRequired,
   endDate: string.isRequired,
-  error: string.isRequired
+  error: string.isRequired,
+  createEvent: func.isRequired
 };
 
 export default function NewEventForm (props) {
   function handleFormSubmit (e) {
     e.preventDefault();
     console.log('SUBMIT ', props);
+    props.createEvent();
   }
 
   return (

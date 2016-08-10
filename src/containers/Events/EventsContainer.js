@@ -10,7 +10,7 @@ const EventsContainer = React.createClass({
         <h1>Events</h1>
         <ul>
           <li>
-            <a href="" >
+            <a href="#/events/10" >
               <img src="" alt="Image" />
               <p>Tue, Aug 18 19:00</p>
               <p>Miah's Surprise Birthday</p>

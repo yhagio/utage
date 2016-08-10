@@ -22,7 +22,8 @@ const NewEventContainer = React.createClass({
     price: number.isRequired,
     limit: number.isRequired,
     startDate: string.isRequired,
-    endDate: string.isRequired
+    endDate: string.isRequired,
+    createEvent: func.isRequired
   },
   
   render() {
@@ -42,7 +43,8 @@ const NewEventContainer = React.createClass({
         limit={ this.props.limit }
         startDate={ this.props.startDate }
         endDate={ this.props.endDate }
-        error={ this.props.error } />
+        error={ this.props.error }
+        createEvent={ this.props.createEvent } />
     );
   }
 });
