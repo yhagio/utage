@@ -9,6 +9,7 @@ const { object, number, bool, string, func } = PropTypes;
 
 const NewEventContainer = React.createClass({
   propTypes: {
+    uid: string.isRequired,
     updateTitle: func.isRequired,
     updateDescription: func.isRequired,
     updateAddress: func.isRequired,
@@ -29,6 +30,7 @@ const NewEventContainer = React.createClass({
   render() {
     return (
       <NewEvent 
+        uid={ this.props.uid }
         updateTitle={ this.props.updateTitle }
         updateDescription={ this.props.updateDescription }
         updateAddress={ this.props.updateAddress }
@@ -50,8 +52,9 @@ const NewEventContainer = React.createClass({
 });
 
 
-function mapStateToProps ({ eventForm }) {
+function mapStateToProps ({ eventForm, users }) {
   return {
+    uid: users.authedUser ? users.authedUser.uid : '',
     error: eventForm.error,
     title: eventForm.title,
     description: eventForm.description,

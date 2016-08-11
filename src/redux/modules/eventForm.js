@@ -1,10 +1,10 @@
+import { saveEvent } from '../../helpers/firebaseAPI';
 
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
 const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
 const UPDATE_PRICE = 'UPDATE_PRICE';
 const UPDATE_LIMIT = 'UPDATE_LIMIT';
-const UPDATE_AGE = 'UPDATE_AGE';
 const UPDATE_START_DATE = 'UPDATE_START_DATE';
 const UPDATE_END_DATE = 'UPDATE_END_DATE';
 const SUBMITTED_SUCCESSFULLY = 'SUBMITTED_SUCCESSFULLY';
@@ -46,13 +46,6 @@ export function updateLimit (limit) {
   };
 }
 
-export function updateAge (age) {
-  return {
-    type: UPDATE_AGE,
-    age
-  };
-}
-
 export function updateStartDate(startDate) {
   return {
     type: UPDATE_START_DATE,
@@ -81,8 +74,18 @@ function submissionError (error) {
   };
 }
 
-export function createEvent () {
-
+export function createEvent (event) {
+  return function(dispatch) {
+    saveEvent(event)
+    .then((eventWithId) => {
+      // console.log('EventWithID ', eventWithId);
+      //
+    })
+    .catch((error) => {
+      // 
+    });
+  };
+  
 }
 
 const initialState = {
@@ -91,7 +94,6 @@ const initialState = {
   address: '',
   price: 0,
   limit: 0,
-  age: 0,
   startDate: '',
   endDate: '',
   error: ''
@@ -131,12 +133,6 @@ export default function eventFormReducer (state = initialState, action) {
         limit: action.limit
       };
 
-    case UPDATE_AGE:
-      return {
-        ...state,
-        age: action.age
-      };
-
     case UPDATE_START_DATE:
       return {
         ...state,
@@ -157,7 +153,6 @@ export default function eventFormReducer (state = initialState, action) {
         address: '',
         price: 0,
         limit: 0,
-        age: 0,
         startDate: '',
         endDate: '',
         error: ''

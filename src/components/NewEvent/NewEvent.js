@@ -18,6 +18,7 @@ NewEventForm.propTypes = {
   updateLimit: func.isRequired,
   updateStartDate: func.isRequired,
   updateEndDate: func.isRequired,
+  uid: string.isRequired,
   title: string.isRequired,
   description: string.isRequired,
   address: string.isRequired,
@@ -32,8 +33,16 @@ NewEventForm.propTypes = {
 export default function NewEventForm (props) {
   function handleFormSubmit (e) {
     e.preventDefault();
-    console.log('SUBMIT ', props);
-    props.createEvent();
+    return props.createEvent({
+      uid: props.uid,
+      title: props.title,
+      description: props.description,
+      address: props.address,
+      price: props.price,
+      limit: props.limit,
+      startDate: props.startDate,
+      endDate: props.endDate 
+    });
   }
 
   return (
@@ -45,7 +54,7 @@ export default function NewEventForm (props) {
           id='title'
           name='title'
           placeholder='Event Title'
-          onChange={ (e) => console.log(e.target.value) }
+          onChange={ (e) => props.updateTitle(e.target.value) }
           className={ inputField }
           type='text'
           required={ true } />
@@ -56,7 +65,7 @@ export default function NewEventForm (props) {
           id='description'
           name='description'
           placeholder='Description within 600 characters'
-          onChange={ (e) => console.log(e.target.value) }
+          onChange={ (e) => props.updateDescription(e.target.value) }
           className={ textareaField }
           rows='5'
           type='text'
@@ -69,7 +78,7 @@ export default function NewEventForm (props) {
           id='address'
           name='address'
           placeholder='Address'
-          onChange={ (e) => console.log(e.target.value) }
+          onChange={ (e) => props.updateAddress(e.target.value) }
           className={ inputField }
           type='text'
           autoComplete="street-address"
@@ -81,7 +90,7 @@ export default function NewEventForm (props) {
           id='price'
           name='price'
           placeholder='0 if it is FREE'
-          onChange={ (e) => console.log(e.target.value) }
+          onChange={ (e) => props.updatePrice(parseInt(e.target.value)) }
           className={ inputField }
           type='Number'
           min={0}
@@ -93,19 +102,7 @@ export default function NewEventForm (props) {
           id='limit'
           name='limit'
           placeholder='Limit number'
-          onChange={ (e) => console.log(e.target.value) }
-          className={ inputField }
-          type='number'
-          min={0}
-          required={ true } />
-      </label>
-
-      <label className={ labeled }>Limit of ages<br />
-        <input
-          id='age'
-          name='age'
-          placeholder='0 if anyone'
-          onChange={ (e) => console.log(e.target.value) }
+          onChange={ (e) => props.updateLimit(parseInt(e.target.value)) }
           className={ inputField }
           type='number'
           min={0}
@@ -116,7 +113,7 @@ export default function NewEventForm (props) {
         <input
           id='startDate'
           name='startDate'
-          onChange={ (e) => console.log(e.target.value) }
+          onChange={ (e) => props.updateStartDate(e.target.value) }
           className={ inputField }
           type='datetime-local'
           required={ true } />
@@ -126,7 +123,7 @@ export default function NewEventForm (props) {
         <input
           id='endDate'
           name='endDate'
-          onChange={ (e) => console.log(e.target.value) }
+          onChange={ (e) => props.updateEndDate(e.target.value) }
           className={ inputField }
           type='datetime-local'
           required={ true } />
