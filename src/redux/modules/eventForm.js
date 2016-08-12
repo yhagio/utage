@@ -1,4 +1,5 @@
 import { saveEvent } from '../../helpers/firebaseAPI';
+import { hashHistory } from 'react-router';
 
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
@@ -79,10 +80,14 @@ export function createEvent (event) {
     saveEvent(event)
     .then((eventWithId) => {
       // console.log('EventWithID ', eventWithId);
-      //
+      // TODO
+      // addedEvent()
+      // addedSingleusersEvent()
+      dispatch(submittedSuccessfully());
+      hashHistory.push('/');
     })
     .catch((error) => {
-      // 
+      dispatch(submissionError(error));
     });
   };
   

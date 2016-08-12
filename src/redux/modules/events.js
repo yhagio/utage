@@ -1,3 +1,5 @@
+import { fetchEvents } from '../../helpers/firebaseAPI';
+
 const FETCHING_EVENTS = 'FETCHING_EVENTS';
 const FETCHING_EVENTS_ERROR = 'FETCHING_EVENTS_ERROR';
 const FETCHING_EVENTS_SUCCESS = 'FETCHING_EVENTS_SUCCESS';
@@ -17,37 +19,42 @@ function fetchingEventsError (error) {
   };
 }
 
-function fetchingEventsSuccess (events) {
+function fetchingEventsSuccess (events, filteredEvents) {
   return {
     type: FETCHING_EVENTS_SUCCESS,
-    events
+    events,
+    filteredEvents
   };
 }
 
-export function searchEvents (searchText) {
-  return {
-    type: SEARCH_EVENTS,
-    searchText
-  };
-}
-
-export function filterEventsByCategory (searchCategory) {
+export function filterEventsByCategory (category) {
   return {
     type: FILTER_EVENTS_CATEGORY,
-    searchCategory
+    category
   };
 }
 
 const initialState = {
-  events: [],
+  events: {},
   error: '',
   isFetching: false,
-  searchText: '',
-  searchCategory: 'default',
-  filteredRes: []
+  category: 'default',
+  filteredEvents: []
 };
 
-function getFilteredEvents (baseEvents, searchTerm, searchCategory) {
+export function fetchAndHandleEvents() {
+  return function (dispatch) {
+    dispatch(fetchingEvents());
+    fetchEvents(({ events, sorted }) => {
+      console.log('sorted', sorted);
+      return dispatch(fetchingEventsSuccess(events, sorted));
+    }, (error) => {
+      return dispatch(fetchingEventsError(error));
+    });
+  };
+}
+
+function getFilteredEvents (baseEvents, category) {
   // TODO
 }
 
@@ -73,23 +80,15 @@ export default function events (state = initialState, action) {
         isFetching: false,
         error: '',
         events: action.events,
-        filteredRes: action.events
-      };
-
-    case SEARCH_EVENTS :
-      return {
-        ...state,
-        searchText: action.searchText,
-        searchCategory: 'default',
-        filteredRes: getFilteredEvents(state.events, action.searchText, null)
+        filteredEvents: action.filteredEvents
       };
 
     case FILTER_EVENTS_CATEGORY :
       return {
         ...state,
-        searchCategory: action.searchCategory,
+        category: action.category,
         searchText: '',
-        filteredRes: getFilteredEvents(state.events, null, action.searchCategory)
+        filteredEvents: getFilteredEvents(state.events, action.category)
       };
 
     default :

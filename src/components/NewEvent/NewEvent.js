@@ -41,7 +41,8 @@ export default function NewEventForm (props) {
       price: props.price,
       limit: props.limit,
       startDate: props.startDate,
-      endDate: props.endDate 
+      endDate: props.endDate,
+      timestamp: Date.now()
     });
   }
 
