@@ -1,0 +1,8 @@
+.event {
+  color: #aaa;
+  background: rgba(256, 256, 256, 0.9);
+  border-radius: 10px;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+}

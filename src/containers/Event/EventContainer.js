@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import {
+  event
+} from './styles.css';
 
 const { object, number, bool, string, func, array } = PropTypes;
 
@@ -11,11 +14,13 @@ const EventContainer = React.createClass({
 
   render() {
     return (
-      <Link to={ `events/${this.props.eventId}` }>
-        <p>{ this.props.event.title }</p>
-        <p>{ this.props.event.description }</p>
-        <hr />
-      </Link>
+      <div className={ event }>
+        <Link to={ `events/${this.props.eventId}` }>
+          <p>{ this.props.event.title }</p>
+          <p>{ this.props.event.startDate }</p>
+          <p>{ this.props.event.price === 0 ? 'FREE' : '$'+this.props.event.price }</p>
+        </Link>
+      </div>
     );
   }
 });

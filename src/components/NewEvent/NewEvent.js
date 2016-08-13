@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import {
+  container,
   labeled,
   inputField,
   textareaField,
+  selectOption,
   submitButton
 } from './styles.css';
 
@@ -50,7 +52,7 @@ export default function NewEventForm (props) {
   }
 
   return (
-    <form onSubmit={ handleFormSubmit }>
+    <form onSubmit={ handleFormSubmit } className={ container }>
       <h2>{'New Event'}</h2>
       <hr />
       <label className={ labeled }>Title<br />
@@ -138,6 +140,7 @@ export default function NewEventForm (props) {
         id="category"
         name="category"
         value={ props.category }
+        className={ selectOption }
         onChange={ (e) => props.updateCategory(e.target.value) } >
 
         <option value='Social'>Social</option>

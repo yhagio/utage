@@ -202,7 +202,8 @@ export default function event (state = initialState, action) {
     case CONVERTING_ADDRESS_TO_LATLNG :
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        eventLatLng: {}
       };
 
     case CONVERTED_ADDRESS_TO_LATLNG :

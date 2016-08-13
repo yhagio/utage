@@ -50,21 +50,22 @@ export default function EventPage (props) {
         </div>
 
         <div className={ details } >
-          <p>{ props.event.startDate }</p>
-          <p>{ props.event.price === 0 ? 'FREE' : '$'+props.event.price}</p>
+          <p>{ props.event.price === 0 ? 'FREE' : '$'+props.event.price }</p>
           <p>Limit: { props.event.limit }</p>
           <p>Going: <span>23</span></p>
         </div>
 
         <div className={ subInfo } >
-          <p className={ host }>Host:
+          <div className={ host }>
+            <p>{ props.event.startDate }</p>
+            Host:
             <Link
               className={ authorLink }
               to={ `events/${ props.event.eventId }` }
               role="link">
               { props.eventHost.name }
             </Link>
-          </p>
+          </div>
           <p className={ description }>
             { props.event.description }
           </p>

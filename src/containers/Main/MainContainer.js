@@ -33,26 +33,6 @@ const MainContainer = React.createClass({
         this.props.stopFetchingUser();
       }
     });
-
-    // Initialize Notification
-    if ("Notification" in window) {
-      if (Notification.permission === 'default') {
-        Notification.requestPermission();
-      } else if (Notification.permission === 'granted') {
-        console.log('Notification is permitted')
-      } else {
-        console.log('Notification is denied')
-      }
-    } else {
-      console.log('Notification is not supported')
-    }
-  },
-
-  clicked() {
-    new Notification('Event detail updated', {
-      body: 'The location has been changed due to an urgent issue at the building',
-      icon: '../../images/iconmonstr-info-6-64.png'
-    });
   },
 
   render() {
@@ -60,7 +40,6 @@ const MainContainer = React.createClass({
       <div className={ main }>
         <Nav isAuthenticated={ this.props.isAuthenticated }/>
         { this.props.children }
-        <button onClick={ this.clicked }>Notify</button>
       </div>
     );
   }

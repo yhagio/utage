@@ -1,6 +1,6 @@
 .container {
   background: rgba(256, 256, 256, 0.9);
-  margin-top: 20px;
+  margin: 20px 5px 5px 5px;
   padding: 10px;
   border-radius: 30px;
   color: #333;
