@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
@@ -26,10 +25,6 @@ function mapStateToProps ({ events }, props) {
     event: events.events[props.eventId]
   };
 }
-
-// function mapDispatchToProps (dispatch) {
-//   return bindActionCreators(actions, dispatch);
-// }
 
 export default connect(
   mapStateToProps,

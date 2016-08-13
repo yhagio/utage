@@ -112,7 +112,7 @@ const initialState = {
   limit: 0,
   startDate: '',
   endDate: '',
-  category: '',
+  category: 'Social',
   error: ''
 };
 

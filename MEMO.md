@@ -7,3 +7,13 @@
 - signin error
 - Edit event
 - Delete event
+- getFilteredEventIDs
+- offline
+- notfication
+
+
+Firebase architecture:
+events
+usersEvents
+usersGoing
+goingCounts

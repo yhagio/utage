@@ -1,5 +1,9 @@
 import { ref } from 'config/constants';
 
+/*****************
+ * Event Creation
+ *****************/
+
 // Save a new event to '/events'
 function saveToEvents (event) {
   const eventId = ref.child('events').push().key;
@@ -26,6 +30,10 @@ export function saveEvent (event) {
   ]).then(() => ({...event, eventId}));
 }
 
+/*****************
+ * Events (Home)
+ *****************/
+
 // Fetch all events
 export function fetchEvents (callback, errorCallback) {
   ref.child('events').on('value', (snapshot) => {
@@ -41,4 +49,20 @@ export function fetchEvents (callback, errorCallback) {
     // Callback all events objects & array of DESC ordered IDs
     callback({events, sorted});
   }, errorCallback)
+}
+
+/*****************
+ * Single Event Page
+ *****************/
+
+// Get single event
+export function fetchSingleEvent (eventId) {
+  return ref.child(`events/${eventId}`).once('value')
+    .then((snapshot) => snapshot.val())
+}
+
+// Get single user
+export function fetchSingleUser(uid) {
+  return ref.child(`users/${uid}`).once('value')
+    .then((snapshot) => snapshot.val())
 }

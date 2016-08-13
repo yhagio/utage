@@ -34,14 +34,6 @@ export function filterEventsByCategory (category) {
   };
 }
 
-const initialState = {
-  events: {},
-  error: '',
-  isFetching: false,
-  category: 'default',
-  filteredEvents: []
-};
-
 export function fetchAndHandleEvents() {
   return function (dispatch) {
     dispatch(fetchingEvents());
@@ -54,9 +46,26 @@ export function fetchAndHandleEvents() {
   };
 }
 
-function getFilteredEvents (baseEvents, category) {
+function getFilteredEventIDs (baseEvents, category) {
   // TODO
+  // Return filtered IDs
+  if (category !== '') {
+    return Object.keys(baseEvents).filter((event) => { 
+      return (event.category.toLowerCase().indexOf(category.toLowerCase()) >= 0);
+    });
+  } else {
+    // TODO, just return sorted IDs
+  }
+
 }
+
+const initialState = {
+  events: {},
+  error: '',
+  isFetching: false,
+  category: '',
+  filteredEvents: []
+};
 
 export default function events (state = initialState, action) {
   switch (action.type) {
@@ -88,7 +97,7 @@ export default function events (state = initialState, action) {
         ...state,
         category: action.category,
         searchText: '',
-        filteredEvents: getFilteredEvents(state.events, action.category)
+        filteredEvents: getFilteredEventIDs(state.events, action.category)
       };
 
     default :
