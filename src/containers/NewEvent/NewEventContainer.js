@@ -17,6 +17,7 @@ const NewEventContainer = React.createClass({
     updateLimit: func.isRequired,
     updateStartDate: func.isRequired,
     updateEndDate: func.isRequired,
+    updateCategory: func.isRequired,
     title: string.isRequired,
     description: string.isRequired,
     address: string.isRequired,
@@ -24,6 +25,7 @@ const NewEventContainer = React.createClass({
     limit: number.isRequired,
     startDate: string.isRequired,
     endDate: string.isRequired,
+    category: string.isRequired,
     createEvent: func.isRequired
   },
   
@@ -38,6 +40,7 @@ const NewEventContainer = React.createClass({
         updateLimit={ this.props.updateLimit }
         updateStartDate={ this.props.updateStartDate }
         updateEndDate={ this.props.updateEndDate }
+        updateCategory={ this.props.updateCategory }
         title={ this.props.title }
         description={ this.props.description }
         address={ this.props.address }
@@ -45,6 +48,7 @@ const NewEventContainer = React.createClass({
         limit={ this.props.limit }
         startDate={ this.props.startDate }
         endDate={ this.props.endDate }
+        category={ this.props.category }
         error={ this.props.error }
         createEvent={ this.props.createEvent } />
     );
@@ -62,7 +66,8 @@ function mapStateToProps ({ eventForm, users }) {
     limit: eventForm.limit,
     price: eventForm.price,
     startDate: eventForm.startDate,
-    endDate: eventForm.endDate
+    endDate: eventForm.endDate,
+    category: eventForm.category
   };
 }
 

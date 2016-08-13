@@ -16,10 +16,6 @@ const MainContainer = React.createClass({
     stopFetchingUser: PropTypes.func.isRequired
   },
 
-  contextTypes: {
-    router: PropTypes.object.isRequired,
-  },
-
   componentDidMount() {
     // Check if user is already authenticated on initial load
     firebaseAuth().onAuthStateChanged((user) => {

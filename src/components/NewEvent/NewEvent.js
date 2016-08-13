@@ -18,6 +18,7 @@ NewEventForm.propTypes = {
   updateLimit: func.isRequired,
   updateStartDate: func.isRequired,
   updateEndDate: func.isRequired,
+  updateCategory: func.isRequired,
   uid: string.isRequired,
   title: string.isRequired,
   description: string.isRequired,
@@ -26,6 +27,7 @@ NewEventForm.propTypes = {
   limit: number.isRequired,
   startDate: string.isRequired,
   endDate: string.isRequired,
+  category: string.isRequired,
   error: string.isRequired,
   createEvent: func.isRequired
 };
@@ -42,6 +44,7 @@ export default function NewEventForm (props) {
       limit: props.limit,
       startDate: props.startDate,
       endDate: props.endDate,
+      category: props.category,
       timestamp: Date.now()
     });
   }
@@ -130,6 +133,21 @@ export default function NewEventForm (props) {
           required={ true } />
       </label>
 
+      <label htmlFor="category" className={ labeled }>Category</label>
+      <select
+        id="category"
+        name="category"
+        value={ props.category }
+        onChange={ (e) => props.updateCategory(e.target.value) } >
+
+        <option value='Social'>Social</option>
+        <option value='Birthday'>Birthday</option>
+        <option value='Celebration'>Celebration</option>
+        <option value='Networking'>Networking</option>
+        <option value='Sports'>Sports</option>
+        <option value='Conference'>Conference</option>
+
+      </select>
 
       <button
         action='submit'

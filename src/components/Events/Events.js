@@ -8,7 +8,7 @@ Events.propTypes = {
 };
 
 export default function Events (props) {
-  console.log('Filtered IDs', props.filteredEvents);
+  // console.log('Filtered IDs', props.filteredEvents);
   return (
     <div>
       { props.filteredEvents.length === 0

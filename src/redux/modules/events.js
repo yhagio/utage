@@ -46,7 +46,7 @@ export function fetchAndHandleEvents() {
   return function (dispatch) {
     dispatch(fetchingEvents());
     fetchEvents(({ events, sorted }) => {
-      console.log('sorted', sorted);
+      // console.log('sorted', sorted);
       return dispatch(fetchingEventsSuccess(events, sorted));
     }, (error) => {
       return dispatch(fetchingEventsError(error));

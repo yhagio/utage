@@ -27,12 +27,18 @@ export function saveEvent (event) {
 }
 
 // Fetch all events
-export function fetchEvents (cb, errorCB) {
+export function fetchEvents (callback, errorCallback) {
   ref.child('events').on('value', (snapshot) => {
     
+    // Events objects
     const events = snapshot.val() || {};
-    console.log('Events: ', events);
-    const sorted = Object.keys(events).sort((a, b) => events[b].timestamp - events[a].timestamp);
-    cb({events, sorted});
-  }, errorCB)
+    
+    // DESC order of events by timestamp
+    const sorted = Object.keys(events).sort((a, b) => { 
+      return events[b].timestamp - events[a].timestamp;
+    });
+
+    // Callback all events objects & array of DESC ordered IDs
+    callback({events, sorted});
+  }, errorCallback)
 }

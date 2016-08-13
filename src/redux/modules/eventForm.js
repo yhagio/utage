@@ -8,6 +8,7 @@ const UPDATE_PRICE = 'UPDATE_PRICE';
 const UPDATE_LIMIT = 'UPDATE_LIMIT';
 const UPDATE_START_DATE = 'UPDATE_START_DATE';
 const UPDATE_END_DATE = 'UPDATE_END_DATE';
+const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 const SUBMITTED_SUCCESSFULLY = 'SUBMITTED_SUCCESSFULLY';
 const SUBMISSION_ERROR = 'SUBMISSION_ERROR';
 
@@ -61,6 +62,13 @@ export function updateEndDate(endDate) {
   };
 }
 
+export function updateCategory(category) {
+  return {
+    type: UPDATE_CATEGORY,
+    category
+  };
+}
+
 function submittedSuccessfully () {
   return {
     type: SUBMITTED_SUCCESSFULLY
@@ -80,10 +88,13 @@ export function createEvent (event) {
     saveEvent(event)
     .then((eventWithId) => {
       // console.log('EventWithID ', eventWithId);
+
       // TODO
-      // addedEvent()
-      // addedSingleusersEvent()
+      // dispatch(addedEvent());
+      // dispatch(addedSingleusersEvent());
+      
       dispatch(submittedSuccessfully());
+      // Redirect after submitted successfully
       hashHistory.push('/');
     })
     .catch((error) => {
@@ -101,6 +112,7 @@ const initialState = {
   limit: 0,
   startDate: '',
   endDate: '',
+  category: '',
   error: ''
 };
 
@@ -150,6 +162,12 @@ export default function eventFormReducer (state = initialState, action) {
         endDate: action.endDate
       };
 
+    case UPDATE_CATEGORY:
+      return {
+        ...state,
+        category: action.category
+      };
+
     case SUBMITTED_SUCCESSFULLY:
       return {
         ...state,
@@ -160,6 +178,7 @@ export default function eventFormReducer (state = initialState, action) {
         limit: 0,
         startDate: '',
         endDate: '',
+        category: '',
         error: ''
       };
 

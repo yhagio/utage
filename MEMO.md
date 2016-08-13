@@ -1,5 +1,9 @@
 [My personal note](https://gist.github.com/yhagio/419af7f29920ed71515708bf16c6d981)
 
 ### TODO
-- eventForm createEvent() redux
-- events fetch
+- eventForm createEvent() redux, error
+- events fetch, error
+- event page error
+- signin error
+- Edit event
+- Delete event
