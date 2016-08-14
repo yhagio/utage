@@ -29,7 +29,8 @@ EventEdit.propTypes = {
   updateStartDate: func.isRequired,
   updateEndDate: func.isRequired,
   updateCategory: func.isRequired,
-  handleUpdateEvent: func.isRequired
+  handleUpdateEvent: func.isRequired,
+  handleDeleteEvent: func.isRequired
 };
 
 export default function EventEdit (props) {  
@@ -48,6 +49,11 @@ export default function EventEdit (props) {
       category: props.category || props.event.category,
       timestamp: Date.now()
     });
+  }
+
+  function handleRemoval (e) {
+    e.preventDefault();
+    return props.handleDeleteEvent(props.event.eventId, props.event);
   }
   
   return props.isFetching === true
@@ -151,6 +157,11 @@ export default function EventEdit (props) {
         action='submit'
         className={ submitButton }
         role="button">Update</button>
+
+      <button
+        className={ submitButton }
+        onClick={ handleRemoval }
+        role="button">DELETE</button>
     </form>
     );
 }

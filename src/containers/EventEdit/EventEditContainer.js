@@ -26,7 +26,8 @@ const EventEditContainer = React.createClass({
     startDate: string.isRequired,
     endDate: string.isRequired,
     category: string.isRequired,
-    handleUpdateEvent: func.isRequired
+    handleUpdateEvent: func.isRequired,
+    handleDeleteEvent: func.isRequired
   },
   
   render() {
@@ -49,7 +50,8 @@ const EventEditContainer = React.createClass({
             startDate={ this.props.startDate }
             endDate={ this.props.endDate }
             category={ this.props.category }
-            handleUpdateEvent={ this.props.handleUpdateEvent } />
+            handleUpdateEvent={ this.props.handleUpdateEvent }
+            handleDeleteEvent={ this.props.handleDeleteEvent } />
   }
 });
 

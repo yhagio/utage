@@ -1,4 +1,4 @@
-import { updateEvent } from '../../helpers/firebaseAPI';
+import { updateEvent, deleteEvent } from '../../helpers/firebaseAPI';
 import { hashHistory } from 'react-router';
 
 const EDIT_TITLE = 'EDIT_TITLE';
@@ -97,7 +97,22 @@ export function handleUpdateEvent (eventId, event) {
       dispatch(submissionError(error));
     });
   };
-  
+}
+
+export function handleDeleteEvent (eventId, event) {
+  return function(dispatch) {
+    deleteEvent(eventId, event)
+    .then((path) => {
+      // console.log('Deleted', path)
+      dispatch(submittedSuccessfully());
+      // Redirect after submitted successfully
+      hashHistory.push(path);
+    })
+    .catch((error) => {
+      // console.log('Deleted E', error)
+      dispatch(submissionError(error));
+    });
+  };
 }
 
 

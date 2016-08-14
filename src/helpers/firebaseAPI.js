@@ -76,6 +76,19 @@ export function updateEvent (eventId, event) {
     .then(() => event);
 }
 
+/*****************
+ * Delete an event as author
+ *****************/
+
+// Delete from 'events', 'attendance', and 'usersEvents'
+export function deleteEvent (eventId, event) {
+  return Promise.all([
+    ref.child(`events/${eventId}`).set(null),
+    ref.child(`attendance/${eventId}`).set(null),
+    ref.child(`usersEvents/${event.uid}/${eventId}`).set(null)
+  ]).then(() => '/');
+}
+
 
 /*****************
  * Attendance of an event
