@@ -4,3 +4,4 @@ export events from './events';
 export event from './event';
 export eventAttendance from './eventAttendance';
 export usersAttendance from './usersAttendance';
+export eventEdit from './eventEdit';

@@ -10,7 +10,6 @@ Auth.propTypes = {
 export default function Auth ({ onAuth, isFetching, error }) {
   return (
     <div className=''>
-      <h1 className=''>{'facebook authentication'}</h1>
       <FacebookAuth
         isFetching={ isFetching }
         onAuth={ onAuth } />

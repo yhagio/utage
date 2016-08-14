@@ -104,6 +104,14 @@
   margin-left: 20px;
 }
 
+.editButton {
+  padding: 10px;
+  border: 2px solid orangered;
+  border-radius: 20px;
+  font-size: 18px;
+  color: orangered;
+}
+
 @media screen and (min-width: 460px) {
   .title {
     text-align: left;

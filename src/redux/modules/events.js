@@ -15,7 +15,7 @@ function fetchingEvents () {
 function fetchingEventsError (error) {
   return {
     type: FETCHING_EVENTS_ERROR,
-    error
+    error: 'Could not get events list ...'
   };
 }
 
@@ -38,9 +38,10 @@ export function fetchAndHandleEvents() {
   return function (dispatch) {
     dispatch(fetchingEvents());
     fetchEvents(({ events, sorted }) => {
-      // console.log('sorted', sorted);
+      console.log('sorted', sorted);
       return dispatch(fetchingEventsSuccess(events, sorted));
     }, (error) => {
+      console.log('error', error);
       return dispatch(fetchingEventsError(error));
     });
   };

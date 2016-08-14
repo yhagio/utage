@@ -18,11 +18,27 @@ EventEdit.propTypes = {
 };
 
 export default function EventEdit (props) {  
-  // console.log(props.event)
+  console.log(props)
+
+  function handleFormSubmit (e) {
+    e.preventDefault();
+    return props.updateEvent(props.event.eventId, {
+      uid: props.event.uid,
+      title: props.event.title,
+      description: props.event.description,
+      address: props.event.address,
+      price: props.event.price,
+      startDate: props.event.startDate,
+      endDate: props.event.endDate,
+      category: props.event.category,
+      timestamp: Date.now()
+    });
+  }
+  
   return props.isFetching === true
     ? <h3>Loading event data ...</h3>
     : (
-  <form className={ container }>
+  <form onSubmit={ handleFormSubmit } className={ container }>
       <h2>{'New Event'}</h2>
       <hr />
       <label className={ labeled }>Title<br />

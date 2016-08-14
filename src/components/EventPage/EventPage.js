@@ -17,12 +17,14 @@ import {
   singleConversation,
   authorLink,
   comment,
-  timestamp
+  timestamp,
+  editButton
 } from './styles.css';
 
 const { string, func, bool, array, object, number } = PropTypes;
 
 EventPage.propTypes = {
+  authedUserID: string.isRequired,
   event: object.isRequired,
   eventHost: object.isRequired,
   eventLatLng: object.isRequired,
@@ -56,17 +58,20 @@ export default function EventPage (props) {
         <h1 className={ title }>{ props.event.title }</h1>
 
         <div className={ actionArea }>
-          <GoingCancelButton
-            going={ props.going }
-            eventId={ props.event.eventId }
-            handleConfirmAttendance={ props.handleConfirmAttendance }
-            handleCancelAttendance={ props.handleCancelAttendance }  />
-          { props.eventHost.uid === props.event.uid
+          { props.authedUserID
+            ? <GoingCancelButton
+              going={ props.going }
+              eventId={ props.event.eventId }
+              handleConfirmAttendance={ props.handleConfirmAttendance }
+              handleCancelAttendance={ props.handleCancelAttendance }  />
+            : null }
+            
+          { props.authedUserID === props.event.uid
             ? <Link
-              className={ authorLink }
+              className={ editButton }
               to={ `events/${ props.event.eventId }/edit` }
-              role="link">
-              { 'EDIT' }
+              role="button">
+              { 'Edit Event' }
             </Link>
             : null }
         </div>

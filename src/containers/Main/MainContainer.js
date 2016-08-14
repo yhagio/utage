@@ -32,7 +32,6 @@ const MainContainer = React.createClass({
         this.props.fetchingUserSuccess(userInfo);
         this.props.fetchUsersEventAttendance();
       } else {
-        console.log('Stop fetching');
         this.props.stopFetchingUser();
       }
     });

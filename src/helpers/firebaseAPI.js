@@ -38,7 +38,6 @@ export function saveEvent (event) {
 // Fetch all events
 export function fetchEvents (callback, errorCallback) {
   ref.child('events').on('value', (snapshot) => {
-    
     // Events objects
     const events = snapshot.val() || {};
     

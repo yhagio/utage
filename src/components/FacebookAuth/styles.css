@@ -1,0 +1,20 @@
+.fbButton {
+  padding: 15px 10px;
+  border-radius: 20px;
+  border: none;
+  background: #365899;
+  width: 220px;
+  color: white;
+  font-size: 1.2em;
+  margin: 40px auto;
+  display: block;
+}
+
+.fbButton:hover {
+  cursor: pointer;
+}
+
+.fbButton:active,
+.fbButton:focus {
+  color: deeppink;
+}

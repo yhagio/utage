@@ -10,6 +10,7 @@ const { object, bool, string, func, array, number } = PropTypes;
 
 const EventPageContainer = React.createClass({
   propTypes: {
+    authedUserID: string.isRequired,
     event: object.isRequired,
     eventHost: object.isRequired,
     eventLatLng: object.isRequired,
@@ -34,6 +35,7 @@ const EventPageContainer = React.createClass({
   
   render() {
     return <EventPage
+            authedUserID={ this.props.authedUserID }
             event={ this.props.event }
             eventHost={ this.props.eventHost }
             eventLatLng={ this.props.eventLatLng }
@@ -51,6 +53,7 @@ const EventPageContainer = React.createClass({
 
 function mapStateToProps (state, ownProps) {
   return {
+    authedUserID: state.users.authedUser.uid || '',
     event: state.event.event,
     eventHost: state.event.eventHost,
     eventLatLng: state.event.eventLatLng,

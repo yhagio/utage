@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { EventEdit } from 'components';
 import * as eventActions from 'redux/modules/event';
+import * as eventFormActions from 'redux/modules/eventForm';
 
 const { object, bool, string, func, array, number } = PropTypes;
 
@@ -11,7 +12,8 @@ const EventEditContainer = React.createClass({
     event: object.isRequired,
     eventHost: object.isRequired,
     isFetching: bool.isRequired,
-    error: string.isRequired
+    error: string.isRequired,
+    updateEvent: func.isRequired
   },
   
   render() {
@@ -19,7 +21,8 @@ const EventEditContainer = React.createClass({
             event={ this.props.event }
             eventHost={ this.props.eventHost }
             isFetching={ this.props.isFetching }
-            error={ this.props.error } />
+            error={ this.props.error }
+            updateEvent={ this.props.updateEvent } />
   }
 });
 
@@ -34,7 +37,10 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(eventActions, dispatch);
+  return bindActionCreators({
+    ...eventActions,
+    ...eventFormActions
+  }, dispatch);
 }
 
 export default connect(

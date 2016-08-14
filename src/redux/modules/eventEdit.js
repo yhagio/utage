@@ -83,19 +83,13 @@ function submissionError (error) {
   };
 }
 
-export function createEvent (event) {
+export function handleUpdateEvent (eventId, event) {
   return function(dispatch) {
-    saveEvent(event)
+    updateEvent(eventId, event)
     .then((eventWithId) => {
-      // console.log('EventWithID ', eventWithId);
-
-      // TODO
-      // dispatch(addedEvent());
-      // dispatch(addedSingleusersEvent());
-      
       dispatch(submittedSuccessfully());
       // Redirect after submitted successfully
-      hashHistory.push('/');
+      hashHistory.push(`/events/${eventWithId.eventId}`);
     })
     .catch((error) => {
       dispatch(submissionError(error));
@@ -179,7 +173,6 @@ export default function eventFormReducer (state = initialState, action) {
         description: '',
         address: '',
         price: 0,
-        limit: 0,
         startDate: '',
         endDate: '',
         category: '',
