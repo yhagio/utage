@@ -1,0 +1,14 @@
+{
+  "staticFileGlobs": [
+    "dist/**.html",
+    "dist/images/**.*",
+    "dist/images/**/**.*",
+    "dist/**.js"
+  ],
+  "importScripts": [
+    "sw-toolbox.js",
+    "runtime-caching.js"
+  ],
+  "stripPrefix": "dist/",
+  "verbose": true
+}

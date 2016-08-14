@@ -58,7 +58,7 @@ const NewEventContainer = React.createClass({
 
 function mapStateToProps ({ eventForm, users }) {
   return {
-    uid: users.authedUser ? users.authedUser.uid : '',
+    uid: users.authedUser.uid ? users.authedUser.uid : '',
     error: eventForm.error,
     title: eventForm.title,
     description: eventForm.description,

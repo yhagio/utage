@@ -16,7 +16,7 @@ const EventContainer = React.createClass({
     return (
       <div className={ event }>
         <Link to={ `events/${this.props.eventId}` }>
-          <p>{ this.props.event.title }</p>
+          <h2>{ this.props.event.title }</h2>
           <p>{ this.props.event.startDate }</p>
           <p>{ this.props.event.price === 0 ? 'FREE' : '$'+this.props.event.price }</p>
         </Link>

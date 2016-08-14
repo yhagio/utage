@@ -94,6 +94,13 @@ export function createEvent (event) {
       // dispatch(addedSingleusersEvent());
       
       dispatch(submittedSuccessfully());
+      // Notify new event
+      if (Notification.permission === 'granted') {
+        new Notification('New Event Available', {
+          body: eventWithId.title,
+          icon: '../../images/iconmonstr-info-6-64.png'
+        });
+      }
       // Redirect after submitted successfully
       hashHistory.push('/');
     })

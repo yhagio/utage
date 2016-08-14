@@ -50,7 +50,12 @@ function checkAuth (nextState, replace) {
   // If not authenticated, redirect to authenticate route
   } else {
     if (isAuthed !== true) {
-      replace('/authenticate')
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          replace('/authenticate');
+        }
+        return;
+      });
     }
   }
 }

@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "production": "webpack -p",
+    "production": "cp node_modules/sw-toolbox/sw-toolbox.js src/sw-toolbox.js && webpack -p && cp src/runtime-caching.js dist/runtime-caching.js && cp src/sw-toolbox.js dist/sw-toolbox.js && npm run precache",
     "lint": "eslint src/.; exit 0",
     "fix": "eslint --fix src/.; exit 0",
-    "production:run": "cd dist && http-server"
+    "production:run": "cd dist && http-server",
+    "precache": "sw-precache --root=dist --config=sw-precache-config.json"
   },
   "repository": {
     "type": "git",
@@ -70,6 +71,8 @@
     "http-server": "^0.9.0",
     "image-webpack-loader": "^2.0.0",
     "style-loader": "^0.13.1",
+    "sw-precache": "^4.0.0",
+    "sw-toolbox": "^3.2.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"

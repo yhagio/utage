@@ -3,6 +3,7 @@
 
 ### TODO
 - Form submit checks (edge cases) EventForm, EventEdit
-- getFilteredEventIDs
 - offline
-- notfication on update
+
+
+https://duske.me/improve-user-experience-with-service-worker-toolbox/

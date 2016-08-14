@@ -7,3 +7,4 @@ export NewEvent from './NewEvent/NewEvent';
 export Events from './Events/Events';
 export EventPage from './EventPage/EventPage';
 export EventEdit from './EventEdit/EventEdit';
+export Account from './Account/Account';
