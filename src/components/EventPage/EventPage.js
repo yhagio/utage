@@ -20,7 +20,7 @@ import {
   timestamp
 } from './styles.css';
 
-const { string, func, bool, array, object } = PropTypes;
+const { string, func, bool, array, object, number } = PropTypes;
 
 EventPage.propTypes = {
   event: object.isRequired,
@@ -31,7 +31,22 @@ EventPage.propTypes = {
   rsvp: bool.isRequired,
   going: bool.isRequired,
   comments: array.isRequired,
+  attendance: number,
+  handleConfirmAttendance: func.isRequired,
+  handleCancelAttendance: func.isRequired
 };
+
+function GoingCancelButton (props) {
+  return props.going === true
+    ? <button
+        className={ actionButtonNot }
+        onClick={(e) => props.handleCancelAttendance(props.eventId, e)}
+        role="button">{ 'Cancel' }</button>
+    : <button
+        className={ actionButton }
+        onClick={(e) => props.handleConfirmAttendance(props.eventId, e)}
+        role="button">{ 'Confirm Going' }</button>;
+}
 
 export default function EventPage (props) {  
   return props.isFetching === true
@@ -41,18 +56,17 @@ export default function EventPage (props) {
         <h1 className={ title }>{ props.event.title }</h1>
 
         <div className={ actionArea }>
-          <button
-            className={ actionButton }
-            role="button">I'm going</button>
-          <button
-            className={ actionButtonNot }
-            role="button">Not going</button>
+          <GoingCancelButton
+            going={ props.going }
+            eventId={ props.event.eventId }
+            handleConfirmAttendance={ props.handleConfirmAttendance }
+            handleCancelAttendance={ props.handleCancelAttendance }  />
         </div>
 
         <div className={ details } >
           <p>{ props.event.price === 0 ? 'FREE' : '$'+props.event.price }</p>
           <p>Limit: { props.event.limit }</p>
-          <p>Going: <span>23</span></p>
+          <p>Going: <span>{ props.attendance }</span></p>
         </div>
 
         <div className={ subInfo } >
@@ -72,6 +86,7 @@ export default function EventPage (props) {
         </div>
 
         <div className={ mapArea }>
+          <p>{ props.event.address }</p>
           <GoogleMap 
             eventLatLng={ props.eventLatLng } />
         </div>

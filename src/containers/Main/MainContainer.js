@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { Nav } from 'components';
 import * as userActionCreators from 'redux/modules/users';
+import * as usersAttendanceActionCreators from 'redux/modules/usersAttendance';
 import { firebaseAuth } from 'config/constants';
 import { main } from './styles.css';
 
@@ -13,7 +14,8 @@ const MainContainer = React.createClass({
     isFetching: PropTypes.bool.isRequired,
     authUser: PropTypes.func.isRequired,
     fetchingUserSuccess: PropTypes.func.isRequired,
-    stopFetchingUser: PropTypes.func.isRequired
+    stopFetchingUser: PropTypes.func.isRequired,
+    fetchUsersEventAttendance: PropTypes.func.isRequired
   },
 
   componentDidMount() {
@@ -28,6 +30,7 @@ const MainContainer = React.createClass({
         };
         this.props.authUser(userInfo);
         this.props.fetchingUserSuccess(userInfo);
+        this.props.fetchUsersEventAttendance();
       } else {
         console.log('Stop fetching');
         this.props.stopFetchingUser();
@@ -53,7 +56,10 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(userActionCreators, dispatch);
+  return bindActionCreators({
+    ...userActionCreators,
+    ...usersAttendanceActionCreators
+  }, dispatch);
 }
 
 

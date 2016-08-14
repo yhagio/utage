@@ -26,7 +26,8 @@ export function saveEvent (event) {
 
   return Promise.all([
     eventPromise,
-    saveToUsersEvents(event, eventId)
+    saveToUsersEvents(event, eventId),
+    saveAttendance(eventId)
   ]).then(() => ({...event, eventId}));
 }
 
@@ -65,4 +66,53 @@ export function fetchSingleEvent (eventId) {
 export function fetchSingleUser(uid) {
   return ref.child(`users/${uid}`).once('value')
     .then((snapshot) => snapshot.val())
+}
+
+/*****************
+ * Attendance of an event
+ *****************/
+
+export function fetchAttendance (eventId) {
+  return ref.child(`attendance/${eventId}`).once('value')
+    .then((snapshot) => {
+      return snapshot.val() || 0;
+    });
+}
+
+// This is called when an event is created
+export function saveAttendance (eventId) {
+  return ref.child(`attendance/${eventId}`).set(0)
+}
+
+export function incrementAttendance (eventId) {
+  return ref.child(`attendance/${eventId}`)
+    .transaction((count = 0) => {
+      return count + 1;
+    });
+}
+
+export function decrementAttendance (eventId) {
+  return ref.child(`attendance/${eventId}`)
+    .transaction((count = 0) => {
+      return count - 1;
+    });
+}
+
+/*****************
+ * User's attendance
+ *****************/
+
+export function fetchUsersAttendance (uid) {
+  return ref.child(`usersAttendance/${uid}`).once('value')
+    .then((snapshot) => {
+      return snapshot.val() || {};
+    });
+}
+
+export function saveToUsersAttendance (uid, eventId) {
+  return ref.child(`usersAttendance/${uid}/${eventId}`).set(true);
+}
+
+export function deleteFromUsersAttendance (uid, eventId) {
+  return ref.child(`usersAttendance/${uid}/${eventId}`).set(null);
 }

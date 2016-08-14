@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { EventPage } from 'components';
-import * as actions from 'redux/modules/event';
+import * as eventActions from 'redux/modules/event';
+import * as attendanceActions from 'redux/modules/eventAttendance';
+import * as usersAttendanceActions from 'redux/modules/usersAttendance';
 
-const { object, bool, string, func, array } = PropTypes;
+const { object, bool, string, func, array, number } = PropTypes;
 
 const EventPageContainer = React.createClass({
   propTypes: {
@@ -17,10 +19,17 @@ const EventPageContainer = React.createClass({
     rsvp: bool.isRequired,
     going: bool.isRequired,
     comments: array.isRequired,
+    attendance: number,
+    fetchEventAttendance: func.isRequired,
+    // fetchUsersEventAttendance: func.isRequired,
+    handleConfirmAttendance: func.isRequired,
+    handleCancelAttendance: func.isRequired
   },
 
   componentDidMount() {
     this.props.fetchAndHandleEvent(this.props.params.id);
+    this.props.fetchEventAttendance(this.props.params.id);
+    // this.props.fetchUsersEventAttendance();
   },
   
   render() {
@@ -32,12 +41,15 @@ const EventPageContainer = React.createClass({
             error={ this.props.error }
             rsvp={ this.props.rsvp }
             going={ this.props.going }
-            comments={ this.props.comments } />
+            comments={ this.props.comments }
+            attendance={ this.props.attendance }
+            handleConfirmAttendance={ this.props.handleConfirmAttendance }
+            handleCancelAttendance={ this.props.handleCancelAttendance } />
   }
 });
 
 
-function mapStateToProps (state) {
+function mapStateToProps (state, ownProps) {
   return {
     event: state.event.event,
     eventHost: state.event.eventHost,
@@ -45,13 +57,18 @@ function mapStateToProps (state) {
     isFetching: state.event.isFetching,
     error: state.event.error,
     rsvp: state.event.rsvp,
-    going: state.event.going,
-    comments: state.event.comments
+    comments: state.event.comments,
+    attendance: state.eventAttendance[ownProps.params.id],
+    going: state.usersAttendance[ownProps.params.id] === true
   };
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators({
+    ...eventActions,
+    ...attendanceActions,
+    ...usersAttendanceActions
+  }, dispatch);
 }
 
 export default connect(

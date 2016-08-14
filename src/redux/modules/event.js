@@ -1,12 +1,18 @@
-import { fetchSingleEvent, fetchSingleUser } from '../../helpers/firebaseAPI';
+import { 
+  fetchSingleEvent,
+  fetchSingleUser,
+  confirmAttendance,
+  cancelAttendance
+} from '../../helpers/firebaseAPI';
 
 const FETCHING_EVENT = 'FETCHING_EVENT';
 const FETCHING_EVENT_ERROR = 'FETCHING_EVENT_ERROR';
 const FETCHING_EVENT_SUCCESS = 'FETCHING_EVENT_SUCCESS';
-const UPDATE_ATTENDANCE = 'UPDATE_ATTENDANCE';
+
 const FETCHING_HOST = 'FETCHING_HOST';
 const FETCHING_HOST_SUCCESS = 'FETCHING_HOST_SUCCESS';
 const FETCHING_HOST_ERROR = 'FETCHING_HOST_ERROR';
+
 const CONVERTING_ADDRESS_TO_LATLNG = 'CONVERTING_ADDRESS_TO_LATLNG';
 const CONVERTED_ADDRESS_TO_LATLNG = 'CONVERTED_ADDRESS_TO_LATLNG';
 const CONVERTING_ADDRESS_TO_LATLNG_ERROR = 'CONVERTING_ADDRESS_TO_LATLNG_ERROR';
@@ -49,13 +55,6 @@ function fetchingHostSuccess (eventHost) {
   return {
     type: FETCHING_HOST_SUCCESS,
     eventHost
-  };
-}
-
-function updateAttendance (going) {
-  return {
-    type: FETCHING_EVENT_SUCCESS,
-    going
   };
 }
 
@@ -169,13 +168,6 @@ export default function event (state = initialState, action) {
         isFetching: false,
         error: '',
         event: action.event
-      };
-
-    case UPDATE_ATTENDANCE :
-      return {
-        ...state,
-        rsvp: true,
-        going: action.going
       };
 
     case FETCHING_HOST :

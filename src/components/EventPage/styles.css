@@ -72,6 +72,10 @@
   margin: 10px 10px 40px 0;
 }
 
+.mapArea > p {
+  padding-left: 15px;
+}
+
 .conversationArea {
 }
 
