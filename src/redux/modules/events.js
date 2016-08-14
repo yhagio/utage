@@ -48,16 +48,23 @@ export function fetchAndHandleEvents() {
 }
 
 function getFilteredEventIDs (baseEvents, category) {
-  // TODO
-  // Return filtered IDs
   if (category !== '') {
-    return Object.keys(baseEvents).filter((event) => { 
-      return (event.category.toLowerCase().indexOf(category.toLowerCase()) >= 0);
-    });
+    return Object.keys(baseEvents)
+      .sort((a, b) => { 
+        // DESC order by timestamp
+        return baseEvents[b].timestamp - baseEvents[a].timestamp;
+      })
+      .filter((event) => { 
+        // See if event's category matches with selected category to filter
+        return (baseEvents[event].category.toLowerCase().indexOf(category.toLowerCase()) >= 0);
+      });
   } else {
-    // TODO, just return sorted IDs
+    // Just return timely ordered IDs
+    return Object.keys(baseEvents).sort((a, b) => { 
+      // DESC order by timestamp
+      return baseEvents[b].timestamp - baseEvents[a].timestamp;
+    });
   }
-
 }
 
 const initialState = {

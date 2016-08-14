@@ -19,7 +19,7 @@ const EventsContainer = React.createClass({
     fetchAndHandleEvents: func.isRequired,
     error: string.isRequired,
     category: string.isRequired,
-    events: object.isRequired,
+    events: object.isRequired
   },
 
   componentDidMount () {
@@ -35,7 +35,8 @@ const EventsContainer = React.createClass({
           filteredEvents={ this.props.filteredEvents }
           error={ this.props.error }
           isFetching={ this.props.isFetching }
-          category={ this.props.category } />
+          category={ this.props.category }
+          filterEventsByCategory={ this.props.filterEventsByCategory } />
       </div>
     );
   }
