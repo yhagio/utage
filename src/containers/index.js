@@ -6,4 +6,4 @@ export NewEventContainer from './NewEvent/NewEventContainer';
 export SignOutContainer from './SignOut/SignOutContainer';
 export AuthContainer from './Auth/AuthContainer';
 export AccountContainer from './Account/AccountContainer';
-// export NavContainer from './Nav/NavContainer';
+export EventEditContainer from './EventEdit/EventEditContainer';

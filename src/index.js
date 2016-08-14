@@ -37,8 +37,18 @@ function checkAuth (nextState, replace) {
   // You cannot go to authenticate route if already authenticated
   if (nextPathName === '/authenticate') {
     if (isAuthed === true) {
-      replace('/')
+      replace('/');
     }
+  
+  // If user is trying to access event edit page, and
+  // if the user is not authenticated or not the event's author,
+  // redirects to the event page
+  } else if (nextState.location.pathname.startsWith('events/') && nextState.location.pathname.endsWith('/edit')) {
+    // debugger;
+    if (isAuthed !== true || store.getState().users.authedUser.uid !== store.getState().event.event.uid) {
+      replace(nextState.location.pathname.replace('/edit', ''));
+    }
+    console.log('no prob!');
   // If not authenticated, redirect to authenticate route
   } else {
     if (isAuthed !== true) {

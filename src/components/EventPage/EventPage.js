@@ -61,18 +61,27 @@ export default function EventPage (props) {
             eventId={ props.event.eventId }
             handleConfirmAttendance={ props.handleConfirmAttendance }
             handleCancelAttendance={ props.handleCancelAttendance }  />
+          { props.eventHost.uid === props.event.uid
+            ? <Link
+              className={ authorLink }
+              to={ `events/${ props.event.eventId }/edit` }
+              role="link">
+              { 'EDIT' }
+            </Link>
+            : null }
         </div>
 
         <div className={ details } >
+          <p>{ props.event.category }</p>
           <p>{ props.event.price === 0 ? 'FREE' : '$'+props.event.price }</p>
-          <p>Limit: { props.event.limit }</p>
+          {/* <p>Limit: { props.event.limit }</p> */}
           <p>Going: <span>{ props.attendance }</span></p>
         </div>
 
         <div className={ subInfo } >
           <div className={ host }>
             <p>{ props.event.startDate }</p>
-            Host:
+            posted by
             <Link
               className={ authorLink }
               to={ `events/${ props.event.eventId }` }
