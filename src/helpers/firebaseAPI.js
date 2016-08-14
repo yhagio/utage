@@ -62,10 +62,20 @@ export function fetchSingleEvent (eventId) {
 }
 
 // Get single user
-export function fetchSingleUser(uid) {
+export function fetchSingleUser (uid) {
   return ref.child(`users/${uid}`).once('value')
     .then((snapshot) => snapshot.val())
 }
+
+/*****************
+ * Update an event as author
+ *****************/
+
+export function updateEvent (eventId, event) {
+  return ref.child(`events/${eventId}`).set(event)
+    .then(() => event);
+}
+
 
 /*****************
  * Attendance of an event

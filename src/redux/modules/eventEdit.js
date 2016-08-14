@@ -1,84 +1,84 @@
-import { saveEvent } from '../../helpers/firebaseAPI';
+import { updateEvent } from '../../helpers/firebaseAPI';
 import { hashHistory } from 'react-router';
 
-const UPDATE_TITLE = 'UPDATE_TITLE';
-const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
-const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
-const UPDATE_PRICE = 'UPDATE_PRICE';
-const UPDATE_LIMIT = 'UPDATE_LIMIT';
-const UPDATE_START_DATE = 'UPDATE_START_DATE';
-const UPDATE_END_DATE = 'UPDATE_END_DATE';
-const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
-const SUBMITTED_SUCCESSFULLY = 'SUBMITTED_SUCCESSFULLY';
-const SUBMISSION_ERROR = 'SUBMISSION_ERROR';
+const EDIT_TITLE = 'EDIT_TITLE';
+const EDIT_DESCRIPTION = 'EDIT_DESCRIPTION';
+const EDIT_ADDRESS = 'EDIT_ADDRESS';
+const EDIT_PRICE = 'EDIT_PRICE';
+const EDIT_LIMIT = 'EDIT_LIMIT';
+const EDIT_START_DATE = 'EDIT_START_DATE';
+const EDIT_END_DATE = 'EDIT_END_DATE';
+const EDIT_CATEGORY = 'EDIT_CATEGORY';
+const UPDATED_SUCCESSFULLY = 'UPDATED_SUCCESSFULLY';
+const UPDATE_ERROR = 'UPDATE_ERROR';
 
 // Actions
 export function updateTitle (title) {
   return {
-    type: UPDATE_TITLE,
+    type: EDIT_TITLE,
     title
   };
 }
 
 export function updateDescription (description) {
   return {
-    type: UPDATE_DESCRIPTION,
+    type: EDIT_DESCRIPTION,
     description
   };
 }
 
 export function updateAddress (address) {
   return {
-    type: UPDATE_ADDRESS,
+    type: EDIT_ADDRESS,
     address
   };
 }
 
 export function updatePrice (price) {
   return {
-    type: UPDATE_PRICE,
+    type: EDIT_PRICE,
     price
   };
 }
 
 export function updateLimit (limit) {
   return {
-    type: UPDATE_LIMIT,
+    type: EDIT_LIMIT,
     limit
   };
 }
 
 export function updateStartDate(startDate) {
   return {
-    type: UPDATE_START_DATE,
+    type: EDIT_START_DATE,
     startDate
   };
 }
 
 export function updateEndDate(endDate) {
   return {
-    type: UPDATE_END_DATE,
+    type: EDIT_END_DATE,
     endDate
   };
 }
 
 export function updateCategory(category) {
   return {
-    type: UPDATE_CATEGORY,
+    type: EDIT_CATEGORY,
     category
   };
 }
 
 function submittedSuccessfully () {
   return {
-    type: SUBMITTED_SUCCESSFULLY
+    type: UPDATED_SUCCESSFULLY
   };
 }
 
 function submissionError (error) {
   console.log('Submission Error: ', error);
   return {
-    type: SUBMISSION_ERROR,
+    type: UPDATE_ERROR,
     error
   };
 }
@@ -87,20 +87,19 @@ export function handleUpdateEvent (eventId, event) {
   return function(dispatch) {
     updateEvent(eventId, event)
     .then((eventWithId) => {
+      // console.log('UPDATED', eventWithId)
       dispatch(submittedSuccessfully());
       // Redirect after submitted successfully
       hashHistory.push(`/events/${eventWithId.eventId}`);
     })
     .catch((error) => {
+      // console.log('UPDATED E', error)
       dispatch(submissionError(error));
     });
   };
   
 }
 
-export function updateEvent (eventId, event) {
-
-};
 
 const initialState = {
   title: '',
@@ -115,58 +114,58 @@ const initialState = {
 };
 
 // reducer
-export default function eventFormReducer (state = initialState, action) {
+export default function eventEditReducer (state = initialState, action) {
   switch (action.type) {
 
-    case UPDATE_TITLE:
+    case EDIT_TITLE:
       return {
         ...state,
         title: action.title
       };
 
-    case UPDATE_DESCRIPTION:
+    case EDIT_DESCRIPTION:
       return {
         ...state,
         description: action.description
       };
 
-    case UPDATE_ADDRESS:
+    case EDIT_ADDRESS:
       return {
         ...state,
         address: action.address
       };
 
-    case UPDATE_PRICE:
+    case EDIT_PRICE:
       return {
         ...state,
         price: action.price
       };
 
-    case UPDATE_LIMIT:
+    case EDIT_LIMIT:
       return {
         ...state,
         limit: action.limit
       };
 
-    case UPDATE_START_DATE:
+    case EDIT_START_DATE:
       return {
         ...state,
         startDate: action.startDate
       };
 
-    case UPDATE_END_DATE:
+    case EDIT_END_DATE:
       return {
         ...state,
         endDate: action.endDate
       };
 
-    case UPDATE_CATEGORY:
+    case EDIT_CATEGORY:
       return {
         ...state,
         category: action.category
       };
 
-    case SUBMITTED_SUCCESSFULLY:
+    case UPDATED_SUCCESSFULLY:
       return {
         ...state,
         title: '',
@@ -179,7 +178,7 @@ export default function eventFormReducer (state = initialState, action) {
         error: ''
       };
 
-    case SUBMISSION_ERROR:
+    case UPDATE_ERROR:
       return {
         ...state,
         error: action.error
