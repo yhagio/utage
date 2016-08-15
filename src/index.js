@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 import { hashHistory } from 'react-router';
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import axios from 'axios';
 
 import { checkIfAuthed } from './helpers/authentication';
 import * as reducers from 'redux/modules';
@@ -24,22 +23,22 @@ compose(
   window.devToolsExtension ? window.devToolsExtension() : (f) => f
 ));
 
-const history = syncHistoryWithStore(hashHistory, store)
+const history = syncHistoryWithStore(hashHistory, store);
 
 // Protecting routes and check if user is authenticated
 function checkAuth (nextState, replace) {
   if (store.getState().users.isFetching === true) {
-    return
+    return;
   }
 
-  const isAuthed = checkIfAuthed(store)
-  const nextPathName = nextState.location.pathname
+  const isAuthed = checkIfAuthed(store);
+  const nextPathName = nextState.location.pathname;
   // You cannot go to authenticate route if already authenticated
   if (nextPathName === '/authenticate') {
     if (isAuthed === true) {
       replace('/');
     }
-  
+
   // If user is trying to access event edit page, and
   // if the user is not authenticated or not the event's author,
   // redirects to the event page
@@ -59,7 +58,6 @@ function checkAuth (nextState, replace) {
     }
   }
 }
-
 
 render(
   <Provider store={ store }>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { EventEdit } from 'components';
 import * as eventEditActions from 'redux/modules/eventEdit';
 
-const { object, bool, string, func, array, number } = PropTypes;
+const { object, bool, string, func, number } = PropTypes;
 
 const EventEditContainer = React.createClass({
   propTypes: {
@@ -29,8 +29,8 @@ const EventEditContainer = React.createClass({
     handleUpdateEvent: func.isRequired,
     handleDeleteEvent: func.isRequired
   },
-  
-  render() {
+
+  render () {
     return <EventEdit
             event={ this.props.event }
             eventHost={ this.props.eventHost }
@@ -51,10 +51,9 @@ const EventEditContainer = React.createClass({
             endDate={ this.props.endDate }
             category={ this.props.category }
             handleUpdateEvent={ this.props.handleUpdateEvent }
-            handleDeleteEvent={ this.props.handleDeleteEvent } />
+            handleDeleteEvent={ this.props.handleDeleteEvent } />;
   }
 });
-
 
 function mapStateToProps (state) {
   return {

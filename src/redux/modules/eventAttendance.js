@@ -23,6 +23,7 @@ function fetchingAttendanceSuccess (eventId, count) {
 }
 
 function fetchingAttendanceError (error) {
+  console.error('fetchingAttendanceError', error);
   return {
     type: FETCHING_ATTENDANCE_ERROR,
     error: 'Fetching attendance error'
@@ -31,7 +32,7 @@ function fetchingAttendanceError (error) {
 
 export function fetchEventAttendance (eventId) {
   return function (dispatch) {
-    dispatch(fetchingAttendance())
+    dispatch(fetchingAttendance());
 
     fetchAttendance(eventId)
       .then((count) => {
@@ -40,13 +41,13 @@ export function fetchEventAttendance (eventId) {
       .catch((error) => {
         return dispatch(fetchingAttendanceError(error));
       });
-  }
+  };
 }
 
 const initialState = {
   isFetching: false,
   error: ''
-}; 
+};
 
 export default function eventAttendance (state = initialState, action) {
   switch (action.type) {
@@ -76,7 +77,7 @@ export default function eventAttendance (state = initialState, action) {
         ? state
         : {
           ...state,
-          [action.eventId]: state[action.eventId] + 1,
+          [action.eventId]: state[action.eventId] + 1
         };
 
     case IM_NOT_GOING :
@@ -84,7 +85,7 @@ export default function eventAttendance (state = initialState, action) {
         ? state
         : {
           ...state,
-          [action.eventId]: state[action.eventId] - 1,
+          [action.eventId]: state[action.eventId] - 1
         };
 
     default :

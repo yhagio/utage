@@ -87,32 +87,9 @@
   padding-left: 15px;
 }
 
-.conversationArea {
-}
-
-.conversations {
-  
-}
-
-.singleConversation {
-  /*border: 1px solid dodgerblue;*/
-  margin: 0 0 15px 0;
-  padding-bottom: 5px;
-  border-bottom: 1px solid dodgerblue;
-}
-
 .authorLink {
   color: dodgerblue;
-  /*text-decoration: underline;*/
   margin-left: 10px;
-}
-
-.comment {
-  margin: 3px 0 7px 0
-}
-
-.timestamp {
-  margin-left: 20px;
 }
 
 .editButton {
@@ -128,5 +105,4 @@
     text-align: left;
     padding-left: 20px;
   }
-
 }

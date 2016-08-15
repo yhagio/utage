@@ -9,7 +9,7 @@ import {
   container
 } from './styles.css';
 
-const { object, number, bool, string, func, array } = PropTypes;
+const { object, bool, string, func, array } = PropTypes;
 
 const EventsContainer = React.createClass({
   propTypes: {
@@ -26,11 +26,11 @@ const EventsContainer = React.createClass({
     this.props.fetchAndHandleEvents();
   },
 
-  render() {
+  render () {
     return (
       <div className={ container }>
         <h1>Events</h1>
-        <Events 
+        <Events
           events={ this.props.events }
           filteredEvents={ this.props.filteredEvents }
           error={ this.props.error }

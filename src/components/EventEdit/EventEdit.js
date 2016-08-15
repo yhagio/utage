@@ -9,7 +9,7 @@ import {
   deleteButton
 } from './styles.css';
 
-const { string, func, bool, array, object, number } = PropTypes;
+const { string, func, bool, object, number } = PropTypes;
 
 EventEdit.propTypes = {
   event: object.isRequired,
@@ -34,7 +34,7 @@ EventEdit.propTypes = {
   handleDeleteEvent: func.isRequired
 };
 
-export default function EventEdit (props) {  
+export default function EventEdit (props) {
   function handleFormSubmit (e) {
     e.preventDefault();
     return props.handleUpdateEvent(props.event.eventId, {
@@ -56,12 +56,12 @@ export default function EventEdit (props) {
     e.preventDefault();
     return props.handleDeleteEvent(props.event.eventId, props.event);
   }
-  
+
   return props.isFetching === true
     ? <h3>Loading event data ...</h3>
     : (
   <form onSubmit={ handleFormSubmit } className={ container }>
-      <h2>{'Edit Event'}</h2>
+      <h2>{ 'Edit Event' }</h2>
       <hr />
       <label className={ labeled }>Title<br />
         <input
@@ -85,7 +85,7 @@ export default function EventEdit (props) {
           className={ textareaField }
           rows='10'
           type='text'
-          maxLength={600}
+          maxLength={ 600 }
           required={ true } />
       </label>
 
@@ -98,7 +98,7 @@ export default function EventEdit (props) {
           onChange={ (e) => props.updateAddress(e.target.value) }
           className={ inputField }
           type='text'
-          autoComplete="street-address"
+          autoComplete='street-address'
           required={ true } />
       </label>
 
@@ -111,7 +111,7 @@ export default function EventEdit (props) {
           onChange={ (e) => props.updatePrice(parseInt(e.target.value)) }
           className={ inputField }
           type='Number'
-          min={0}
+          min={ 0 }
           required={ true } />
       </label>
 
@@ -137,10 +137,10 @@ export default function EventEdit (props) {
           required={ true } />
       </label>
 
-      <label htmlFor="category" className={ labeled }>Category</label>
+      <label htmlFor='category' className={ labeled }>Category</label>
       <select
-        id="category"
-        name="category"
+        id='category'
+        name='category'
         value={ props.category || props.event.category }
         className={ selectOption }
         onChange={ (e) => props.updateCategory(e.target.value) } >
@@ -157,12 +157,12 @@ export default function EventEdit (props) {
       <button
         action='submit'
         className={ submitButton }
-        role="button">Update</button>
+        role='button'>Update</button>
 
       <button
         className={ deleteButton }
         onClick={ handleRemoval }
-        role="button">DELETE</button>
+        role='button'>DELETE</button>
     </form>
     );
 }

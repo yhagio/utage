@@ -48,21 +48,21 @@ export function updateLimit (limit) {
   };
 }
 
-export function updateStartDate(startDate) {
+export function updateStartDate (startDate) {
   return {
     type: UPDATE_START_DATE,
     startDate
   };
 }
 
-export function updateEndDate(endDate) {
+export function updateEndDate (endDate) {
   return {
     type: UPDATE_END_DATE,
     endDate
   };
 }
 
-export function updateCategory(category) {
+export function updateCategory (category) {
   return {
     type: UPDATE_CATEGORY,
     category
@@ -76,44 +76,35 @@ function submittedSuccessfully () {
 }
 
 function submissionError (error) {
-  console.log('Submission Error: ', error);
+  console.error('Submission Error: ', error);
   return {
     type: SUBMISSION_ERROR,
-    error
+    error: 'Submision failed'
   };
 }
 
 export function createEvent (event) {
-  return function(dispatch) {
+  return function (dispatch) {
     saveEvent(event)
-    .then((eventWithId) => {
-      // console.log('EventWithID ', eventWithId);
+      .then((eventWithId) => {
+        dispatch(submittedSuccessfully());
 
-      // TODO
-      // dispatch(addedEvent());
-      // dispatch(addedSingleusersEvent());
-      
-      dispatch(submittedSuccessfully());
-      // Notify new event
-      if (Notification.permission === 'granted') {
-        new Notification('New Event Available', {
-          body: eventWithId.title,
-          icon: '../../images/iconmonstr-info-6-64.png'
-        });
-      }
-      // Redirect after submitted successfully
-      hashHistory.push('/');
-    })
-    .catch((error) => {
-      dispatch(submissionError(error));
-    });
+        // Notify new event
+        if (Notification.permission === 'granted') {
+          new Notification('New Event Available', {
+            body: eventWithId.title,
+            icon: '../../images/iconmonstr-info-6-64.png'
+          });
+        }
+
+        // Redirect after submitted successfully
+        hashHistory.push('/');
+      })
+      .catch((error) => {
+        dispatch(submissionError(error));
+      });
   };
-  
 }
-
-export function updateEvent (eventId, event) {
-
-};
 
 const initialState = {
   title: '',

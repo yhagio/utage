@@ -13,15 +13,10 @@ import {
   actionArea,
   actionButton,
   actionButtonNot,
-  conversationArea,
-  conversations,
-  singleConversation,
   authorLink,
-  comment,
-  timestamp,
   editButton
 } from './styles.css';
-import { 
+import {
   formatDateTime
 } from '../../helpers/utils';
 
@@ -42,19 +37,23 @@ EventPage.propTypes = {
   handleCancelAttendance: func.isRequired
 };
 
+GoingCancelButton.propTypes = {
+  eventId: string.isRequired
+};
+
 function GoingCancelButton (props) {
   return props.going === true
     ? <button
         className={ actionButtonNot }
-        onClick={(e) => props.handleCancelAttendance(props.eventId, e)}
-        role="button">{ 'Cancel' }</button>
+        onClick={ (e) => props.handleCancelAttendance(props.eventId, e) }
+        role='button'>{ 'Cancel' }</button>
     : <button
         className={ actionButton }
-        onClick={(e) => props.handleConfirmAttendance(props.eventId, e)}
-        role="button">{ 'Confirm Going' }</button>;
+        onClick={ (e) => props.handleConfirmAttendance(props.eventId, e) }
+        role='button'>{ 'Confirm Going' }</button>;
 }
 
-export default function EventPage (props) {  
+export default function EventPage (props) {
   return props.isFetching === true
     ? <h3>Loading event data ...</h3>
     : (
@@ -67,14 +66,14 @@ export default function EventPage (props) {
               going={ props.going }
               eventId={ props.event.eventId }
               handleConfirmAttendance={ props.handleConfirmAttendance }
-              handleCancelAttendance={ props.handleCancelAttendance }  />
+              handleCancelAttendance={ props.handleCancelAttendance } />
             : null }
-            
+
           { props.authedUserID === props.event.uid
             ? <Link
               className={ editButton }
-              to={ `events/${ props.event.eventId }/edit` }
-              role="button">
+              to={ `events/${props.event.eventId}/edit` }
+              role='button'>
               { 'Edit Event' }
             </Link>
             : null }
@@ -82,8 +81,8 @@ export default function EventPage (props) {
 
         <div className={ details } >
           <p className={ category }>{ props.event.category }</p>
-          <p>{ props.event.price === 0 ? 'FREE' : '$'+props.event.price }</p>
-          {/* <p>Limit: { props.event.limit }</p> */}
+          <p>{ props.event.price === 0 ? 'FREE' : '$' + props.event.price }</p>
+          { /* <p>Limit: { props.event.limit }</p> */ }
           <p>Going: <span>{ props.attendance }</span></p>
         </div>
 
@@ -93,8 +92,8 @@ export default function EventPage (props) {
             posted by
             <Link
               className={ authorLink }
-              to={ `events/${ props.event.eventId }` }
-              role="link">
+              to={ `events/${props.event.eventId}` }
+              role='link'>
               { props.eventHost.name }
             </Link>
           </div>
@@ -105,51 +104,9 @@ export default function EventPage (props) {
 
         <div className={ mapArea }>
           <p>{ props.event.address }</p>
-          <GoogleMap 
+          <GoogleMap
             eventLatLng={ props.eventLatLng } />
         </div>
-
-        {/* ===== ON HOLD =====
-        <div className={ conversationArea }>
-          <h2>Conversations</h2>
-
-          <div className={ conversations }>
-            <ul>
-              <li className={ singleConversation } >
-                <p className={ comment }>
-                  Quas molestias excepturi sint occaecati cupiditate non provident. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.
-                </p>
-                <span className={ timestamp }>19:00 Aug 5, 2016</span>
-                <a className={ authorLink } href="" role="link">
-                  Alice Smith
-                </a>
-              </li>
-
-              <li className={ singleConversation } >
-                <p className={ comment }>
-                  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis!
-                </p>
-                <span className={ timestamp }>19:00 Aug 5, 2016</span>
-                <a className={ authorLink } href="" role="link">
-                  Kevin Soto
-                </a>
-              </li>
-
-              <li className={ singleConversation } >
-                <p className={ comment }>
-                  Quas molestias excepturi sint occaecati cupiditate non provident. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.
-                </p>
-                <span className={ timestamp }>19:00 Aug 5, 2016</span>
-                <a className={ authorLink } href="" role="link">
-                  Alice Smith
-                </a>
-              </li>
-
-            </ul>
-          </div>
-
-        </div>
-        ===== ON HOLD ===== */}
       </div>
     );
 }

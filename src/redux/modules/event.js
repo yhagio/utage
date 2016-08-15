@@ -1,8 +1,6 @@
-import { 
+import {
   fetchSingleEvent,
-  fetchSingleUser,
-  confirmAttendance,
-  cancelAttendance
+  fetchSingleUser
 } from '../../helpers/firebaseAPI';
 
 const FETCHING_EVENT = 'FETCHING_EVENT';
@@ -24,7 +22,7 @@ function fetchingEvent () {
 }
 
 function fetchingEventError (error) {
-  console.warn(error)
+  console.warn(error);
   return {
     type: FETCHING_EVENT_ERROR,
     error: 'Could not load event ...'
@@ -45,6 +43,7 @@ function fetchingHost () {
 }
 
 function fetchingHostError (error) {
+  console.error('fetchingHostError', error);
   return {
     type: FETCHING_HOST_ERROR,
     error: 'Could not fetch event host info'
@@ -72,6 +71,7 @@ function convertedAddressToLatlng (eventLatLng) {
 }
 
 function convertingAddressToLatlngError (error) {
+  console.error('convertingAddressToLatlngError', error);
   return {
     type: CONVERTING_ADDRESS_TO_LATLNG_ERROR,
     error: 'Could not convert address to lat lng'
@@ -79,7 +79,7 @@ function convertingAddressToLatlngError (error) {
 }
 
 // Get single user info (HOST of the event)
-function fetchAndHandleHost(uid, dispatch) {
+function fetchAndHandleHost (uid, dispatch) {
   dispatch(fetchingHost());
   fetchSingleUser(uid)
     .then((user) => dispatch(fetchingHostSuccess(user)))
@@ -90,9 +90,9 @@ function fetchAndHandleHost(uid, dispatch) {
 function convertFromAddressToLatlng (address, dispatch) {
   const geocoder = new google.maps.Geocoder();
   dispatch(convertingAddressToLatlng());
-  return new Promise(function(resolve,reject) {
-    geocoder.geocode( { 'address': address}, function(result, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
+  return new Promise(function (resolve, reject) {
+    geocoder.geocode({ 'address': address }, function (result, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
         // resolve result upon a successful status
         resolve({
           lat: result[0].geometry.location.lat(),
@@ -104,22 +104,22 @@ function convertFromAddressToLatlng (address, dispatch) {
       }
     });
   })
-  .then((result) => {
+    .then((result) => {
     // console.log('convertFromAddressToLatlng result', result);
-    dispatch(convertedAddressToLatlng(result));
-  })
-  .catch((error) => {
+      dispatch(convertedAddressToLatlng(result));
+    })
+    .catch((error) => {
     // console.log('convertFromAddressToLatlng err', error);
-    dispatch(convertingAddressToLatlngError(error));
-  });
-};
+      dispatch(convertingAddressToLatlngError(error));
+    });
+}
 
 // Get the event and the host
-export function fetchAndHandleEvent(eventId) {
+export function fetchAndHandleEvent (eventId) {
   return function (dispatch) {
     dispatch(fetchingEvent());
-    fetchSingleEvent(eventId).
-      then((event) => {
+    fetchSingleEvent(eventId)
+      .then((event) => {
         // Convert Address to Lat Lng
         convertFromAddressToLatlng(event.address, dispatch);
         return dispatch(fetchingEventSuccess(event));
@@ -143,8 +143,8 @@ const initialState = {
   error: '',
   rsvp: false,
   going: false,
-  comments: [],
-}; 
+  comments: []
+};
 
 export default function event (state = initialState, action) {
   switch (action.type) {

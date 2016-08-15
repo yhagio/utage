@@ -9,26 +9,26 @@ const AuthContainer = React.createClass({
   propTypes: {
     fetchAndHandleAuthedUser: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
-    error: PropTypes.string.isRequired,
+    error: PropTypes.string.isRequired
   },
 
   contextTypes: {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired
   },
 
   handleAuth (e) {
-    e.preventDefault()
+    e.preventDefault();
     this.props.fetchAndHandleAuthedUser()
-      .then(() => this.context.router.replace('/'))
+      .then(() => this.context.router.replace('/'));
   },
 
-  render() {
+  render () {
     return (
       <div>
         <Auth
-          onAuth={this.handleAuth}
-          isFetching={this.props.isFetching}
-          error={this.props.error} />
+          onAuth={ this.handleAuth }
+          isFetching={ this.props.isFetching }
+          error={ this.props.error } />
       </div>
     );
   }

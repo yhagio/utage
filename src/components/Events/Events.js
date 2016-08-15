@@ -5,7 +5,7 @@ import {
   filter
 } from './styles.css';
 
-const { string, func, number, bool, array } = PropTypes;
+const { func, array } = PropTypes;
 
 Events.propTypes = {
   filteredEvents: array.isRequired,
@@ -16,10 +16,10 @@ export default function Events (props) {
   // console.log('Filtered IDs', props.filteredEvents);
   return (
     <div className={ eventListBox }>
-      <label htmlFor="filterSelection" >Category Filter</label><br/>
+      <label htmlFor='filterSelection' >Category Filter</label><br/>
       <select
-        id="filterSelection"
-        name="filterSelection"
+        id='filterSelection'
+        name='filterSelection'
         className={ filter }
         value={ props.searchCategory }
         onChange={ (e) => props.filterEventsByCategory(e.target.value) } >
@@ -33,11 +33,11 @@ export default function Events (props) {
         <option value='Conference'>Conference</option>
 
       </select>
-    
+
       { props.filteredEvents.length === 0
-        ? <h2><hr />{ 'No event yet' }</h2>
-        : null}
-      
+        ? <h2><hr />No event yet</h2>
+        : null }
+
       { props.filteredEvents.map((id) => (
         <EventContainer
           eventId={ id }

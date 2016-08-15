@@ -4,8 +4,8 @@ import { FacebookAuth } from 'components';
 Auth.propTypes = {
   error: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  onAuth: PropTypes.func.isRequired,
-}
+  onAuth: PropTypes.func.isRequired
+};
 
 export default function Auth ({ onAuth, isFetching, error }) {
   return (
@@ -13,9 +13,9 @@ export default function Auth ({ onAuth, isFetching, error }) {
       <FacebookAuth
         isFetching={ isFetching }
         onAuth={ onAuth } />
-        { error ?
-          <p className=''>{error}</p>
-          : null}
+        { error
+          ? <p className=''>{ error }</p>
+          : null }
     </div>
-  )
+  );
 }

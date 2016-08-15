@@ -19,7 +19,7 @@ function updateNotification (bool, status) {
 }
 
 export function checkNotificationEnabled () {
-  return function(dispatch) {
+  return function (dispatch) {
     if (Notification.permission === 'granted') {
       return dispatch(checkedNotification(true, 'granted'));
     }
@@ -34,14 +34,14 @@ export function checkNotificationEnabled () {
 export function handleUpdateNotification (status) {
   console.log('Invoked: ', status);
 
-  return function(dispatch) {
+  return function (dispatch) {
     if (status === 'granted') {
       return dispatch(updateNotification(true, status));
-    } 
+    }
 
     if (status === 'denied') {
       return dispatch(updateNotification(false, status));
-    } 
+    }
     return;
   };
 }
@@ -60,7 +60,7 @@ export default function account (state = initialState, action) {
         notificationEnabled: action.bool,
         status: action.status
       };
-    
+
     case UPDATE_NOTIFICATION :
       return {
         ...state,

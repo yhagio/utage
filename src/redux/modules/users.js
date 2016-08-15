@@ -24,7 +24,7 @@ function unauthUser () {
 
 function fetchingUser () {
   return {
-    type: FETCHING_USER,
+    type: FETCHING_USER
   };
 }
 
@@ -32,7 +32,7 @@ function fetchingUserFailure (error) {
   console.log('ERROR FETCHING USER: ', error);
   return {
     type: FETCHING_USER_FAILURE,
-    error: 'Error on fetching user',
+    error: 'Error on fetching user'
   };
 }
 
@@ -40,19 +40,19 @@ export function fetchingUserSuccess (user) {
   return {
     type: FETCHING_USER_SUCCESS,
     user
-  }
+  };
 }
 
 export function stopFetchingUser () {
   return {
     type: STOP_FETCHING_USER
-  }
+  };
 }
 
 // User authentication handler
 export function fetchAndHandleAuthedUser () {
   return function (dispatch) {
-    dispatch(fetchingUser())
+    dispatch(fetchingUser());
     // Authenticate via Facebook + Firebase
     return auth().then(({ user, credential }) => {
       let userInfo = {
@@ -63,14 +63,14 @@ export function fetchAndHandleAuthedUser () {
       return dispatch(fetchingUserSuccess(userInfo));
     })
     // Save user info in Firebase
-    .then(({ user }) => saveUser(user) )
+      .then(({ user }) => saveUser(user))
     // Set authenticated user
-    .then((user) => dispatch(authUser(user)) )
-    .catch((error) => dispatch(fetchingUserFailure(error)) );
-  }
+      .then((user) => dispatch(authUser(user)))
+      .catch((error) => dispatch(fetchingUserFailure(error)));
+  };
 }
 
-// User signout handler 
+// User signout handler
 export function signoutAndUnauth () {
   return function (dispatch) {
     signout();
@@ -129,7 +129,7 @@ export default function usersReducer (state = initialState, action) {
           error: '',
           authedUser: action.user
         };
-    
+
     case STOP_FETCHING_USER:
       return {
         ...state,

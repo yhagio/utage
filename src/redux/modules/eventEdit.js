@@ -48,21 +48,21 @@ export function updateLimit (limit) {
   };
 }
 
-export function updateStartDate(startDate) {
+export function updateStartDate (startDate) {
   return {
     type: EDIT_START_DATE,
     startDate
   };
 }
 
-export function updateEndDate(endDate) {
+export function updateEndDate (endDate) {
   return {
     type: EDIT_END_DATE,
     endDate
   };
 }
 
-export function updateCategory(category) {
+export function updateCategory (category) {
   return {
     type: EDIT_CATEGORY,
     category
@@ -84,37 +84,36 @@ function submissionError (error) {
 }
 
 export function handleUpdateEvent (eventId, event) {
-  return function(dispatch) {
+  return function (dispatch) {
     updateEvent(eventId, event)
-    .then((eventWithId) => {
+      .then((eventWithId) => {
       // console.log('UPDATED', eventWithId)
-      dispatch(submittedSuccessfully());
+        dispatch(submittedSuccessfully());
       // Redirect after submitted successfully
-      hashHistory.push(`/events/${eventWithId.eventId}`);
-    })
-    .catch((error) => {
+        hashHistory.push(`/events/${eventWithId.eventId}`);
+      })
+      .catch((error) => {
       // console.log('UPDATED E', error)
-      dispatch(submissionError(error));
-    });
+        dispatch(submissionError(error));
+      });
   };
 }
 
 export function handleDeleteEvent (eventId, event) {
-  return function(dispatch) {
+  return function (dispatch) {
     deleteEvent(eventId, event)
-    .then((path) => {
+      .then((path) => {
       // console.log('Deleted', path)
-      dispatch(submittedSuccessfully());
+        dispatch(submittedSuccessfully());
       // Redirect after submitted successfully
-      hashHistory.push(path);
-    })
-    .catch((error) => {
+        hashHistory.push(path);
+      })
+      .catch((error) => {
       // console.log('Deleted E', error)
-      dispatch(submissionError(error));
-    });
+        dispatch(submissionError(error));
+      });
   };
 }
-
 
 const initialState = {
   title: '',

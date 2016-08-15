@@ -3,7 +3,6 @@ import { fetchEvents } from '../../helpers/firebaseAPI';
 const FETCHING_EVENTS = 'FETCHING_EVENTS';
 const FETCHING_EVENTS_ERROR = 'FETCHING_EVENTS_ERROR';
 const FETCHING_EVENTS_SUCCESS = 'FETCHING_EVENTS_SUCCESS';
-const SEARCH_EVENTS = 'SEARCH_EVENTS';
 const FILTER_EVENTS_CATEGORY = 'FILTER_EVENTS_CATEGORY';
 
 function fetchingEvents () {
@@ -13,6 +12,7 @@ function fetchingEvents () {
 }
 
 function fetchingEventsError (error) {
+  console.error('fetchingEventsError', error);
   return {
     type: FETCHING_EVENTS_ERROR,
     error: 'Could not get events list ...'
@@ -34,7 +34,7 @@ export function filterEventsByCategory (category) {
   };
 }
 
-export function fetchAndHandleEvents() {
+export function fetchAndHandleEvents () {
   return function (dispatch) {
     dispatch(fetchingEvents());
     fetchEvents(({ events, sorted }) => {
@@ -50,17 +50,17 @@ export function fetchAndHandleEvents() {
 function getFilteredEventIDs (baseEvents, category) {
   if (category !== '') {
     return Object.keys(baseEvents)
-      .sort((a, b) => { 
+      .sort((a, b) => {
         // DESC order by timestamp
         return baseEvents[b].timestamp - baseEvents[a].timestamp;
       })
-      .filter((event) => { 
+      .filter((event) => {
         // See if event's category matches with selected category to filter
         return (baseEvents[event].category.toLowerCase().indexOf(category.toLowerCase()) >= 0);
       });
   } else {
     // Just return timely ordered IDs
-    return Object.keys(baseEvents).sort((a, b) => { 
+    return Object.keys(baseEvents).sort((a, b) => {
       // DESC order by timestamp
       return baseEvents[b].timestamp - baseEvents[a].timestamp;
     });

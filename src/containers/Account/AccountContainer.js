@@ -11,13 +11,13 @@ const AccountContainer = React.createClass({
     handleUpdateNotification: PropTypes.func.isRequired
   },
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.checkNotificationEnabled();
   },
 
-  render() {
+  render () {
     return (
-      <Account 
+      <Account
         status={ this.props.status }
         handleUpdateNotification={ this.props.handleUpdateNotification } />
     );

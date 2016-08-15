@@ -15,10 +15,11 @@ const MainContainer = React.createClass({
     authUser: PropTypes.func.isRequired,
     fetchingUserSuccess: PropTypes.func.isRequired,
     stopFetchingUser: PropTypes.func.isRequired,
-    fetchUsersEventAttendance: PropTypes.func.isRequired
+    fetchUsersEventAttendance: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired
   },
 
-  componentDidMount() {
+  componentDidMount () {
     // Check if user is already authenticated on initial load
     firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
@@ -37,7 +38,7 @@ const MainContainer = React.createClass({
     });
   },
 
-  render() {
+  render () {
     return (
       <div className={ main }>
         <Nav isAuthenticated={ this.props.isAuthenticated }/>
@@ -60,7 +61,6 @@ function mapDispatchToProps (dispatch) {
     ...usersAttendanceActionCreators
   }, dispatch);
 }
-
 
 export default connect(
   mapStateToProps,

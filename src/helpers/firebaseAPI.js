@@ -1,6 +1,6 @@
 import { ref } from 'config/constants';
 
-/*****************
+/** ***************
  * Event Creation
  *****************/
 
@@ -31,7 +31,7 @@ export function saveEvent (event) {
   ]).then(() => ({...event, eventId}));
 }
 
-/*****************
+/** ***************
  * Events (Home)
  *****************/
 
@@ -40,34 +40,34 @@ export function fetchEvents (callback, errorCallback) {
   ref.child('events').on('value', (snapshot) => {
     // Events objects
     const events = snapshot.val() || {};
-    
+
     // DESC order of events by timestamp
-    const sorted = Object.keys(events).sort((a, b) => { 
+    const sorted = Object.keys(events).sort((a, b) => {
       return events[b].timestamp - events[a].timestamp;
     });
 
     // Callback all events objects & array of DESC ordered IDs
     callback({events, sorted});
-  }, errorCallback)
+  }, errorCallback);
 }
 
-/*****************
+/** ***************
  * Single Event Page
  *****************/
 
 // Get single event
 export function fetchSingleEvent (eventId) {
   return ref.child(`events/${eventId}`).once('value')
-    .then((snapshot) => snapshot.val())
+    .then((snapshot) => snapshot.val());
 }
 
 // Get single user
 export function fetchSingleUser (uid) {
   return ref.child(`users/${uid}`).once('value')
-    .then((snapshot) => snapshot.val())
+    .then((snapshot) => snapshot.val());
 }
 
-/*****************
+/** ***************
  * Update an event as author
  *****************/
 
@@ -76,7 +76,7 @@ export function updateEvent (eventId, event) {
     .then(() => event);
 }
 
-/*****************
+/** ***************
  * Delete an event as author
  *****************/
 
@@ -89,8 +89,7 @@ export function deleteEvent (eventId, event) {
   ]).then(() => '/');
 }
 
-
-/*****************
+/** ***************
  * Attendance of an event
  *****************/
 
@@ -103,7 +102,7 @@ export function fetchAttendance (eventId) {
 
 // This is called when an event is created
 export function saveAttendance (eventId) {
-  return ref.child(`attendance/${eventId}`).set(0)
+  return ref.child(`attendance/${eventId}`).set(0);
 }
 
 export function incrementAttendance (eventId) {
@@ -120,7 +119,7 @@ export function decrementAttendance (eventId) {
     });
 }
 
-/*****************
+/** ***************
  * User's attendance
  *****************/
 

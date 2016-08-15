@@ -5,7 +5,7 @@ import { Signout } from 'components';
 
 const SignOutContainer = React.createClass({
   propTypes: {
-    dispatch: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired
   },
 
   componentDidMount () {
@@ -13,8 +13,8 @@ const SignOutContainer = React.createClass({
   },
 
   render () {
-    return <Signout />
-  },
-})
+    return <Signout />;
+  }
+});
 
-export default connect()(SignOutContainer)
+export default connect()(SignOutContainer);

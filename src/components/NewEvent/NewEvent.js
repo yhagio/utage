@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 
 import {
   container,
@@ -10,7 +9,7 @@ import {
   submitButton
 } from './styles.css';
 
-const { string, func, number, bool } = PropTypes;
+const { string, func, number } = PropTypes;
 
 NewEventForm.propTypes = {
   updateTitle: func.isRequired,
@@ -53,7 +52,7 @@ export default function NewEventForm (props) {
 
   return (
     <form onSubmit={ handleFormSubmit } className={ container }>
-      <h2>{'New Event'}</h2>
+      <h2>{ 'New Event' }</h2>
       <hr />
       <label className={ labeled }>Title<br />
         <input
@@ -75,7 +74,7 @@ export default function NewEventForm (props) {
           className={ textareaField }
           rows='5'
           type='text'
-          maxLength={600}
+          maxLength={ 600 }
           required={ true } />
       </label>
 
@@ -87,7 +86,7 @@ export default function NewEventForm (props) {
           onChange={ (e) => props.updateAddress(e.target.value) }
           className={ inputField }
           type='text'
-          autoComplete="street-address"
+          autoComplete='street-address'
           required={ true } />
       </label>
 
@@ -99,23 +98,11 @@ export default function NewEventForm (props) {
           onChange={ (e) => props.updatePrice(parseInt(e.target.value)) }
           className={ inputField }
           type='Number'
-          min={0}
+          min={ 0 }
           required={ true } />
       </label>
 
-      {/* ON HOLD 
-      <label className={ labeled }>Limit of attendants<br />
-        <input
-          id='limit'
-          name='limit'
-          placeholder='Limit number'
-          onChange={ (e) => props.updateLimit(parseInt(e.target.value)) }
-          className={ inputField }
-          type='number'
-          min={0}
-          required={ true } />
-      </label>
-      */}
+      { }
 
       <label className={ labeled }>Start Date<br />
         <input
@@ -137,10 +124,10 @@ export default function NewEventForm (props) {
           required={ true } />
       </label>
 
-      <label htmlFor="category" className={ labeled }>Category</label>
+      <label htmlFor='category' className={ labeled }>Category</label>
       <select
-        id="category"
-        name="category"
+        id='category'
+        name='category'
         value={ props.category }
         className={ selectOption }
         onChange={ (e) => props.updateCategory(e.target.value) } >
@@ -157,7 +144,7 @@ export default function NewEventForm (props) {
       <button
         action='submit'
         className={ submitButton }
-        role="button">Submit</button>
+        role='button'>Submit</button>
     </form>
   );
 }

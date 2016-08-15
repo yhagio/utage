@@ -22,18 +22,17 @@ const EventPageContainer = React.createClass({
     comments: array.isRequired,
     attendance: number,
     fetchEventAttendance: func.isRequired,
-    // fetchUsersEventAttendance: func.isRequired,
     handleConfirmAttendance: func.isRequired,
-    handleCancelAttendance: func.isRequired
+    handleCancelAttendance: func.isRequired,
+    params: object.isRequired
   },
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.fetchAndHandleEvent(this.props.params.id);
     this.props.fetchEventAttendance(this.props.params.id);
-    // this.props.fetchUsersEventAttendance();
   },
-  
-  render() {
+
+  render () {
     return <EventPage
             authedUserID={ this.props.authedUserID }
             event={ this.props.event }
@@ -46,10 +45,9 @@ const EventPageContainer = React.createClass({
             comments={ this.props.comments }
             attendance={ this.props.attendance }
             handleConfirmAttendance={ this.props.handleConfirmAttendance }
-            handleCancelAttendance={ this.props.handleCancelAttendance } />
+            handleCancelAttendance={ this.props.handleCancelAttendance } />;
   }
 });
-
 
 function mapStateToProps (state, ownProps) {
   return {
