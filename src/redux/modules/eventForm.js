@@ -89,13 +89,13 @@ export function createEvent (event) {
       .then((eventWithId) => {
         dispatch(submittedSuccessfully());
 
-        // Notify new event
-        if (Notification.permission === 'granted') {
-          new Notification('New Event Available', {
-            body: eventWithId.title,
-            icon: '../../images/iconmonstr-info-6-64.png'
-          });
-        }
+        // // Notify new event
+        // if (Notification.permission === 'granted') {
+        //   new Notification('New Event Available', {
+        //     body: eventWithId.title,
+        //     icon: '../../images/iconmonstr-info-6-64.png'
+        //   });
+        // }
 
         // Redirect after submitted successfully
         hashHistory.push('/');

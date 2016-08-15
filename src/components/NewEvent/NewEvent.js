@@ -45,7 +45,7 @@ export default function NewEventForm (props) {
       limit: props.limit || 100,
       startDate: props.startDate,
       endDate: props.endDate,
-      category: props.category,
+      category: props.category || 'Social',
       timestamp: Date.now()
     });
   }

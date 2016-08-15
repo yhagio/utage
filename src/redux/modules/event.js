@@ -3,6 +3,10 @@ import {
   fetchSingleUser
 } from '../../helpers/firebaseAPI';
 
+import {
+  getDistanceFromLatLonInKm
+} from '../../helpers/utils';
+
 const FETCHING_EVENT = 'FETCHING_EVENT';
 const FETCHING_EVENT_ERROR = 'FETCHING_EVENT_ERROR';
 const FETCHING_EVENT_SUCCESS = 'FETCHING_EVENT_SUCCESS';
@@ -14,6 +18,10 @@ const FETCHING_HOST_ERROR = 'FETCHING_HOST_ERROR';
 const CONVERTING_ADDRESS_TO_LATLNG = 'CONVERTING_ADDRESS_TO_LATLNG';
 const CONVERTED_ADDRESS_TO_LATLNG = 'CONVERTED_ADDRESS_TO_LATLNG';
 const CONVERTING_ADDRESS_TO_LATLNG_ERROR = 'CONVERTING_ADDRESS_TO_LATLNG_ERROR';
+
+const CALCULATING_DISTANCE = 'CALCULATING_DISTANCE';
+const CALCULATED_DISTANCE = 'CALCULATED_DISTANCE';
+const FAILED_CALCULATE_DISTANCE = 'FAILED_CALCULATE_DISTANCE';
 
 function fetchingEvent () {
   return {
@@ -78,6 +86,26 @@ function convertingAddressToLatlngError (error) {
   };
 }
 
+function calculatingDistance () {
+  return {
+    type: CALCULATING_DISTANCE
+  };
+}
+
+function calculatedDistance (distance) {
+  return {
+    type: CALCULATED_DISTANCE,
+    distance
+  };
+}
+
+function failedToGetDistance () {
+  return {
+    type: FAILED_CALCULATE_DISTANCE,
+    error: 'Could not get the distance'
+  };
+}
+
 // Get single user info (HOST of the event)
 function fetchAndHandleHost (uid, dispatch) {
   dispatch(fetchingHost());
@@ -135,6 +163,19 @@ export function fetchAndHandleEvent (eventId) {
   };
 }
 
+export function calculateDistance (lat1, lon1, lat2, lon2) {
+  // console.log('Calculating')
+  return function (dispatch) {
+    dispatch(calculatingDistance());
+    let distance = getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2);
+    if (distance > 0) {
+      return dispatch(calculatedDistance(distance));
+    } else {
+      return dispatch(failedToGetDistance());
+    }
+  };
+}
+
 const initialState = {
   event: {},
   eventHost: {},
@@ -143,7 +184,9 @@ const initialState = {
   error: '',
   rsvp: false,
   going: false,
-  comments: []
+  comments: [],
+  distanceCalculating: false,
+  distance: 0
 };
 
 export default function event (state = initialState, action) {
@@ -152,7 +195,8 @@ export default function event (state = initialState, action) {
     case FETCHING_EVENT :
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        distanceCalculating: true // UI Hack: Enables calculating distance starts
       };
 
     case FETCHING_EVENT_ERROR :
@@ -212,6 +256,28 @@ export default function event (state = initialState, action) {
         isFetching: false,
         error: action.error,
         eventLatLng: {lat: 45.5298537, lng: -73.5944413}
+      };
+
+    case CALCULATING_DISTANCE :
+      return {
+        ...state,
+        distanceCalculating: true,
+        distance: 0
+      };
+
+    case CALCULATED_DISTANCE :
+      return {
+        ...state,
+        distanceCalculating: false,
+        distance: action.distance
+      };
+
+    case FAILED_CALCULATE_DISTANCE :
+      return {
+        ...state,
+        distanceCalculating: false,
+        error: action.error,
+        distance: 0
       };
 
     default :

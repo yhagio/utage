@@ -1,5 +1,5 @@
 import { fetchAttendance } from '../../helpers/firebaseAPI';
-import { 
+import {
   CONFIRM_GOING,
   IM_NOT_GOING
 } from './usersAttendance';

@@ -137,3 +137,4 @@ export function saveToUsersAttendance (uid, eventId) {
 export function deleteFromUsersAttendance (uid, eventId) {
   return ref.child(`usersAttendance/${uid}/${eventId}`).set(null);
 }
+

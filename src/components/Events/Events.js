@@ -2,19 +2,22 @@ import React, { PropTypes } from 'react';
 import { EventContainer } from 'containers';
 import {
   eventListBox,
-  filter
+  filter,
+  dotdotdot
 } from './styles.css';
 
-const { func, array } = PropTypes;
+const { bool, func, array } = PropTypes;
 
 Events.propTypes = {
+  isFetching: bool.isRequired,
   filteredEvents: array.isRequired,
   filterEventsByCategory: func.isRequired
 };
 
 export default function Events (props) {
-  return (
-    <div className={ eventListBox }>
+  return props.isFetching === true
+    ? <h2 className={ dotdotdot }>Loading</h2>
+    : <div className={ eventListBox }>
       <label htmlFor='filterSelection' >Category Filter</label><br/>
       <select
         id='filterSelection'
@@ -42,6 +45,5 @@ export default function Events (props) {
           eventId={ id }
           key= { id } />
       )) }
-    </div>
-  );
+    </div>;
 }

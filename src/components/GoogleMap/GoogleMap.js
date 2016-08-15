@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { 
+import {
   GoogleMapLoader,
   GoogleMap,
   Marker
@@ -11,7 +11,6 @@ GoogleMapComponent.propTypes = {
 
 export default function GoogleMapComponent (props) {
   if (props.eventLatLng.lat && props.eventLatLng.lng) {
-
     // Have default lat lng (Montreal, Canada) in case the
     // address is not found at all
     const myLatLng = {

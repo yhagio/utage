@@ -46,6 +46,7 @@ function checkAuth (nextState, replace) {
     if (isAuthed !== true || store.getState().users.authedUser.uid !== store.getState().event.event.uid) {
       replace(nextState.location.pathname.replace('/edit', ''));
     }
+
   // If not authenticated, redirect to authenticate route
   } else {
     if (isAuthed !== true) {
@@ -58,6 +59,35 @@ function checkAuth (nextState, replace) {
     }
   }
 }
+
+/** ***************
+ * Send Notification when new event is available
+ * ON HOLD
+
+var count = 0;
+var latestTitle; // Need to store somewhere like redux or firebase
+firebase.database().ref('events').limitToLast(1).on('child_added', (snapshot) => {
+  // console.log('New Event!', snapshot.val() );
+
+  // Notify new event,
+  // IF Notification is permitted (granted),
+  // IF Event author is not yourself,
+  // IF the latest event was previously seen / loaded
+  if (Notification.permission === 'granted' &&
+      count > 0 &&
+      latestTitle !== snapshot.val().title &&
+      store.getState().users.uid !== snapshot.val().uid) {
+    new Notification('Latest event info', {
+      body: snapshot.val().title,
+      icon: '../images/iconmonstr-info-6-64.png'
+    });
+  }
+
+  count++;
+  latestTitle = snapshot.val().title;
+});
+
+*****************/
 
 render(
   <Provider store={ store }>

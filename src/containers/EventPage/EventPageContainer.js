@@ -24,10 +24,32 @@ const EventPageContainer = React.createClass({
     fetchEventAttendance: func.isRequired,
     handleConfirmAttendance: func.isRequired,
     handleCancelAttendance: func.isRequired,
-    params: object.isRequired
+    params: object.isRequired,
+    distance: number.isRequired,
+    distanceCalculating: bool.isRequired,
+    calculateDistance: func.isRequired
   },
 
   componentDidMount () {
+    // Let's calcualte the distance from your current location
+    let self = this;
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
+      // console.log('Calculating!!!', self.props.eventLatLng)
+      if (position.coords.latitude &&
+          position.coords.longitude &&
+          self.props.eventLatLng.lat &&
+          self.props.eventLatLng.lng) {
+        self.props.calculateDistance(
+            position.coords.latitude,
+            position.coords.longitude,
+            self.props.eventLatLng.lat,
+            self.props.eventLatLng.lng);
+      }
+    },
+    (error) => {
+      self.props.calculateDistance('Nop', 'Nop', self.props.eventLatLng.lat, self.props.eventLatLng.lng)
+    });
     this.props.fetchAndHandleEvent(this.props.params.id);
     this.props.fetchEventAttendance(this.props.params.id);
   },
@@ -45,7 +67,9 @@ const EventPageContainer = React.createClass({
             comments={ this.props.comments }
             attendance={ this.props.attendance }
             handleConfirmAttendance={ this.props.handleConfirmAttendance }
-            handleCancelAttendance={ this.props.handleCancelAttendance } />;
+            handleCancelAttendance={ this.props.handleCancelAttendance }
+            distanceCalculating={ this.props.distanceCalculating }
+            distance={ this.props.distance }/>;
   }
 });
 
@@ -60,7 +84,9 @@ function mapStateToProps (state, ownProps) {
     rsvp: state.event.rsvp,
     comments: state.event.comments,
     attendance: state.eventAttendance[ownProps.params.id],
-    going: state.usersAttendance[ownProps.params.id] === true
+    going: state.usersAttendance[ownProps.params.id] === true,
+    distanceCalculating: state.event.distanceCalculating,
+    distance: state.event.distance
   };
 }
 

@@ -49,18 +49,15 @@
 
 .details p {
   flex-grow: 1;
-  padding: 0 5px;
+  padding: 5px 0;
   margin: 15px 0 0 0;
   text-align: center;
   font-size: 1.1em;
 }
 
-.category {
-  padding: 10px;
+.details p.category {
   border-radius: 20px;
   background: deepskyblue;
-  text-align: center;
-  /*height: 25px;*/
   max-width: 130px;
 }
 
@@ -104,5 +101,28 @@
   .title {
     text-align: left;
     padding-left: 20px;
+  }
+}
+
+/* Ellipsis */
+.dotdotdot:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4,end) 500ms infinite;      
+  animation: ellipsis steps(4,end) 500ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;    
   }
 }

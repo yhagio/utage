@@ -14,7 +14,8 @@ import {
   actionButton,
   actionButtonNot,
   authorLink,
-  editButton
+  editButton,
+  dotdotdot
 } from './styles.css';
 import {
   formatDateTime
@@ -34,11 +35,18 @@ EventPage.propTypes = {
   comments: array.isRequired,
   attendance: number,
   handleConfirmAttendance: func.isRequired,
-  handleCancelAttendance: func.isRequired
+  handleCancelAttendance: func.isRequired,
+  distanceCalculating: bool.isRequired,
+  distance: number.isRequired
 };
 
 GoingCancelButton.propTypes = {
   eventId: string.isRequired
+};
+
+DisplayDistance.propTypes = {
+  distanceCalculating: bool.isRequired,
+  distance: number.isRequired
 };
 
 function GoingCancelButton (props) {
@@ -53,9 +61,16 @@ function GoingCancelButton (props) {
         role='button'>{ 'Confirm Going' }</button>;
 }
 
+function DisplayDistance (props) {
+  // console.log(props.distance);
+  return props.distanceCalculating === true
+    ? <p className={ dotdotdot }>Distance: Let me check</p>
+    : <p>Distance: { props.distance !== 0 ? `${props.distance} km` : 'N/A' }</p>;
+}
+
 export default function EventPage (props) {
   return props.isFetching === true
-    ? <h3>Loading event data ...</h3>
+    ? <h2 className={ dotdotdot }>Loading event</h2>
     : <div className={ container } >
         <h1 className={ title }>{ props.event.title }</h1>
 
@@ -86,7 +101,10 @@ export default function EventPage (props) {
 
         <div className={ subInfo } >
           <div className={ host }>
-            <p>{ formatDateTime(props.event.startDate) }</p>
+            <DisplayDistance
+              distanceCalculating={ props.distanceCalculating }
+              distance={ props.distance } />
+            <p>Start: { formatDateTime(props.event.startDate) }</p>
             posted by
             <Link
               className={ authorLink }
