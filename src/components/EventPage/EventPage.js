@@ -5,6 +5,7 @@ import {
   container,
   title,
   details,
+  category,
   subInfo,
   host,
   description,
@@ -20,6 +21,9 @@ import {
   timestamp,
   editButton
 } from './styles.css';
+import { 
+  formatDateTime
+} from '../../helpers/utils';
 
 const { string, func, bool, array, object, number } = PropTypes;
 
@@ -77,7 +81,7 @@ export default function EventPage (props) {
         </div>
 
         <div className={ details } >
-          <p>{ props.event.category }</p>
+          <p className={ category }>{ props.event.category }</p>
           <p>{ props.event.price === 0 ? 'FREE' : '$'+props.event.price }</p>
           {/* <p>Limit: { props.event.limit }</p> */}
           <p>Going: <span>{ props.attendance }</span></p>
@@ -85,7 +89,7 @@ export default function EventPage (props) {
 
         <div className={ subInfo } >
           <div className={ host }>
-            <p>{ props.event.startDate }</p>
+            <p>{ formatDateTime(props.event.startDate) }</p>
             posted by
             <Link
               className={ authorLink }

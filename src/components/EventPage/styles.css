@@ -38,7 +38,7 @@
   background: none;
   color: orangered;
   font-size: 18px;
-  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .details {
@@ -51,6 +51,17 @@
   flex-grow: 1;
   padding: 0 5px;
   margin: 15px 0 0 0;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.category {
+  padding: 10px;
+  border-radius: 20px;
+  background: deepskyblue;
+  text-align: center;
+  /*height: 25px;*/
+  max-width: 130px;
 }
 
 .subInfo {
@@ -106,10 +117,10 @@
 
 .editButton {
   padding: 10px;
-  border: 2px solid orangered;
+  border: 2px solid purple;
   border-radius: 20px;
   font-size: 18px;
-  color: orangered;
+  color: purple;
 }
 
 @media screen and (min-width: 460px) {

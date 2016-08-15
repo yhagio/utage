@@ -1,7 +1,11 @@
 import React, { PropTypes } from 'react'
+import {
+  signout
+} from './styles.css';
 
 export default function Signout () {
+
   return (
-    <div className=''>{'You are now logged out'}</div>
+    <div className={ signout } >{'You are now signed out'}</div>
   )
 }

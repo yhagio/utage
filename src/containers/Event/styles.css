@@ -1,8 +1,47 @@
 .event {
+  padding: 5px;
   color: #aaa;
   background: rgba(256, 256, 256, 0.9);
   border-radius: 10px;
   width: 100%;
-  height: 100px;
+  min-height: 100px;
+}
+
+.innerBox {
+  display: block;
+
+  width: 100%;
+  margin: 5px 5px 5px 0;
+  padding: 5px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  min-height: 100px;
+  color: #333;
+  background: rgba(256, 256, 256, 0.9);
+}
+
+.title {
+  line-height: 0.3;
+}
+
+.detail {
+  display: flex;
+}
+
+.detail p {
+  flex-grow: 1;
   text-align: center;
+}
+
+.date {
+  text-align: center;
+}
+
+.category {
+  padding: 3px;
+  display: block;
+  border-radius: 20px;
+  background: deepskyblue;
+  text-align: center;
+  max-width: 130px;
 }

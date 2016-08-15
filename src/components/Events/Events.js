@@ -1,5 +1,9 @@
 import React, { PropTypes } from 'react';
 import { EventContainer } from 'containers';
+import {
+  eventListBox,
+  filter
+} from './styles.css';
 
 const { string, func, number, bool, array } = PropTypes;
 
@@ -11,19 +15,16 @@ Events.propTypes = {
 export default function Events (props) {
   // console.log('Filtered IDs', props.filteredEvents);
   return (
-    <div>
-      { props.filteredEvents.length === 0
-        ? <h3>{ 'No event yet' }</h3>
-        : null}
-
-      <label htmlFor="filterSelection" className="" >Category Filter</label>
+    <div className={ eventListBox }>
+      <label htmlFor="filterSelection" >Category Filter</label><br/>
       <select
         id="filterSelection"
         name="filterSelection"
+        className={ filter }
         value={ props.searchCategory }
         onChange={ (e) => props.filterEventsByCategory(e.target.value) } >
 
-        <option value=''>Select ▼</option>
+        <option value=''>ALL</option>
         <option value='Social'>Social</option>
         <option value='Birthday'>Birthday</option>
         <option value='Celebration'>Celebration</option>
@@ -32,6 +33,10 @@ export default function Events (props) {
         <option value='Conference'>Conference</option>
 
       </select>
+    
+      { props.filteredEvents.length === 0
+        ? <h2><hr />{ 'No event yet' }</h2>
+        : null}
       
       { props.filteredEvents.map((id) => (
         <EventContainer

@@ -2,8 +2,16 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import {
-  event
+  innerBox,
+  title,
+  detail,
+  date,
+  category
 } from './styles.css';
+import { 
+  limitText,
+  formatDateTime
+} from '../../helpers/utils';
 
 const { object, number, bool, string, func, array } = PropTypes;
 
@@ -14,13 +22,17 @@ const EventContainer = React.createClass({
 
   render() {
     return (
-      <div className={ event }>
-        <Link to={ `events/${this.props.eventId}` }>
-          <h2>{ this.props.event.title }</h2>
-          <p>{ this.props.event.startDate }</p>
+      <Link to={ `events/${this.props.eventId}` } className={ innerBox }>
+        <h2 className={ title }>{ this.props.event.title }</h2>
+        <p>{ limitText(this.props.event.description, 160) }</p>
+        <div className={ detail }>
+          <p>
+            <span className={ category }>{ this.props.event.category }</span>
+          </p>
+          <p className={ date }>{ formatDateTime(this.props.event.startDate) }</p>
           <p>{ this.props.event.price === 0 ? 'FREE' : '$'+this.props.event.price }</p>
-        </Link>
-      </div>
+        </div>
+      </Link> 
     );
   }
 });

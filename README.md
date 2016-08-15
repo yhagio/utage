@@ -18,8 +18,14 @@ ADDITIONAL (consideration)
 - Camera API
 
 #### How to run locally
-
-#### How to run productin version locally
+```
+git clone git@github.com:yhagio/utage.git
+cd utage
+npm install
+npm run production
+npm run production:run
+```
+Go to `http://localhost:8080/`
 
 #### Tech Stack & Tools
 

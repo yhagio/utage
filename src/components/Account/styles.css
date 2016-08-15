@@ -1,3 +1,24 @@
 .container {
   padding: 0 0 0 15px;
+  font-size: 1.1em;
+}
+
+.notifyButton {
+  border: none;
+  border-radius: 20px;
+
+  padding: 15px;
+  background: white;
+}
+
+.notifyButton:hover {
+  cursor: pointer;
+}
+
+.notifyButton:focus {
+  color: deepskyblue;
+}
+
+.notifyButton:active {
+  color: deeppink;
 }

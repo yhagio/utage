@@ -1,0 +1,16 @@
+.eventListBox {
+  padding-right: 12px;
+}
+
+label {
+  font-size: 1.4em;
+  color: white;
+}
+
+.filter {
+  margin-top: 5px;
+  border: 2px solid white;
+  width: 200px;
+  /*margin-left: 7px;*/
+  height: 45px;
+}

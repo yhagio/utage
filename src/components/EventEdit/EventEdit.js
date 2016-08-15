@@ -5,7 +5,8 @@ import {
   inputField,
   textareaField,
   selectOption,
-  submitButton
+  submitButton,
+  deleteButton
 } from './styles.css';
 
 const { string, func, bool, array, object, number } = PropTypes;
@@ -43,7 +44,7 @@ export default function EventEdit (props) {
       description: props.description || props.event.description,
       address: props.address || props.event.address,
       limit: 100,
-      price: props.price || props.event.price,
+      price: props.price || 0,
       startDate: props.startDate || props.event.startDate,
       endDate: props.endDate || props.event.endDate,
       category: props.category || props.event.category,
@@ -60,7 +61,7 @@ export default function EventEdit (props) {
     ? <h3>Loading event data ...</h3>
     : (
   <form onSubmit={ handleFormSubmit } className={ container }>
-      <h2>{'New Event'}</h2>
+      <h2>{'Edit Event'}</h2>
       <hr />
       <label className={ labeled }>Title<br />
         <input
@@ -106,7 +107,7 @@ export default function EventEdit (props) {
           id='price'
           name='price'
           placeholder='0 if it is FREE'
-          value={ props.price || props.event.price }
+          value={ props.price || 0 }
           onChange={ (e) => props.updatePrice(parseInt(e.target.value)) }
           className={ inputField }
           type='Number'
@@ -159,7 +160,7 @@ export default function EventEdit (props) {
         role="button">Update</button>
 
       <button
-        className={ submitButton }
+        className={ deleteButton }
         onClick={ handleRemoval }
         role="button">DELETE</button>
     </form>
