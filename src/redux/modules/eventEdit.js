@@ -1,4 +1,7 @@
-import { updateEvent, deleteEvent } from '../../helpers/firebaseAPI';
+import {
+  updateEvent,
+  deleteEvent
+} from '../../helpers/firebaseAPI';
 import { hashHistory } from 'react-router';
 
 const EDIT_TITLE = 'EDIT_TITLE';

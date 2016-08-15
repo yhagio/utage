@@ -56,8 +56,7 @@ function GoingCancelButton (props) {
 export default function EventPage (props) {
   return props.isFetching === true
     ? <h3>Loading event data ...</h3>
-    : (
-      <div className={ container } >
+    : <div className={ container } >
         <h1 className={ title }>{ props.event.title }</h1>
 
         <div className={ actionArea }>
@@ -82,7 +81,6 @@ export default function EventPage (props) {
         <div className={ details } >
           <p className={ category }>{ props.event.category }</p>
           <p>{ props.event.price === 0 ? 'FREE' : '$' + props.event.price }</p>
-          { /* <p>Limit: { props.event.limit }</p> */ }
           <p>Going: <span>{ props.attendance }</span></p>
         </div>
 
@@ -107,6 +105,5 @@ export default function EventPage (props) {
           <GoogleMap
             eventLatLng={ props.eventLatLng } />
         </div>
-      </div>
-    );
+      </div>;
 }

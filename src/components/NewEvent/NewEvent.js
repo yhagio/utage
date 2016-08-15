@@ -102,8 +102,6 @@ export default function NewEventForm (props) {
           required={ true } />
       </label>
 
-      { }
-
       <label className={ labeled }>Start Date<br />
         <input
           id='startDate'

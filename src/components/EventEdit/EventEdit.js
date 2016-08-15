@@ -59,110 +59,108 @@ export default function EventEdit (props) {
 
   return props.isFetching === true
     ? <h3>Loading event data ...</h3>
-    : (
-  <form onSubmit={ handleFormSubmit } className={ container }>
-      <h2>{ 'Edit Event' }</h2>
-      <hr />
-      <label className={ labeled }>Title<br />
-        <input
-          id='title'
-          name='title'
-          placeholder='Event Title'
-          value={ props.title || props.event.title }
-          onChange={ (e) => props.updateTitle(e.target.value) }
-          className={ inputField }
-          type='text'
-          required={ true } />
-      </label>
+    : <form onSubmit={ handleFormSubmit } className={ container }>
+        <h2>{ 'Edit Event' }</h2>
+        <hr />
+        <label className={ labeled }>Title<br />
+          <input
+            id='title'
+            name='title'
+            placeholder='Event Title'
+            value={ props.title || props.event.title }
+            onChange={ (e) => props.updateTitle(e.target.value) }
+            className={ inputField }
+            type='text'
+            required={ true } />
+        </label>
 
-      <label className={ labeled }>Description<br />
-        <textarea
-          id='description'
-          name='description'
-          placeholder='Description within 600 characters'
-          value={ props.description || props.event.description }
-          onChange={ (e) => props.updateDescription(e.target.value) }
-          className={ textareaField }
-          rows='10'
-          type='text'
-          maxLength={ 600 }
-          required={ true } />
-      </label>
+        <label className={ labeled }>Description<br />
+          <textarea
+            id='description'
+            name='description'
+            placeholder='Description within 600 characters'
+            value={ props.description || props.event.description }
+            onChange={ (e) => props.updateDescription(e.target.value) }
+            className={ textareaField }
+            rows='10'
+            type='text'
+            maxLength={ 600 }
+            required={ true } />
+        </label>
 
-      <label className={ labeled }>Address<br />
-        <input
-          id='address'
-          name='address'
-          placeholder='Address'
-          value={ props.address || props.event.address }
-          onChange={ (e) => props.updateAddress(e.target.value) }
-          className={ inputField }
-          type='text'
-          autoComplete='street-address'
-          required={ true } />
-      </label>
+        <label className={ labeled }>Address<br />
+          <input
+            id='address'
+            name='address'
+            placeholder='Address'
+            value={ props.address || props.event.address }
+            onChange={ (e) => props.updateAddress(e.target.value) }
+            className={ inputField }
+            type='text'
+            autoComplete='street-address'
+            required={ true } />
+        </label>
 
-      <label className={ labeled }>Price ($)<br />
-        <input
-          id='price'
-          name='price'
-          placeholder='0 if it is FREE'
-          value={ props.price || 0 }
-          onChange={ (e) => props.updatePrice(parseInt(e.target.value)) }
-          className={ inputField }
-          type='Number'
-          min={ 0 }
-          required={ true } />
-      </label>
+        <label className={ labeled }>Price ($)<br />
+          <input
+            id='price'
+            name='price'
+            placeholder='0 if it is FREE'
+            value={ props.price || 0 }
+            onChange={ (e) => props.updatePrice(parseInt(e.target.value)) }
+            className={ inputField }
+            type='Number'
+            min={ 0 }
+            required={ true } />
+        </label>
 
-      <label className={ labeled }>Start Date<br />
-        <input
-          id='startDate'
-          name='startDate'
-          value={ props.startDate || props.event.startDate }
-          onChange={ (e) => props.updateStartDate(e.target.value) }
-          className={ inputField }
-          type='datetime-local'
-          required={ true } />
-      </label>
+        <label className={ labeled }>Start Date<br />
+          <input
+            id='startDate'
+            name='startDate'
+            value={ props.startDate || props.event.startDate }
+            onChange={ (e) => props.updateStartDate(e.target.value) }
+            className={ inputField }
+            type='datetime-local'
+            required={ true } />
+        </label>
 
-      <label className={ labeled }>End Date<br />
-        <input
-          id='endDate'
-          name='endDate'
-          value={ props.endDate || props.event.endDate }
-          onChange={ (e) => props.updateEndDate(e.target.value) }
-          className={ inputField }
-          type='datetime-local'
-          required={ true } />
-      </label>
+        <label className={ labeled }>End Date<br />
+          <input
+            id='endDate'
+            name='endDate'
+            value={ props.endDate || props.event.endDate }
+            onChange={ (e) => props.updateEndDate(e.target.value) }
+            className={ inputField }
+            type='datetime-local'
+            required={ true } />
+        </label>
 
-      <label htmlFor='category' className={ labeled }>Category</label>
-      <select
-        id='category'
-        name='category'
-        value={ props.category || props.event.category }
-        className={ selectOption }
-        onChange={ (e) => props.updateCategory(e.target.value) } >
+        <label htmlFor='category' className={ labeled }>Category</label>
+        <select
+          id='category'
+          name='category'
+          value={ props.category || props.event.category }
+          className={ selectOption }
+          onChange={ (e) => props.updateCategory(e.target.value) } >
 
-        <option value='Social'>Social</option>
-        <option value='Birthday'>Birthday</option>
-        <option value='Celebration'>Celebration</option>
-        <option value='Networking'>Networking</option>
-        <option value='Sports'>Sports</option>
-        <option value='Conference'>Conference</option>
+          <option value='Social'>Social</option>
+          <option value='Birthday'>Birthday</option>
+          <option value='Celebration'>Celebration</option>
+          <option value='Networking'>Networking</option>
+          <option value='Sports'>Sports</option>
+          <option value='Conference'>Conference</option>
 
-      </select>
+        </select>
 
-      <button
-        action='submit'
-        className={ submitButton }
-        role='button'>Update</button>
+        <button
+          action='submit'
+          className={ submitButton }
+          role='button'>Update</button>
 
-      <button
-        className={ deleteButton }
-        onClick={ handleRemoval }
-        role='button'>DELETE</button>
-    </form>
-    );
+        <button
+          className={ deleteButton }
+          onClick={ handleRemoval }
+          role='button'>DELETE</button>
+      </form>;
 }

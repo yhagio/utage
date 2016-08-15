@@ -23,6 +23,11 @@ npm run prod:run
 ```
 Go to `http://localhost:8080/`
 
+#### For development (No support for service worker, offline)
+```
+npm run start
+```
+
 #### Tech Stack & Tools
 
 #### Checklist
@@ -50,6 +55,9 @@ Go to `http://localhost:8080/`
 **GoogleMap**
 
 **Offline**
+
+**Accessibility**
+- [Accessibility Developer Tools for Chrome](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en)
 
 **Web Notification**
 

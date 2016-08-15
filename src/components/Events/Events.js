@@ -13,7 +13,6 @@ Events.propTypes = {
 };
 
 export default function Events (props) {
-  // console.log('Filtered IDs', props.filteredEvents);
   return (
     <div className={ eventListBox }>
       <label htmlFor='filterSelection' >Category Filter</label><br/>

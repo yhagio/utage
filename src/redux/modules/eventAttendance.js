@@ -1,8 +1,8 @@
-import {
-  fetchAttendance
-} from '../../helpers/firebaseAPI';
-
-import { CONFIRM_GOING, IM_NOT_GOING } from './usersAttendance';
+import { fetchAttendance } from '../../helpers/firebaseAPI';
+import { 
+  CONFIRM_GOING,
+  IM_NOT_GOING
+} from './usersAttendance';
 
 const FETCHING_ATTENDANCE = 'FETCHING_ATTENDANCE';
 const FETCHING_ATTENDANCE_SUCCESS = 'FETCHING_ATTENDANCE_SUCCESS';

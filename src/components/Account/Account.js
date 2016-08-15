@@ -12,14 +12,14 @@ function ToggleButton (props) {
   if ('Notification' in window) {
     if (Notification.permission === 'default') {
       return (
-          <div>
-            <p>Would you like to get notified when a new event is available?</p>
-            <button
-              onClick={ props.requestPermission }
-              role='button'
-              className={ notifyButton }>Enable Notification</button>
-          </div>
-        );
+        <div>
+          <p>Would you like to get notified when a new event is available?</p>
+          <button
+            onClick={ props.requestPermission }
+            role='button'
+            className={ notifyButton }>Enable Notification</button>
+        </div>
+      );
     } else if (Notification.permission === 'granted') {
       return <p>Notification is enabled</p>;
     } else {
@@ -41,10 +41,7 @@ export default function Account (props) {
     if ('Notification' in window) {
       if (Notification.permission === 'default') {
         Notification.requestPermission()
-          .then((newStatus) => {
-            console.log('newStatus', newStatus);
-            return props.handleUpdateNotification(newStatus);
-          });
+          .then((newStatus) => props.handleUpdateNotification(newStatus));
       } else if (Notification.permission === 'granted') {
         console.log('Notification is permitted');
       } else {

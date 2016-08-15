@@ -1,20 +1,24 @@
 import React, { PropTypes } from 'react';
-import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
-
-const { object } = PropTypes;
+import { 
+  GoogleMapLoader,
+  GoogleMap,
+  Marker
+} from 'react-google-maps';
 
 GoogleMapComponent.propTypes = {
-  eventLatLng: object.isRequired
+  eventLatLng: PropTypes.object.isRequired
 };
 
 export default function GoogleMapComponent (props) {
   if (props.eventLatLng.lat && props.eventLatLng.lng) {
+
+    // Have default lat lng (Montreal, Canada) in case the
+    // address is not found at all
     const myLatLng = {
       lat: props.eventLatLng.lat || 45.5298537,
       lng: props.eventLatLng.lng || -73.5944413
     };
 
-    // console.log('Got EventLatLng', myLatLng);
     return (
       <GoogleMapLoader
         containerElement={ <div style={ {height: '100%'} } /> }
