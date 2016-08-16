@@ -34,6 +34,7 @@
         "sizes": "512x512",
         "type": "image/png"
       }],
+  "start_url": "https://utage-7e146.firebaseapp.com",
   "background_color": "#3E4EB8",
   "display": "standalone",
   "theme_color": "#2E3AA1"
