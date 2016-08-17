@@ -138,3 +138,23 @@ export function deleteFromUsersAttendance (uid, eventId) {
   return ref.child(`usersAttendance/${uid}/${eventId}`).set(null);
 }
 
+/** ***************
+ * Conversations
+ *****************/
+
+// Save a new conversation to '/conversations/event you are commenting'
+export function saveConversation (eventId, conversation) {
+  const conversationId = ref.child(`conversations/${eventId}`).push().key;
+  const convPromise = ref.child(`conversations/${eventId}`).set({...conversation, conversationId});
+  return {
+    conversationId,
+    conversationPromise
+  };
+}
+
+export function fetchConversations (eventId) {
+  return ref.child(`conversations/${eventId}`).once('value')
+    .then((snapshot) => {
+      return snapshot.val() || {};
+    });
+}
