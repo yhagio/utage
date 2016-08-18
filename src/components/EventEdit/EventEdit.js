@@ -70,6 +70,7 @@ export default function EventEdit (props) {
             value={ props.title || props.event.title }
             onChange={ (e) => props.updateTitle(e.target.value) }
             className={ inputField }
+            maxLength={ 50 }
             type='text'
             required={ true }
             autoFocus />

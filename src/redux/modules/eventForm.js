@@ -12,6 +12,12 @@ const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 const SUBMITTED_SUCCESSFULLY = 'SUBMITTED_SUCCESSFULLY';
 const SUBMISSION_ERROR = 'SUBMISSION_ERROR';
 
+const TITLE_ERROR = 'TITLE_ERROR';
+const DESCRIPTION_ERROR = 'DESCRIPTION_ERROR';
+const ADDRESS_ERROR = 'ADDRESS_ERROR';
+const START_DATE_ERROR = 'START_DATE_ERROR';
+const END_DATE_ERROR = 'END_DATE_ERROR';
+
 // Actions
 export function updateTitle (title) {
   return {
@@ -83,6 +89,44 @@ function submissionError (error) {
   };
 }
 
+// Form Error Actions
+export function warnTitleError() {
+  return {
+    type: TITLE_ERROR,
+    titleError: 'Title is required'
+  };
+}
+
+export function warnDescriptionError() {
+  return {
+    type: DESCRIPTION_ERROR,
+    descriptionError: 'Description is required'
+  };
+}
+
+export function warnAddressError() {
+  return {
+    type: ADDRESS_ERROR,
+    addressError: 'Address is required'
+  };
+}
+
+export function warnStartDateError() {
+  return {
+    type: START_DATE_ERROR,
+    startDateError: 'Start Date is required'
+  };
+}
+
+export function warnEndDateError() {
+  return {
+    type: END_DATE_ERROR,
+    endDateError: 'End Date is required'
+  };
+}
+
+
+// Handlers
 export function createEvent (event) {
   return function (dispatch) {
     saveEvent(event)
@@ -111,11 +155,16 @@ const initialState = {
   description: '',
   address: '',
   price: 0,
-  limit: 0,
   startDate: '',
   endDate: '',
   category: 'Social',
-  error: ''
+  error: '',
+
+  titleError: '',
+  descriptionError: '',
+  addressError: '',
+  startDateError: '',
+  endDateError: ''
 };
 
 // reducer
@@ -125,19 +174,22 @@ export default function eventFormReducer (state = initialState, action) {
     case UPDATE_TITLE:
       return {
         ...state,
-        title: action.title
+        title: action.title,
+        titleError: ''
       };
 
     case UPDATE_DESCRIPTION:
       return {
         ...state,
-        description: action.description
+        description: action.description,
+        descriptionError: ''
       };
 
     case UPDATE_ADDRESS:
       return {
         ...state,
-        address: action.address
+        address: action.address,
+        addressError: ''
       };
 
     case UPDATE_PRICE:
@@ -146,22 +198,18 @@ export default function eventFormReducer (state = initialState, action) {
         price: action.price
       };
 
-    case UPDATE_LIMIT:
-      return {
-        ...state,
-        limit: action.limit
-      };
-
     case UPDATE_START_DATE:
       return {
         ...state,
-        startDate: action.startDate
+        startDate: action.startDate,
+        startDateError: ''
       };
 
     case UPDATE_END_DATE:
       return {
         ...state,
-        endDate: action.endDate
+        endDate: action.endDate,
+        endDateError: ''
       };
 
     case UPDATE_CATEGORY:
@@ -170,6 +218,38 @@ export default function eventFormReducer (state = initialState, action) {
         category: action.category
       };
 
+    // Form Errors
+    case TITLE_ERROR:
+      return {
+        ...state,
+        titleError: action.titleError,
+      };
+
+    case DESCRIPTION_ERROR:
+      return {
+        ...state,
+        descriptionError: action.descriptionError,
+      };
+
+    case ADDRESS_ERROR:
+      return {
+        ...state,
+        addressError: action.addressError,
+      };
+
+    case START_DATE_ERROR:
+      return {
+        ...state,
+        startDateError: action.startDateError,
+      };
+
+    case END_DATE_ERROR:
+      return {
+        ...state,
+        endDateError: action.endDateError,
+      };
+    
+    // Successfully Submitted
     case SUBMITTED_SUCCESSFULLY:
       return {
         ...state,
@@ -177,11 +257,11 @@ export default function eventFormReducer (state = initialState, action) {
         description: '',
         address: '',
         price: 0,
-        limit: 0,
         startDate: '',
         endDate: '',
         category: '',
-        error: ''
+        error: '',
+        titleError: ''
       };
 
     case SUBMISSION_ERROR:
