@@ -27,7 +27,18 @@ const EventEditContainer = React.createClass({
     endDate: string.isRequired,
     category: string.isRequired,
     handleUpdateEvent: func.isRequired,
-    handleDeleteEvent: func.isRequired
+    handleDeleteEvent: func.isRequired,
+
+    titleError: string.isRequired,
+    warnTitleError: func.isRequired,
+    descriptionError: string.isRequired,
+    warnDescriptionError: func.isRequired,
+    addressError: string.isRequired,
+    warnAddressError: func.isRequired,
+    startDateError: string.isRequired,
+    warnStartDateError: func.isRequired,
+    endDateError: string.isRequired,
+    warnEndDateError: func.isRequired
   },
 
   render () {
@@ -51,23 +62,39 @@ const EventEditContainer = React.createClass({
             endDate={ this.props.endDate }
             category={ this.props.category }
             handleUpdateEvent={ this.props.handleUpdateEvent }
-            handleDeleteEvent={ this.props.handleDeleteEvent } />;
+            handleDeleteEvent={ this.props.handleDeleteEvent }
+            
+            titleError={ this.props.titleError }
+            warnTitleError={ this.props.warnTitleError } 
+            descriptionError={ this.props.descriptionError }
+            warnDescriptionError={ this.props.warnDescriptionError } 
+            addressError={ this.props.addressError }
+            warnAddressError={ this.props.warnAddressError }
+            startDateError={ this.props.startDateError }
+            warnStartDateError={ this.props.warnStartDateError }
+            endDateError={ this.props.endDateError }
+            warnEndDateError={ this.props.warnEndDateError } />;
   }
 });
 
-function mapStateToProps (state) {
+function mapStateToProps ({ event, eventEdit }) {
   return {
-    event: state.event.event,
-    eventHost: state.event.eventHost,
-    isFetching: state.event.isFetching,
-    error: state.event.error,
-    title: state.eventEdit.title,
-    description: state.eventEdit.description,
-    address: state.eventEdit.address,
-    price: state.eventEdit.price,
-    startDate: state.eventEdit.startDate,
-    endDate: state.eventEdit.endDate,
-    category: state.eventEdit.category
+    event: event.event,
+    eventHost: event.eventHost,
+    isFetching: event.isFetching,
+    error: event.error,
+    title: eventEdit.title,
+    description: eventEdit.description,
+    address: eventEdit.address,
+    price: eventEdit.price,
+    startDate: eventEdit.startDate,
+    endDate: eventEdit.endDate,
+    category: eventEdit.category,
+    titleError: eventEdit.titleError,
+    descriptionError: eventEdit.descriptionError,
+    addressError: eventEdit.addressError,
+    startDateError: eventEdit.startDateError,
+    endDateError: eventEdit.endDateError
   };
 }
 

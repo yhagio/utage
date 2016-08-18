@@ -15,6 +15,12 @@ const EDIT_CATEGORY = 'EDIT_CATEGORY';
 const UPDATED_SUCCESSFULLY = 'UPDATED_SUCCESSFULLY';
 const UPDATE_ERROR = 'UPDATE_ERROR';
 
+const TITLE_UPDATE_ERROR = 'TITLE_UPDATE_ERROR';
+const DESCRIPTION_UPDATE_ERROR = 'DESCRIPTION_UPDATE_ERROR';
+const ADDRESS_UPDATE_ERROR = 'ADDRESS_UPDATE_ERROR';
+const START_DATE_UPDATE_ERROR = 'START_DATE_UPDATE_ERROR';
+const END_DATE_UPDATE_ERROR = 'END_DATE_UPDATE_ERROR';
+
 // Actions
 export function updateTitle (title) {
   return {
@@ -86,6 +92,43 @@ function submissionError (error) {
   };
 }
 
+// Form Error Actions
+export function warnTitleError() {
+  return {
+    type: TITLE_UPDATE_ERROR,
+    titleError: 'Title is required'
+  };
+}
+
+export function warnDescriptionError() {
+  return {
+    type: DESCRIPTION_UPDATE_ERROR,
+    descriptionError: 'Description is required'
+  };
+}
+
+export function warnAddressError() {
+  return {
+    type: ADDRESS_UPDATE_ERROR,
+    addressError: 'Address is required'
+  };
+}
+
+export function warnStartDateError() {
+  return {
+    type: START_DATE_UPDATE_ERROR,
+    startDateError: 'Start Date is required'
+  };
+}
+
+export function warnEndDateError() {
+  return {
+    type: END_DATE_UPDATE_ERROR,
+    endDateError: 'End Date is required'
+  };
+}
+
+
 export function handleUpdateEvent (eventId, event) {
   return function (dispatch) {
     updateEvent(eventId, event)
@@ -127,7 +170,13 @@ const initialState = {
   startDate: '',
   endDate: '',
   category: 'Social',
-  error: ''
+  error: '',
+
+  titleError: '',
+  descriptionError: '',
+  addressError: '',
+  startDateError: '',
+  endDateError: ''
 };
 
 // reducer
@@ -180,6 +229,37 @@ export default function eventEditReducer (state = initialState, action) {
       return {
         ...state,
         category: action.category
+      };
+
+    // Form Errors
+    case TITLE_UPDATE_ERROR:
+      return {
+        ...state,
+        titleError: action.titleError,
+      };
+
+    case DESCRIPTION_UPDATE_ERROR:
+      return {
+        ...state,
+        descriptionError: action.descriptionError,
+      };
+
+    case ADDRESS_UPDATE_ERROR:
+      return {
+        ...state,
+        addressError: action.addressError,
+      };
+
+    case START_DATE_UPDATE_ERROR:
+      return {
+        ...state,
+        startDateError: action.startDateError,
+      };
+
+    case END_DATE_UPDATE_ERROR:
+      return {
+        ...state,
+        endDateError: action.endDateError,
       };
 
     case UPDATED_SUCCESSFULLY:

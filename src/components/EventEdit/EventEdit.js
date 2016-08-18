@@ -6,7 +6,9 @@ import {
   textareaField,
   selectOption,
   submitButton,
-  deleteButton
+  deleteButton,
+  noSubmit,
+  error
 } from './styles.css';
 
 const { string, func, bool, object, number } = PropTypes;
@@ -31,8 +33,44 @@ EventEdit.propTypes = {
   updateEndDate: func.isRequired,
   updateCategory: func.isRequired,
   handleUpdateEvent: func.isRequired,
-  handleDeleteEvent: func.isRequired
+  handleDeleteEvent: func.isRequired,
+
+  titleError: string.isRequired,
+  warnTitleError: func.isRequired,
+  descriptionError: string.isRequired,
+  warnDescriptionError: func.isRequired,
+  addressError: string.isRequired,
+  warnAddressError: func.isRequired,
+  startDateError: string.isRequired,
+  warnStartDateError: func.isRequired,
+  endDateError: string.isRequired,
+  warnEndDateError: func.isRequired
 };
+
+function SubmitButton (props) {
+  if (
+    props.titleError ||
+    props.descriptionError ||
+    props.addressError ||
+    props.startDateError ||
+    props.endDateError
+  ) {
+    return (
+      <button
+        action='submit'
+        disabled={ "disabled" }
+        className={ noSubmit }
+        role='button'>Cannot Update</button>
+    )
+  } else {
+    return (
+      <button
+        action='submit'
+        className={ submitButton }
+        role='button'>Update</button>
+    )
+  }
+}
 
 export default function EventEdit (props) {
   function handleFormSubmit (e) {
@@ -69,12 +107,14 @@ export default function EventEdit (props) {
             placeholder='Event Title'
             value={ props.title || props.event.title }
             onChange={ (e) => props.updateTitle(e.target.value) }
+            onBlur={ (e) => e.target.value.length === 0 ? props.warnTitleError(e.target.value): null }
             className={ inputField }
             maxLength={ 50 }
             type='text'
             required={ true }
             autoFocus />
         </label>
+        <span className={ error }>{ props.titleError ? props.titleError: ''}</span>
 
         <label className={ labeled }>Description<br />
           <textarea
@@ -83,12 +123,14 @@ export default function EventEdit (props) {
             placeholder='Description within 600 characters'
             value={ props.description || props.event.description }
             onChange={ (e) => props.updateDescription(e.target.value) }
+            onBlur={ (e) => e.target.value.length === 0 ? props.warnDescriptionError(e.target.value): null }
             className={ textareaField }
             rows='10'
             type='text'
             maxLength={ 600 }
             required={ true } />
         </label>
+        <span className={ error }>{ props.descriptionError ? props.descriptionError: ''}</span>
 
         <label className={ labeled }>Address<br />
           <input
@@ -97,11 +139,13 @@ export default function EventEdit (props) {
             placeholder='Address'
             value={ props.address || props.event.address }
             onChange={ (e) => props.updateAddress(e.target.value) }
+            onBlur={ (e) => e.target.value.length === 0 ? props.warnAddressError(e.target.value): null }
             className={ inputField }
             type='text'
             autoComplete='street-address'
             required={ true } />
         </label>
+        <span className={ error }>{ props.addressError ? props.addressError: ''}</span>
 
         <label className={ labeled }>Price ($)<br />
           <input
@@ -122,10 +166,12 @@ export default function EventEdit (props) {
             name='startDate'
             value={ props.startDate || props.event.startDate }
             onChange={ (e) => props.updateStartDate(e.target.value) }
+            onBlur={ (e) => e.target.value.length === 0 ? props.warnStartDateError(e.target.value): null }
             className={ inputField }
             type='datetime-local'
             required={ true } />
         </label>
+        <span className={ error }>{ props.startDateError ? props.startDateError: ''}</span>
 
         <label className={ labeled }>End Date<br />
           <input
@@ -133,10 +179,12 @@ export default function EventEdit (props) {
             name='endDate'
             value={ props.endDate || props.event.endDate }
             onChange={ (e) => props.updateEndDate(e.target.value) }
+            onBlur={ (e) => e.target.value.length === 0 ? props.warnEndDateError(e.target.value): null }
             className={ inputField }
             type='datetime-local'
             required={ true } />
         </label>
+        <span className={ error }>{ props.endDateError ? props.endDateError: ''}</span>
 
         <label htmlFor='category' className={ labeled }>Category</label>
         <select
@@ -155,10 +203,12 @@ export default function EventEdit (props) {
 
         </select>
 
-        <button
-          action='submit'
-          className={ submitButton }
-          role='button'>Update</button>
+        <SubmitButton
+          titleError={ props.titleError }
+          descriptionError={ props.descriptionError }
+          addressError={ props.addressError }
+          startDateError={ props.startDateError}
+          endDateError={ props.endDateError } />
 
         <button
           className={ deleteButton }
