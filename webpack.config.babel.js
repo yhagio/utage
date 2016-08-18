@@ -17,6 +17,12 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body'
 });
 
+const HtmlWebpackPluginConfig2 = new HtmlWebpackPlugin({
+  template: __dirname + '/src/index.html',
+  filename: 'index.html',
+  inject: 'head'
+});
+
 // Source & Destination path
 const PATHS = {
   source: path.join(__dirname, 'src'),
@@ -54,7 +60,8 @@ const base = {
     loaders: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       { test: /\.css$/, loader: 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]' },
-      { test: /\.png$/, loader: "url-loader?limit=100000&mimetype=image/png" },
+      // { test: /\.png$/, loader: "url-loader?limit=100000&mimetype=image/png" },
+      // { test: /\.jpeg$/, loader: "file-loader" },
       { test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           'file?hash=sha512&digest=hex&name=[hash].[ext]',

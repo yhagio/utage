@@ -1,7 +1,16 @@
-body {
+/*
+  THIS CSS IS ABORTED
+*/
+
+/*body {
   height: 100%;
   font-family: 'Lato', sans-serif;
   color: #fff;
+  background-image: url('/images/grey_bar-min_med.png') ;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
   background-color: #333;
 }
 
@@ -13,18 +22,10 @@ a {
   text-decoration: none;
   color: #333;
 }
-/*
+
 .mainContianer {
   min-height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
 }*/
-
-.main {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 700px;
-  margin: auto;
-}

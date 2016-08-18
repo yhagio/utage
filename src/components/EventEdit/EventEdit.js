@@ -71,7 +71,8 @@ export default function EventEdit (props) {
             onChange={ (e) => props.updateTitle(e.target.value) }
             className={ inputField }
             type='text'
-            required={ true } />
+            required={ true }
+            autoFocus />
         </label>
 
         <label className={ labeled }>Description<br />
