@@ -4,7 +4,7 @@
 
 **Utage** : Event / Party Planning app that is installable and accesible, with offline usability.
 
-![Screenshot](/scr.png)
+![Screenshot](/scrn.png)
 
 ### Key Features
 - facebok login
