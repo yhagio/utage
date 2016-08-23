@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { List, Map } from 'immutable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { EventPage } from 'components';
@@ -11,15 +12,15 @@ const { object, bool, string, func, array, number } = PropTypes;
 const EventPageContainer = React.createClass({
   propTypes: {
     authedUserID: string.isRequired,
-    event: object.isRequired,
-    eventHost: object.isRequired,
-    eventLatLng: object.isRequired,
+    event: PropTypes.instanceOf(Map), //object.isRequired,
+    eventHost: PropTypes.instanceOf(Map), //object.isRequired,
+    eventLatLng: PropTypes.instanceOf(Map), //object.isRequired,
     isFetching: bool.isRequired,
     fetchAndHandleEvent: func.isRequired,
     error: string.isRequired,
     rsvp: bool.isRequired,
     going: bool.isRequired,
-    comments: array.isRequired,
+    comments: PropTypes.instanceOf(List), //array.isRequired,
     attendance: number,
     fetchEventAttendance: func.isRequired,
     handleConfirmAttendance: func.isRequired,
@@ -33,21 +34,19 @@ const EventPageContainer = React.createClass({
   componentDidMount () {
     // Let's calcualte the distance from your current location
     let self = this;
-    navigator.geolocation.getCurrentPosition(
-    (position) => {
-      // console.log('Calculating!!!', self.props.eventLatLng)
+    navigator.geolocation.getCurrentPosition((position) => {
       if (position.coords.latitude &&
           position.coords.longitude &&
-          self.props.eventLatLng.lat &&
-          self.props.eventLatLng.lng) {
+          self.props.eventLatLng.get('lat') &&
+          self.props.eventLatLng.get('lng')) {
+
         self.props.calculateDistance(
             position.coords.latitude,
             position.coords.longitude,
-            self.props.eventLatLng.lat,
-            self.props.eventLatLng.lng);
+            self.props.eventLatLng.get('lat'),
+            self.props.eventLatLng.get('lng'));
       }
-    },
-    (error) => {
+    }, (error) => {
       self.props.calculateDistance('Nop', 'Nop', self.props.eventLatLng.lat, self.props.eventLatLng.lng)
     });
     this.props.fetchAndHandleEvent(this.props.params.id);
@@ -76,17 +75,18 @@ const EventPageContainer = React.createClass({
 function mapStateToProps (state, ownProps) {
   return {
     authedUserID: state.users.authedUser.uid || '',
-    event: state.event.event,
-    eventHost: state.event.eventHost,
-    eventLatLng: state.event.eventLatLng,
-    isFetching: state.event.isFetching,
-    error: state.event.error,
-    rsvp: state.event.rsvp,
-    comments: state.event.comments,
+    event: state.event.get('event'),
+    eventHost: state.event.get('eventHost'),
+    eventLatLng: state.event.get('eventLatLng'),
+    isFetching: state.event.get('isFetching'),
+    error: state.event.get('error'),
+    rsvp: state.event.get('rsvp'),
+    comments: state.event.get('comments'),
+    distanceCalculating: state.event.get('distanceCalculating'),
+    distance: state.event.get('distance'),
+
     attendance: state.eventAttendance[ownProps.params.id],
-    going: state.usersAttendance[ownProps.params.id] === true,
-    distanceCalculating: state.event.distanceCalculating,
-    distance: state.event.distance
+    going: state.usersAttendance[ownProps.params.id] === true
   };
 }
 

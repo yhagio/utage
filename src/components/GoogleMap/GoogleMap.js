@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Map } from 'immutable';
 import {
   GoogleMapLoader,
   GoogleMap,
@@ -6,16 +7,16 @@ import {
 } from 'react-google-maps';
 
 GoogleMapComponent.propTypes = {
-  eventLatLng: PropTypes.object.isRequired
+  eventLatLng: PropTypes.instanceOf(Map).isRequired //object.isRequired
 };
 
 export default function GoogleMapComponent (props) {
-  if (props.eventLatLng.lat && props.eventLatLng.lng) {
+  if (props.eventLatLng.get('lat') && props.eventLatLng.get('lng')) {
     // Have default lat lng (Montreal, Canada) in case the
     // address is not found at all
     const myLatLng = {
-      lat: props.eventLatLng.lat || 45.5298537,
-      lng: props.eventLatLng.lng || -73.5944413
+      lat: props.eventLatLng.get('lat') || 45.5298537,
+      lng: props.eventLatLng.get('lng') || -73.5944413
     };
 
     return (

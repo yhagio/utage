@@ -1,8 +1,8 @@
+import { fromJS } from 'immutable';
 import {
   fetchSingleEvent,
   fetchSingleUser
 } from '../../helpers/firebaseAPI';
-
 import {
   getDistanceFromLatLonInKm
 } from '../../helpers/utils';
@@ -176,7 +176,7 @@ export function calculateDistance (lat1, lon1, lat2, lon2) {
   };
 }
 
-const initialState = {
+const initialState = fromJS({
   event: {},
   eventHost: {},
   eventLatLng: {},
@@ -187,98 +187,86 @@ const initialState = {
   comments: [],
   distanceCalculating: false,
   distance: 0
-};
+});
 
 export default function event (state = initialState, action) {
   switch (action.type) {
 
     case FETCHING_EVENT :
-      return {
-        ...state,
+      return state.merge({
         isFetching: true,
         distanceCalculating: true // UI Hack: Enables calculating distance starts
-      };
+      });
 
     case FETCHING_EVENT_ERROR :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: action.error
-      };
+      });
 
     case FETCHING_EVENT_SUCCESS :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: '',
         event: action.event
-      };
+      });
 
     case FETCHING_HOST :
-      return {
-        ...state,
+      return state.merge({
         isFetching: true
-      };
+      });
 
     case FETCHING_HOST_SUCCESS :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: '',
         eventHost: action.eventHost
-      };
+      });
 
     case FETCHING_HOST_ERROR :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: action.error
-      };
+      });
 
     case CONVERTING_ADDRESS_TO_LATLNG :
-      return {
-        ...state,
+      return state.merge({
         isFetching: true,
         eventLatLng: {}
-      };
+      });
 
     case CONVERTED_ADDRESS_TO_LATLNG :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: '',
         eventLatLng: action.eventLatLng
-      };
+      });
 
     case CONVERTING_ADDRESS_TO_LATLNG_ERROR :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: action.error,
         eventLatLng: {lat: 45.5298537, lng: -73.5944413}
-      };
+      });
 
     case CALCULATING_DISTANCE :
-      return {
-        ...state,
+      return state.merge({
         distanceCalculating: true,
         distance: 0
-      };
+      });
 
     case CALCULATED_DISTANCE :
-      return {
-        ...state,
+      return state.merge({
         distanceCalculating: false,
         distance: action.distance
-      };
+      });
 
     case FAILED_CALCULATE_DISTANCE :
-      return {
-        ...state,
+      return state.merge({
         distanceCalculating: false,
         error: action.error,
         distance: 0
-      };
+      });
 
     default :
       return state;

@@ -39,7 +39,7 @@ npm run start
 ### Tech Stack & Tools
 - Firebase (database, deployment)
 - Facebook login
-- React.js + React-Router (UI)
+- React.js + React-Router + Immutable.js (UI)
 - Redux (state management)
 - SW-Precache + SW-Toolbox (Offline feature)
 - Webpack (Module bundling, development)

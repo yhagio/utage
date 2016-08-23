@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Map, List } from 'immutable';
 import { Link } from 'react-router';
 import { GoogleMap } from 'components';
 import {
@@ -25,14 +26,14 @@ const { string, func, bool, array, object, number } = PropTypes;
 
 EventPage.propTypes = {
   authedUserID: string.isRequired,
-  event: object.isRequired,
-  eventHost: object.isRequired,
-  eventLatLng: object.isRequired,
+  event: PropTypes.instanceOf(Map), //object.isRequired,
+  eventHost: PropTypes.instanceOf(Map), //object.isRequired,
+  eventLatLng: PropTypes.instanceOf(Map), //object.isRequired,
   isFetching: bool.isRequired,
   error: string.isRequired,
   rsvp: bool.isRequired,
   going: bool.isRequired,
-  comments: array.isRequired,
+  comments: PropTypes.instanceOf(List), //array.isRequired,
   attendance: number,
   handleConfirmAttendance: func.isRequired,
   handleCancelAttendance: func.isRequired,
@@ -72,13 +73,13 @@ export default function EventPage (props) {
   return props.isFetching === true
     ? <h2 className={ dotdotdot }>Loading event</h2>
     : <div className={ container } >
-        <h1 className={ title }>{ props.event.title }</h1>
+        <h1 className={ title }>{ props.event.get('title') }</h1>
 
         <div className={ actionArea }>
           { props.authedUserID
             ? <GoingCancelButton
               going={ props.going }
-              eventId={ props.event.eventId }
+              eventId={ props.event.get('eventId') }
               handleConfirmAttendance={ props.handleConfirmAttendance }
               handleCancelAttendance={ props.handleCancelAttendance } />
             : null }
@@ -86,7 +87,7 @@ export default function EventPage (props) {
           { props.authedUserID === props.event.uid
             ? <Link
               className={ editButton }
-              to={ `events/${props.event.eventId}/edit` }
+              to={ `events/${props.event.get('eventId')}/edit` }
               role='button'>
               { 'Edit Event' }
             </Link>
@@ -94,8 +95,8 @@ export default function EventPage (props) {
         </div>
 
         <div className={ details } >
-          <p className={ category }>{ props.event.category }</p>
-          <p>{ props.event.price === 0 ? 'FREE' : '$' + props.event.price }</p>
+          <p className={ category }>{ props.event.get('category') }</p>
+          <p>{ props.event.get('price') === 0 ? 'FREE' : '$' + props.event.get('price') }</p>
           <p>Going: <span>{ props.attendance }</span></p>
         </div>
 
@@ -104,22 +105,22 @@ export default function EventPage (props) {
             <DisplayDistance
               distanceCalculating={ props.distanceCalculating }
               distance={ props.distance } />
-            <p>Start: { formatDateTime(props.event.startDate) }</p>
+            <p>Start: { formatDateTime(props.event.get('startDate')) }</p>
             posted by
             <Link
               className={ authorLink }
-              to={ `events/${props.event.eventId}` }
+              to={ `events/${props.event.get('eventId')}` }
               role='link'>
-              { props.eventHost.name }
+              { props.eventHost.get('name') }
             </Link>
           </div>
           <p className={ description }>
-            { props.event.description }
+            { props.event.get('description') }
           </p>
         </div>
 
         <div className={ mapArea }>
-          <p>{ props.event.address }</p>
+          <p>{ props.event.get('address') }</p>
           <GoogleMap
             eventLatLng={ props.eventLatLng } />
         </div>
