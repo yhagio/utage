@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import {
   fetchUsersAttendance,
   saveToUsersAttendance,
@@ -103,48 +104,41 @@ export function fetchUsersEventAttendance () {
   };
 }
 
-const initialState = {
+
+const initialState = Map({
   isFetching: false,
   error: ''
-};
+});
 
 export default function attendance (state = initialState, action) {
   switch (action.type) {
 
     case FETCHING_ATTENDANCE :
-      return {
-        ...state,
+      return state.merge({
         isFetching: true
-      };
+      });
 
     case FETCHING_ATTENDANCE_SUCCESS :
-      return {
-        ...state,
-        ...action.attendance,
+      return state.merge({
         isFetching: false,
         error: ''
-      };
+      }).merge(action.attendance);
 
     case FETCHING_ATTENDANCE_ERROR :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: action.error
-      };
+      });
 
     case CONFIRM_GOING :
-      return {
-        ...state,
+      return state.merge({
         [action.eventId]: true
-      };
+      });
 
     case IM_NOT_GOING :
-      return Object.keys(state)
-        .filter((eventId) => action.eventId !== eventId)
-        .reduce((prev, current) => {
-          prev[current] = state[current];
-          return prev;
-        }, {});
+      return state.merge({
+        [action.eventId]: false
+      });
 
     default :
       return state;

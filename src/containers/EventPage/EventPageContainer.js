@@ -86,7 +86,7 @@ function mapStateToProps (state, ownProps) {
     distance: state.event.get('distance'),
 
     attendance: state.eventAttendance.get(ownProps.params.id),
-    going: state.usersAttendance[ownProps.params.id] === true
+    going: state.usersAttendance.get(ownProps.params.id) === true
   };
 }
 
