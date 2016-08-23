@@ -20,7 +20,7 @@ const EventContainer = React.createClass({
     eventId: PropTypes.string.isRequired
   },
 
-  render () {
+  render () {    
     if (this.props.event && this.props.event.get('title')) {
       return (
         <Link to={ `events/${this.props.eventId}` } className={ innerBox }>

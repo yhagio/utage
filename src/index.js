@@ -27,7 +27,7 @@ const history = syncHistoryWithStore(hashHistory, store);
 
 // Protecting routes and check if user is authenticated
 function checkAuth (nextState, replace) {
-  if (store.getState().users.isFetching === true) {
+  if (store.getState().users.get('isFetching') === true) {
     return;
   }
 
@@ -43,7 +43,7 @@ function checkAuth (nextState, replace) {
   // if the user is not authenticated or not the event's author,
   // redirects to the event page
   } else if (nextState.location.pathname.startsWith('events/') && nextState.location.pathname.endsWith('/edit')) {
-    if (isAuthed !== true || store.getState().users.authedUser.uid !== store.getState().event.get('event').get('uid')) {
+    if (isAuthed !== true || store.getState().users.get('authedUser').get('uid') !== store.getState().event.get('event').get('uid')) {
       replace(nextState.location.pathname.replace('/edit', ''));
     }
 
@@ -76,7 +76,7 @@ firebase.database().ref('events').limitToLast(1).on('child_added', (snapshot) =>
   if (Notification.permission === 'granted' &&
       count > 0 &&
       latestTitle !== snapshot.val().title &&
-      store.getState().users.uid !== snapshot.val().uid) {
+      store.getState().users.get('uid')' !== snapshot.val().uid) {
     new Notification('Latest event info', {
       body: snapshot.val().title,
       icon: '../images/iconmonstr-info-6-64.png'

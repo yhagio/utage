@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { List } from 'immutable';
+import { List, OrderedMap } from 'immutable';
 import { EventContainer } from 'containers';
 import {
   eventListBox,
@@ -11,11 +11,12 @@ const { bool, func, array } = PropTypes;
 
 Events.propTypes = {
   isFetching: bool.isRequired,
-  filteredEvents: PropTypes.instanceOf(List),
+  // filteredEvents: PropTypes.instanceOf(Map),
   filterEventsByCategory: func.isRequired
 };
 
 export default function Events (props) {
+  // debugger;
   return props.isFetching === true
     ? <h2 className={ dotdotdot }>Loading</h2>
     : <div className={ eventListBox }>
@@ -37,14 +38,15 @@ export default function Events (props) {
 
       </select>
 
-      { props.filteredEvents.length === 0
+      { props.filteredEvents.size === 0
         ? <h2><hr />No event yet</h2>
         : null }
-
-      { props.filteredEvents.map((id) => (
+      
+      { props.filteredEvents.valueSeq().map((id) => (
         <EventContainer
-          eventId={ id }
-          key= { id } />
+          eventId={ id.get('eventId') }
+          key= { id.get('eventId') } />
       )) }
+
     </div>;
 }

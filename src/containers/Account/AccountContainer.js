@@ -24,9 +24,9 @@ const AccountContainer = React.createClass({
   }
 });
 
-function mapStateToProps (state) {
+function mapStateToProps ({ account }) {
   return {
-    status: state.account.status
+    status: account.status
   };
 }
 

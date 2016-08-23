@@ -14,7 +14,7 @@ const { object, bool, string, func, array } = PropTypes;
 
 const EventsContainer = React.createClass({
   propTypes: {
-    filteredEvents: PropTypes.instanceOf(List),
+    // filteredEvents: PropTypes.instanceOf(Map),
     isFetching: bool.isRequired,
     filterEventsByCategory: func.isRequired,
     fetchAndHandleEvents: func.isRequired,

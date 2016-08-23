@@ -55,7 +55,7 @@ export function handleConfirmAttendance (eventId, e) {
   e.stopPropagation();
   return function (dispatch, getState) {
     dispatch(confirmGoing(eventId));
-    const uid = getState().users.authedUser.uid;
+    const uid = getState().users.get('authedUser').get('uid');
 
     Promise.all([
       saveToUsersAttendance(uid, eventId),
@@ -74,7 +74,7 @@ export function handleCancelAttendance (eventId, e) {
   e.stopPropagation();
   return function (dispatch, getState) {
     dispatch(imNotGoing(eventId));
-    const uid = getState().users.authedUser.uid;
+    const uid = getState().users.get('authedUser').get('uid')
 
     Promise.all([
       deleteFromUsersAttendance(uid, eventId),
@@ -91,7 +91,7 @@ export function handleCancelAttendance (eventId, e) {
 // Get user's attendance of all events
 export function fetchUsersEventAttendance () {
   return function (dispatch, getState) {
-    const uid = getState().users.authedUser.uid;
+    const uid = getState().users.get('authedUser').get('uid')
 
     dispatch(fetchingAttendance());
     fetchUsersAttendance(uid)

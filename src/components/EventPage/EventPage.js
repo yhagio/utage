@@ -76,7 +76,7 @@ export default function EventPage (props) {
         <h1 className={ title }>{ props.event.get('title') }</h1>
 
         <div className={ actionArea }>
-          { props.authedUserID
+          { props.authedUserID && props.event.get('eventId')
             ? <GoingCancelButton
               going={ props.going }
               eventId={ props.event.get('eventId') }

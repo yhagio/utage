@@ -49,23 +49,41 @@ export function fetchAndHandleEvents () {
 }
 
 function getFilteredEventIDs (baseEvents, category) {
+  
   if (category !== '') {
-    return Object.keys(baseEvents)
+    return baseEvents
       .sort((a, b) => {
         // DESC order by timestamp
-        return baseEvents[b].timestamp - baseEvents[a].timestamp;
+        return b.get('timestamp') - a.get('timestamp');
       })
       .filter((event) => {
         // See if event's category matches with selected category to filter
-        return (baseEvents[event].category.toLowerCase().indexOf(category.toLowerCase()) >= 0);
+        return event.get('category') === category;
       });
   } else {
     // Just return timely ordered IDs
-    return Object.keys(baseEvents).sort((a, b) => {
+    return baseEvents.sort((a, b) => {
       // DESC order by timestamp
-      return baseEvents[b].timestamp - baseEvents[a].timestamp;
+      return b.get('timestamp') - a.get('timestamp');
     });
   }
+  // if (category !== '') {
+  //   return Object.keys(baseEvents)
+  //     .sort((a, b) => {
+  //       // DESC order by timestamp
+  //       return baseEvents[b].timestamp - baseEvents[a].timestamp;
+  //     })
+  //     .filter((event) => {
+  //       // See if event's category matches with selected category to filter
+  //       return (baseEvents[event].category.toLowerCase().indexOf(category.toLowerCase()) >= 0);
+  //     });
+  // } else {
+  //   // Just return timely ordered IDs
+  //   return Object.keys(baseEvents).sort((a, b) => {
+  //     // DESC order by timestamp
+  //     return baseEvents[b].timestamp - baseEvents[a].timestamp;
+  //   });
+  // }
 }
 
 const initialState = fromJS({
@@ -73,7 +91,7 @@ const initialState = fromJS({
   error: '',
   isFetching: false,
   category: '',
-  filteredEvents: []
+  filteredEvents: {}
 });
 
 export default function events (state = initialState, action) {
@@ -95,7 +113,7 @@ export default function events (state = initialState, action) {
         isFetching: false,
         error: '',
         events: action.events,
-        filteredEvents: action.filteredEvents
+        filteredEvents: action.events
       });
 
     case FILTER_EVENTS_CATEGORY :

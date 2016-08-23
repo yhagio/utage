@@ -39,7 +39,6 @@ const EventPageContainer = React.createClass({
           position.coords.longitude &&
           self.props.eventLatLng.get('lat') &&
           self.props.eventLatLng.get('lng')) {
-
         self.props.calculateDistance(
             position.coords.latitude,
             position.coords.longitude,
@@ -74,7 +73,7 @@ const EventPageContainer = React.createClass({
 
 function mapStateToProps (state, ownProps) {
   return {
-    authedUserID: state.users.authedUser.uid || '',
+    authedUserID: state.users.get('authedUser').size ? state.users.get('authedUser').get('uid') : '',
     event: state.event.get('event'),
     eventHost: state.event.get('eventHost'),
     eventLatLng: state.event.get('eventLatLng'),

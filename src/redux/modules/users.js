@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import auth, { saveUser, signout } from '../../helpers/authentication';
 
 // Constants
@@ -79,62 +80,55 @@ export function signoutAndUnauth () {
 }
 
 // Users Reducers
-const initialState = {
+const initialState = Map({
   isFetching: false,
   error: '',
   isAuthenticated: false,
   authedUser: {}
-};
+});
 
 export default function usersReducer (state = initialState, action) {
   switch (action.type) {
 
     case AUTH_USER :
-      return {
-        ...state,
+      return state.merge({
         isAuthenticated: true,
         authedUser: action.user
-      };
+      });
 
     case UNAUTH_USER :
-      return {
-        ...state,
+      return state.merge({
         isAuthenticated: false,
         authedUser: {}
-      };
+      });
 
     case FETCHING_USER:
-      return {
-        ...state,
+      return state.merge({
         isFetching: true
-      };
+      });
 
     case FETCHING_USER_FAILURE:
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: action.error
-      };
+      });
 
     case FETCHING_USER_SUCCESS:
       return action.user === null
-        ? {
-          ...state,
+        ? state.merge({
           isFetching: false,
           error: ''
-        }
-        : {
-          ...state,
+        })
+        : state.merge({
           isFetching: false,
           error: '',
           authedUser: action.user
-        };
+        });
 
     case STOP_FETCHING_USER:
-      return {
-        ...state,
+      return state.merge({
         isFetching: false
-      };
+      });
 
     default:
       return state;
