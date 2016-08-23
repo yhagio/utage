@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import { fetchAttendance } from '../../helpers/firebaseAPI';
 import {
   CONFIRM_GOING,
@@ -44,49 +45,45 @@ export function fetchEventAttendance (eventId) {
   };
 }
 
-const initialState = {
+const initialState = Map({
   isFetching: false,
   error: ''
-};
+});
 
 export default function eventAttendance (state = initialState, action) {
   switch (action.type) {
 
     case FETCHING_ATTENDANCE :
-      return {
-        ...state,
+      return state.merge({ 
         isFetching: true
-      };
+      });
 
     case FETCHING_ATTENDANCE_SUCCESS :
-      return {
-        ...state,
-        ...initialState,
+      return state.merge({ 
+        isFetching: false,
+        error: '',
         [action.eventId]: action.count
-      };
+      });
 
     case FETCHING_ATTENDANCE_ERROR :
-      return {
-        ...state,
+      return state.merge({ 
         isFetching: false,
         error: action.error
-      };
+      });
 
     case CONFIRM_GOING :
-      return typeof state[action.eventId] === 'undefined'
+      return typeof state.get(action.eventId) === 'undefined'
         ? state
-        : {
-          ...state,
-          [action.eventId]: state[action.eventId] + 1
-        };
+        : state.merge({
+          [action.eventId]: state.get(action.eventId) + 1
+        });
 
     case IM_NOT_GOING :
-      return typeof state[action.eventId] === 'undefined'
+      return typeof state.get(action.eventId) === 'undefined'
         ? state
-        : {
-          ...state,
-          [action.eventId]: state[action.eventId] - 1
-        };
+        : state.merge({
+          [action.eventId]: state.get(action.eventId) - 1
+        });
 
     default :
       return state;
