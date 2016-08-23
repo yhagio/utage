@@ -1,6 +1,12 @@
+import { Map } from 'immutable';
+// import { fetchSingleUser } from '../../helpers/firebaseAPI';
+// import { firebaseAuth } from '../../config/constants';
 
 const UPDATE_NOTIFICATION = 'UPDATE_NOTIFICATION';
 const CHECKED_NOTIFICATION = 'CHECKED_NOTIFICATION';
+// const FETCHING_USER_INFO = 'FETCHING_USER_INFO';
+// const FETCHING_USER_INFO_SUCCESS = 'FETCHING_USER_INFO_SUCCESS';
+// const FETCHING_USER_INFO_ERROR = 'FETCHING_USER_INFO_ERROR';
 
 function checkedNotification (bool, status) {
   return {
@@ -17,6 +23,26 @@ function updateNotification (bool, status) {
     status
   };
 }
+
+// function fetchingUserInfo () {
+//   return {
+//     type: FETCHING_USER_INFO
+//   };
+// }
+
+// function fetchingUserInfoSuccess (user) {
+//   return {
+//     type: FETCHING_USER_INFO_SUCCESS,
+//     user
+//   };
+// }
+
+// function fetchingUserInfoError (error) {
+//   return {
+//     type: FETCHING_USER_INFO_ERROR,
+//     error: 'Could not fetch user info'
+//   };
+// }
 
 export function checkNotificationEnabled () {
   return function (dispatch) {
@@ -46,27 +72,59 @@ export function handleUpdateNotification (status) {
   };
 }
 
-const initialState = {
+// export function fetchAndHandleUser () {
+//   return function(dispatch, getState) {
+//     console.log('account', getState()); debugger;
+//     const uid = getState().users.get('authedUser').get('uid');
+
+//     dispatch(fetchingUserInfo());
+//     fetchSingleUser(uid)
+//       .then((user) => dispatch(fetchingUserInfoSuccess(user)))
+//       .catch((err) => dispatch(fetchingUserInfoError(err)));
+//   };
+// }
+
+const initialState = Map({
+  // user: {},
+  // isFetching: false,
+  // error: '',
   notificationEnabled: false,
   status: 'default'
-};
+});
 
 export default function account (state = initialState, action) {
   switch (action.type) {
 
     case CHECKED_NOTIFICATION :
-      return {
-        ...state,
+      return state.merge({
         notificationEnabled: action.bool,
         status: action.status
-      };
+      });
 
     case UPDATE_NOTIFICATION :
-      return {
-        ...state,
+      return state.merge({
         notificationEnabled: action.bool,
         status: action.status
-      };
+      });
+    
+    // case FETCHING_USER_INFO :
+    //   return state.merge({
+    //     isFetching: true,
+    //     error: ''
+    //   });
+    
+    // case FETCHING_USER_INFO_SUCCESS :
+    //   return state.merge({
+    //     isFetching: false,
+    //     error: '',
+    //     user: action.user
+    //   });
+
+    // case FETCHING_USER_INFO_ERROR :
+    //   return state.merge({
+    //     isFetching: false,
+    //     error: action.error
+    //   });
 
     default :
       return state;

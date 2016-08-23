@@ -36,6 +36,7 @@ Account.propTypes = {
 };
 
 export default function Account (props) {
+  // debugger;
   function requestPermission () {
     // Request Notification
     if ('Notification' in window) {
@@ -52,8 +53,14 @@ export default function Account (props) {
     }
   }
 
-  return (
+  return props.isFetching === true || props.user.size === undefined
+  ? <h2>Fetching</h2>
+  : (
     <div className={ container }>
+      <div>
+        <p>{ props.user.get('name')}</p>
+        <img src={ props.user.get('photoURL')} />
+      </div>
       <ToggleButton requestPermission={ requestPermission }/>
     </div>
   );

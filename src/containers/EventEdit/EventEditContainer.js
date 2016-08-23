@@ -3,12 +3,16 @@ import { Map } from 'immutable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { EventEdit } from 'components';
+import * as eventActions from 'redux/modules/event';
 import * as eventEditActions from 'redux/modules/eventEdit';
 
 const { object, bool, string, func, number } = PropTypes;
 
 const EventEditContainer = React.createClass({
   propTypes: {
+    params: object.isRequired,
+    fetchAndHandleEvent: func.isRequired,
+    
     event: PropTypes.instanceOf(Map),
     eventHost: PropTypes.instanceOf(Map),
     isFetching: bool.isRequired,
@@ -40,6 +44,12 @@ const EventEditContainer = React.createClass({
     warnStartDateError: func.isRequired,
     endDateError: string.isRequired,
     warnEndDateError: func.isRequired
+  },
+
+  componentDidMount () {
+    if (this.props.event.size === 0) {
+      this.props.fetchAndHandleEvent(this.props.params.id);
+    }
   },
 
   render () {
@@ -100,7 +110,10 @@ function mapStateToProps ({ event, eventEdit }) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(eventEditActions, dispatch);
+  return bindActionCreators({
+    ...eventActions,
+    ...eventEditActions
+  }, dispatch);
 }
 
 export default connect(

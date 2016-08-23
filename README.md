@@ -55,6 +55,7 @@ npm run start
 - [X] Optimize images (Minimize, Resize, Compress, Responsieve)
 - [X] Production ready
 - [X] Deployment on Firebase
+- [X] Use Immutable.js for states
 
 ## Resources
 

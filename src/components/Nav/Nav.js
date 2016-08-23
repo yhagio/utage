@@ -27,7 +27,10 @@ function Links ({ isAuthenticated }) {
           className={ menuItem }
           role='button'
           to='signout'>Sign out</Link>
-        { }
+        <Link
+          className={ menuItem }
+          role='button'
+          to='account'>Account</Link>
       </ul>
     : <ul
         id='navigation'

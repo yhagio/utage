@@ -11,7 +11,7 @@ import {
   noSubmit
 } from './styles.css';
 
-const { string, func, number, bool } = PropTypes;
+const { string, func, number, bool, object } = PropTypes;
 
 NewEventForm.propTypes = {
   updateTitle: func.isRequired,
@@ -22,7 +22,7 @@ NewEventForm.propTypes = {
   updateStartDate: func.isRequired,
   updateEndDate: func.isRequired,
   updateCategory: func.isRequired,
-  uid: string.isRequired,
+  authedUser: object.isRequired,
   title: string.isRequired,
   description: string.isRequired,
   address: string.isRequired,
@@ -74,7 +74,7 @@ export default function NewEventForm (props) {
   function handleFormSubmit (e) {
     e.preventDefault();
     return props.createEvent({
-      uid: props.uid,
+      uid: props.authedUser.get('uid'),
       title: props.title,
       description: props.description,
       address: props.address,
@@ -86,7 +86,9 @@ export default function NewEventForm (props) {
     });
   }
 
-  return (
+  return props.authedUser.size === 0
+  ? <h2>Loading</h2>
+  :(
     <form onSubmit={ handleFormSubmit } className={ container }>
       <h2>{ 'New Event' }</h2>
       <hr />

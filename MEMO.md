@@ -3,6 +3,5 @@
 # Todo
 - Profile Pic
 - Testing Components & Redux
-- Immutable
 - Account (User info)
 - Conversations (Users can comment on an event)

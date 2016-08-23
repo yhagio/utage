@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { NewEvent } from 'components';
 import * as actions from 'redux/modules/eventForm';
 
-const { number, string, func, bool } = PropTypes;
+const { number, string, func, bool, object } = PropTypes;
 
 const NewEventContainer = React.createClass({
   propTypes: {
-    uid: string.isRequired,
+    authedUser: object.isRequired,
     updateTitle: func.isRequired,
     updateDescription: func.isRequired,
     updateAddress: func.isRequired,
@@ -43,7 +43,7 @@ const NewEventContainer = React.createClass({
   render () {
     return (
       <NewEvent
-        uid={ this.props.uid }
+        authedUser={ this.props.authedUser }
         updateTitle={ this.props.updateTitle }
         updateDescription={ this.props.updateDescription }
         updateAddress={ this.props.updateAddress }
@@ -79,7 +79,7 @@ const NewEventContainer = React.createClass({
 
 function mapStateToProps ({ eventForm, users }) {
   return {
-    uid: users.get('authedUser').get('uid') ? users.get('authedUser').get('uid') : '',
+    authedUser: users.get('authedUser'),
     error: eventForm.get('error'),
     title: eventForm.get('title'),
     description: eventForm.get('description'),

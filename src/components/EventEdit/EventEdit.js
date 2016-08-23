@@ -97,7 +97,7 @@ export default function EventEdit (props) {
   }
 
   return props.isFetching === true
-    ? <h3>Loading event data ...</h3>
+    ? <h2>Loading event data</h2>
     : <form onSubmit={ handleFormSubmit } className={ container }>
         <h2>{ 'Edit Event' }</h2>
         <hr />
