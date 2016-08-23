@@ -26,14 +26,14 @@ const { string, func, bool, array, object, number } = PropTypes;
 
 EventPage.propTypes = {
   authedUserID: string.isRequired,
-  event: PropTypes.instanceOf(Map), //object.isRequired,
-  eventHost: PropTypes.instanceOf(Map), //object.isRequired,
-  eventLatLng: PropTypes.instanceOf(Map), //object.isRequired,
+  event: PropTypes.instanceOf(Map),
+  eventHost: PropTypes.instanceOf(Map),
+  eventLatLng: PropTypes.instanceOf(Map),
   isFetching: bool.isRequired,
   error: string.isRequired,
   rsvp: bool.isRequired,
   going: bool.isRequired,
-  comments: PropTypes.instanceOf(List), //array.isRequired,
+  comments: PropTypes.instanceOf(List),
   attendance: number,
   handleConfirmAttendance: func.isRequired,
   handleCancelAttendance: func.isRequired,
@@ -42,7 +42,8 @@ EventPage.propTypes = {
 };
 
 GoingCancelButton.propTypes = {
-  eventId: string.isRequired
+  eventId: string.isRequired,
+  going: bool.isRequired
 };
 
 DisplayDistance.propTypes = {
@@ -63,7 +64,6 @@ function GoingCancelButton (props) {
 }
 
 function DisplayDistance (props) {
-  // console.log(props.distance);
   return props.distanceCalculating === true
     ? <p className={ dotdotdot }>Distance: Let me check</p>
     : <p>Distance: { props.distance !== 0 ? `${props.distance} km` : 'N/A' }</p>;
@@ -84,7 +84,7 @@ export default function EventPage (props) {
               handleCancelAttendance={ props.handleCancelAttendance } />
             : null }
 
-          { props.authedUserID === props.event.uid
+          { props.authedUserID === props.event.get('uid')
             ? <Link
               className={ editButton }
               to={ `events/${props.event.get('eventId')}/edit` }

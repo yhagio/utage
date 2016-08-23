@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import {
   updateEvent,
   deleteEvent
@@ -161,7 +162,7 @@ export function handleDeleteEvent (eventId, event) {
   };
 }
 
-const initialState = {
+const initialState = Map({
   title: '',
   description: '',
   address: '',
@@ -171,100 +172,85 @@ const initialState = {
   endDate: '',
   category: 'Social',
   error: '',
-
   titleError: '',
   descriptionError: '',
   addressError: '',
   startDateError: '',
   endDateError: ''
-};
+});
 
 // reducer
 export default function eventEditReducer (state = initialState, action) {
   switch (action.type) {
 
     case EDIT_TITLE:
-      return {
-        ...state,
+      return state.merge({
         title: action.title
-      };
+      });
 
     case EDIT_DESCRIPTION:
-      return {
-        ...state,
+      return state.merge({
         description: action.description
-      };
+      });
 
     case EDIT_ADDRESS:
-      return {
-        ...state,
+      return state.merge({
         address: action.address
-      };
+      });
 
     case EDIT_PRICE:
-      return {
-        ...state,
+      return state.merge({
         price: action.price
-      };
+      });
 
     case EDIT_LIMIT:
-      return {
-        ...state,
+      return state.merge({
         limit: action.limit
-      };
+      });
 
     case EDIT_START_DATE:
-      return {
-        ...state,
+      return state.merge({
         startDate: action.startDate
-      };
+      });
 
     case EDIT_END_DATE:
-      return {
-        ...state,
+      return state.merge({
         endDate: action.endDate
-      };
+      });
 
     case EDIT_CATEGORY:
-      return {
-        ...state,
+      return state.merge({
         category: action.category
-      };
+      });
 
     // Form Errors
     case TITLE_UPDATE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         titleError: action.titleError,
-      };
+      });
 
     case DESCRIPTION_UPDATE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         descriptionError: action.descriptionError,
-      };
+      });
 
     case ADDRESS_UPDATE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         addressError: action.addressError,
-      };
+      });
 
     case START_DATE_UPDATE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         startDateError: action.startDateError,
-      };
+      });
 
     case END_DATE_UPDATE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         endDateError: action.endDateError,
-      };
+      });
 
     case UPDATED_SUCCESSFULLY:
-      return {
-        ...state,
+      return state.merge({
         title: '',
         description: '',
         address: '',
@@ -273,13 +259,12 @@ export default function eventEditReducer (state = initialState, action) {
         endDate: '',
         category: '',
         error: ''
-      };
+      });
 
     case UPDATE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         error: action.error
-      };
+      });
 
     default:
       return state;

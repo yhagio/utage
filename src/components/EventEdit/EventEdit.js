@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Map } from 'immutable';
 import {
   container,
   labeled,
@@ -14,8 +15,8 @@ import {
 const { string, func, bool, object, number } = PropTypes;
 
 EventEdit.propTypes = {
-  event: object.isRequired,
-  eventHost: object.isRequired,
+  event: PropTypes.instanceOf(Map),
+  eventHost: PropTypes.instanceOf(Map),
   isFetching: bool.isRequired,
   error: string.isRequired,
   title: string.isRequired,
@@ -75,24 +76,24 @@ function SubmitButton (props) {
 export default function EventEdit (props) {
   function handleFormSubmit (e) {
     e.preventDefault();
-    return props.handleUpdateEvent(props.event.eventId, {
-      uid: props.event.uid,
-      eventId: props.event.eventId,
-      title: props.title || props.event.title,
-      description: props.description || props.event.description,
-      address: props.address || props.event.address,
+    return props.handleUpdateEvent(props.event.get('eventId'), {
+      uid: props.event.get('uid'),
+      eventId: props.event.get('eventId'),
+      title: props.title || props.event.get('title'),
+      description: props.description || props.event.get('description'),
+      address: props.address || props.event.get('address'),
       limit: 100,
       price: props.price || 0,
-      startDate: props.startDate || props.event.startDate,
-      endDate: props.endDate || props.event.endDate,
-      category: props.category || props.event.category,
+      startDate: props.startDate || props.event.get('startDate'),
+      endDate: props.endDate || props.event.get('endDate'),
+      category: props.category || props.event.get('category'),
       timestamp: Date.now()
     });
   }
 
   function handleRemoval (e) {
     e.preventDefault();
-    return props.handleDeleteEvent(props.event.eventId, props.event);
+    return props.handleDeleteEvent(props.event.get('eventId'), props.event);
   }
 
   return props.isFetching === true
@@ -105,7 +106,7 @@ export default function EventEdit (props) {
             id='title'
             name='title'
             placeholder='Event Title'
-            value={ props.title || props.event.title }
+            value={ props.title || props.event.get('title') }
             onChange={ (e) => props.updateTitle(e.target.value) }
             onBlur={ (e) => e.target.value.length === 0 ? props.warnTitleError(e.target.value): null }
             className={ inputField }
@@ -121,7 +122,7 @@ export default function EventEdit (props) {
             id='description'
             name='description'
             placeholder='Description within 600 characters'
-            value={ props.description || props.event.description }
+            value={ props.description || props.event.get('description') }
             onChange={ (e) => props.updateDescription(e.target.value) }
             onBlur={ (e) => e.target.value.length === 0 ? props.warnDescriptionError(e.target.value): null }
             className={ textareaField }
@@ -137,7 +138,7 @@ export default function EventEdit (props) {
             id='address'
             name='address'
             placeholder='Address'
-            value={ props.address || props.event.address }
+            value={ props.address || props.event.get('address') }
             onChange={ (e) => props.updateAddress(e.target.value) }
             onBlur={ (e) => e.target.value.length === 0 ? props.warnAddressError(e.target.value): null }
             className={ inputField }
@@ -164,7 +165,7 @@ export default function EventEdit (props) {
           <input
             id='startDate'
             name='startDate'
-            value={ props.startDate || props.event.startDate }
+            value={ props.startDate || props.event.get('startDate') }
             onChange={ (e) => props.updateStartDate(e.target.value) }
             onBlur={ (e) => e.target.value.length === 0 ? props.warnStartDateError(e.target.value): null }
             className={ inputField }
@@ -177,7 +178,7 @@ export default function EventEdit (props) {
           <input
             id='endDate'
             name='endDate'
-            value={ props.endDate || props.event.endDate }
+            value={ props.endDate || props.event.get('endDate') }
             onChange={ (e) => props.updateEndDate(e.target.value) }
             onBlur={ (e) => e.target.value.length === 0 ? props.warnEndDateError(e.target.value): null }
             className={ inputField }
@@ -190,7 +191,7 @@ export default function EventEdit (props) {
         <select
           id='category'
           name='category'
-          value={ props.category || props.event.category }
+          value={ props.category || props.event.get('category') }
           className={ selectOption }
           onChange={ (e) => props.updateCategory(e.target.value) } >
 

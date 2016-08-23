@@ -24,7 +24,7 @@ const EventContainer = React.createClass({
     if (this.props.event && this.props.event.get('title')) {
       return (
         <Link to={ `events/${this.props.eventId}` } className={ innerBox }>
-          <h2 className={ title }>{ this.props.event.title }</h2>
+          <h2 className={ title }>{ this.props.event.get('title') }</h2>
           <p>{ limitText(this.props.event.get('description'), 160) }</p>
           <div className={ detail }>
             <p>

@@ -80,19 +80,19 @@ const NewEventContainer = React.createClass({
 function mapStateToProps ({ eventForm, users }) {
   return {
     uid: users.authedUser.uid ? users.authedUser.uid : '',
-    error: eventForm.error,
-    title: eventForm.title,
-    description: eventForm.description,
-    address: eventForm.address,
-    price: eventForm.price,
-    startDate: eventForm.startDate,
-    endDate: eventForm.endDate,
-    category: eventForm.category,
-    titleError: eventForm.titleError,
-    descriptionError: eventForm.descriptionError,
-    addressError: eventForm.addressError,
-    startDateError: eventForm.startDateError,
-    endDateError: eventForm.endDateError
+    error: eventForm.get('error'),
+    title: eventForm.get('title'),
+    description: eventForm.get('description'),
+    address: eventForm.get('address'),
+    price: eventForm.get('price'),
+    startDate: eventForm.get('startDate'),
+    endDate: eventForm.get('endDate'),
+    category: eventForm.get('category'),
+    titleError: eventForm.get('titleError'),
+    descriptionError: eventForm.get('descriptionError'),
+    addressError: eventForm.get('addressError'),
+    startDateError: eventForm.get('startDateError'),
+    endDateError: eventForm.get('endDateError')
   };
 }
 

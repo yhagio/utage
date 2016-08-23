@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Map } from 'immutable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { EventEdit } from 'components';
@@ -8,8 +9,8 @@ const { object, bool, string, func, number } = PropTypes;
 
 const EventEditContainer = React.createClass({
   propTypes: {
-    event: object.isRequired,
-    eventHost: object.isRequired,
+    event: PropTypes.instanceOf(Map),
+    eventHost: PropTypes.instanceOf(Map),
     isFetching: bool.isRequired,
     error: string.isRequired,
     updateTitle: func.isRequired,
@@ -79,22 +80,22 @@ const EventEditContainer = React.createClass({
 
 function mapStateToProps ({ event, eventEdit }) {
   return {
-    event: event.event,
-    eventHost: event.eventHost,
-    isFetching: event.isFetching,
-    error: event.error,
-    title: eventEdit.title,
-    description: eventEdit.description,
-    address: eventEdit.address,
-    price: eventEdit.price,
-    startDate: eventEdit.startDate,
-    endDate: eventEdit.endDate,
-    category: eventEdit.category,
-    titleError: eventEdit.titleError,
-    descriptionError: eventEdit.descriptionError,
-    addressError: eventEdit.addressError,
-    startDateError: eventEdit.startDateError,
-    endDateError: eventEdit.endDateError
+    event: event.get('event'),
+    eventHost: event.get('eventHost'),
+    isFetching: event.get('isFetching'),
+    error: event.get('error'),
+    title: eventEdit.get('title'),
+    description: eventEdit.get('description'),
+    address: eventEdit.get('address'),
+    price: eventEdit.get('price'),
+    startDate: eventEdit.get('startDate'),
+    endDate: eventEdit.get('endDate'),
+    category: eventEdit.get('category'),
+    titleError: eventEdit.get('titleError'),
+    descriptionError: eventEdit.get('descriptionError'),
+    addressError: eventEdit.get('addressError'),
+    startDateError: eventEdit.get('startDateError'),
+    endDateError: eventEdit.get('endDateError')
   };
 }
 

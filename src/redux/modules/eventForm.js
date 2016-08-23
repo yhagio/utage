@@ -1,3 +1,5 @@
+
+import { Map } from 'immutable';
 import { saveEvent } from '../../helpers/firebaseAPI';
 import { hashHistory } from 'react-router';
 
@@ -150,7 +152,7 @@ export function createEvent (event) {
   };
 }
 
-const initialState = {
+const initialState = Map({
   title: '',
   description: '',
   address: '',
@@ -159,100 +161,86 @@ const initialState = {
   endDate: '',
   category: 'Social',
   error: '',
-
   titleError: '',
   descriptionError: '',
   addressError: '',
   startDateError: '',
   endDateError: ''
-};
+});
 
 // reducer
 export default function eventFormReducer (state = initialState, action) {
   switch (action.type) {
 
     case UPDATE_TITLE:
-      return {
-        ...state,
+      return state.merge({
         title: action.title,
         titleError: ''
-      };
+      });
 
     case UPDATE_DESCRIPTION:
-      return {
-        ...state,
+      return state.merge({
         description: action.description,
         descriptionError: ''
-      };
+      });
 
     case UPDATE_ADDRESS:
-      return {
-        ...state,
+      return state.merge({
         address: action.address,
         addressError: ''
-      };
+      });
 
     case UPDATE_PRICE:
-      return {
-        ...state,
+      return state.merge({
         price: action.price
-      };
+      });
 
     case UPDATE_START_DATE:
-      return {
-        ...state,
+      return state.merge({
         startDate: action.startDate,
         startDateError: ''
-      };
+      });
 
     case UPDATE_END_DATE:
-      return {
-        ...state,
+      return state.merge({
         endDate: action.endDate,
         endDateError: ''
-      };
+      });
 
     case UPDATE_CATEGORY:
-      return {
-        ...state,
+      return state.merge({
         category: action.category
-      };
+      });
 
     // Form Errors
     case TITLE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         titleError: action.titleError,
-      };
+      });
 
     case DESCRIPTION_ERROR:
-      return {
-        ...state,
+      return state.merge({
         descriptionError: action.descriptionError,
-      };
+      });
 
     case ADDRESS_ERROR:
-      return {
-        ...state,
+      return state.merge({
         addressError: action.addressError,
-      };
+      });
 
     case START_DATE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         startDateError: action.startDateError,
-      };
+      });
 
     case END_DATE_ERROR:
-      return {
-        ...state,
+      return state.merge({
         endDateError: action.endDateError,
-      };
+      });
     
     // Successfully Submitted
     case SUBMITTED_SUCCESSFULLY:
-      return {
-        ...state,
+      return state.merge({
         title: '',
         description: '',
         address: '',
@@ -262,13 +250,12 @@ export default function eventFormReducer (state = initialState, action) {
         category: '',
         error: '',
         titleError: ''
-      };
+      });
 
     case SUBMISSION_ERROR:
-      return {
-        ...state,
+      return state.merge({
         error: action.error
-      };
+      });
 
     default:
       return state;

@@ -43,7 +43,7 @@ function checkAuth (nextState, replace) {
   // if the user is not authenticated or not the event's author,
   // redirects to the event page
   } else if (nextState.location.pathname.startsWith('events/') && nextState.location.pathname.endsWith('/edit')) {
-    if (isAuthed !== true || store.getState().users.authedUser.uid !== store.getState().event.event.uid) {
+    if (isAuthed !== true || store.getState().users.authedUser.uid !== store.getState().event.get('event').get('uid')) {
       replace(nextState.location.pathname.replace('/edit', ''));
     }
 
