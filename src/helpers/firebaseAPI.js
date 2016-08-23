@@ -40,14 +40,19 @@ export function fetchEvents (callback, errorCallback) {
   ref.child('events').on('value', (snapshot) => {
     // Events objects
     const events = snapshot.val() || {};
-
-    // DESC order of events by timestamp
-    const sorted = Object.keys(events).sort((a, b) => {
+    
+    // DESC order of event ids by timestamp
+    const sortedIds = Object.keys(events).sort((a, b) => {
       return events[b].timestamp - events[a].timestamp;
     });
 
+    // DESC order of events by timestamp
+    let sortedEvents = {};
+    for(let i = 0; i < sortedIds.length; i++) {
+      sortedEvents[sortedIds[i]] = events[sortedIds[i]];
+    }
     // Callback all events objects & array of DESC ordered IDs
-    callback({events, sorted});
+    callback({sortedEvents, sortedIds});
   }, errorCallback);
 }
 

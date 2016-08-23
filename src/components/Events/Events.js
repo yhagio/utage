@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { List, OrderedMap } from 'immutable';
+import { Map } from 'immutable';
 import { EventContainer } from 'containers';
 import {
   eventListBox,
@@ -11,12 +11,11 @@ const { bool, func, array } = PropTypes;
 
 Events.propTypes = {
   isFetching: bool.isRequired,
-  // filteredEvents: PropTypes.instanceOf(Map),
+  filteredEvents: PropTypes.instanceOf(Map),
   filterEventsByCategory: func.isRequired
 };
 
 export default function Events (props) {
-  // debugger;
   return props.isFetching === true
     ? <h2 className={ dotdotdot }>Loading</h2>
     : <div className={ eventListBox }>

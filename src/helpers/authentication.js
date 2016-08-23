@@ -5,7 +5,7 @@ export default function auth () {
 }
 
 export function checkIfAuthed (store) {
-  return store.getState().users.isAuthenticated === true;
+  return store.getState().users.get('isAuthenticated') === true;
 }
 
 export function signout () {

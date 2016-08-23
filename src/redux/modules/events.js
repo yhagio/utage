@@ -38,9 +38,8 @@ export function filterEventsByCategory (category) {
 export function fetchAndHandleEvents () {
   return function (dispatch) {
     dispatch(fetchingEvents());
-    fetchEvents(({ events, sorted }) => {
-      // console.log('sorted', sorted);
-      return dispatch(fetchingEventsSuccess(events, sorted));
+    fetchEvents(({ sortedEvents, sortedIds }) => {
+      return dispatch(fetchingEventsSuccess(sortedEvents, sortedIds));
     }, (error) => {
       // console.log('error', error);
       return dispatch(fetchingEventsError(error));
@@ -67,23 +66,6 @@ function getFilteredEventIDs (baseEvents, category) {
       return b.get('timestamp') - a.get('timestamp');
     });
   }
-  // if (category !== '') {
-  //   return Object.keys(baseEvents)
-  //     .sort((a, b) => {
-  //       // DESC order by timestamp
-  //       return baseEvents[b].timestamp - baseEvents[a].timestamp;
-  //     })
-  //     .filter((event) => {
-  //       // See if event's category matches with selected category to filter
-  //       return (baseEvents[event].category.toLowerCase().indexOf(category.toLowerCase()) >= 0);
-  //     });
-  // } else {
-  //   // Just return timely ordered IDs
-  //   return Object.keys(baseEvents).sort((a, b) => {
-  //     // DESC order by timestamp
-  //     return baseEvents[b].timestamp - baseEvents[a].timestamp;
-  //   });
-  // }
 }
 
 const initialState = fromJS({

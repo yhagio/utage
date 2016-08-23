@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { List, Map } from 'immutable';
+import { Map } from 'immutable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -14,7 +14,7 @@ const { object, bool, string, func, array } = PropTypes;
 
 const EventsContainer = React.createClass({
   propTypes: {
-    // filteredEvents: PropTypes.instanceOf(Map),
+    filteredEvents: PropTypes.instanceOf(Map),
     isFetching: bool.isRequired,
     filterEventsByCategory: func.isRequired,
     fetchAndHandleEvents: func.isRequired,
