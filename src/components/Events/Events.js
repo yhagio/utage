@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { List } from 'immutable';
 import { EventContainer } from 'containers';
 import {
   eventListBox,
@@ -10,7 +11,7 @@ const { bool, func, array } = PropTypes;
 
 Events.propTypes = {
   isFetching: bool.isRequired,
-  filteredEvents: array.isRequired,
+  filteredEvents: PropTypes.instanceOf(List),
   filterEventsByCategory: func.isRequired
 };
 

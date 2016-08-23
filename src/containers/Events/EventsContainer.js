@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { List, Map } from 'immutable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -13,13 +14,13 @@ const { object, bool, string, func, array } = PropTypes;
 
 const EventsContainer = React.createClass({
   propTypes: {
-    filteredEvents: array.isRequired,
+    filteredEvents: PropTypes.instanceOf(List),
     isFetching: bool.isRequired,
     filterEventsByCategory: func.isRequired,
     fetchAndHandleEvents: func.isRequired,
     error: string.isRequired,
     category: string.isRequired,
-    events: object.isRequired
+    events: PropTypes.instanceOf(Map)
   },
 
   componentDidMount () {
@@ -42,13 +43,13 @@ const EventsContainer = React.createClass({
   }
 });
 
-function mapStateToProps (state) {
+function mapStateToProps ({ events }) {
   return {
-    events: state.events.events,
-    isFetching: state.events.isFetching,
-    error: state.events.error,
-    category: state.events.category,
-    filteredEvents: state.events.filteredEvents
+    events: events.get('events'),
+    isFetching: events.get('isFetching'),
+    error: events.get('error'),
+    category: events.get('category'),
+    filteredEvents: events.get('filteredEvents')
   };
 }
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Yuichi Hagio">
+    <meta name="keywords" content="HTML, JavaScript, CSS, Accessibility, Offline, Progressive Web">
+    <meta name="description" content="Party planning web application">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo&libraries=geometry,places,visualization">
+    </script>
+    <title>Utage</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  <script type="text/javascript" src="index_bundle.js"></script></body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js', {
+        scope: './'
+      })
+      .then(function(registration) {
+        registration.onupdatefound = function() {
+          if (navigator.serviceWorker.controller) {
+            var installingWorker = registration.installing;
+            installingWorker.onstatechange = function() {
+              switch (installingWorker.state) {
+                case 'installed':
+                  break;
+                case 'redundant':
+                  throw new Error('The installing ' + 'service worker became redundant.');
+                default:
+                  // Ignore
+              }
+            };
+          }
+        };
+      }).catch(function(e) {
+        console.error('Error during service worker registration:', e);
+      });
+    } else {
+      console.log('service worker is not supported');
+    }
+  </script>
+</html>

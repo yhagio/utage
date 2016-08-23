@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable';
 import { fetchEvents } from '../../helpers/firebaseAPI';
 
 const FETCHING_EVENTS = 'FETCHING_EVENTS';
@@ -67,46 +68,42 @@ function getFilteredEventIDs (baseEvents, category) {
   }
 }
 
-const initialState = {
+const initialState = fromJS({
   events: {},
   error: '',
   isFetching: false,
   category: '',
   filteredEvents: []
-};
+});
 
 export default function events (state = initialState, action) {
   switch (action.type) {
 
     case FETCHING_EVENTS :
-      return {
-        ...state,
+      return state.merge({
         isFetching: true
-      };
+      });
 
     case FETCHING_EVENTS_ERROR :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: action.error
-      };
+      });
 
     case FETCHING_EVENTS_SUCCESS :
-      return {
-        ...state,
+      return state.merge({
         isFetching: false,
         error: '',
         events: action.events,
         filteredEvents: action.filteredEvents
-      };
+      });
 
     case FILTER_EVENTS_CATEGORY :
-      return {
-        ...state,
+      return state.merge({
         category: action.category,
         searchText: '',
-        filteredEvents: getFilteredEventIDs(state.events, action.category)
-      };
+        filteredEvents: getFilteredEventIDs(state.get('events'), action.category)
+      });
 
     default :
       return state;
