@@ -10,7 +10,7 @@ Navigation.propTypes = Links.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired
 };
 
-function Links ({ isAuthenticated }) {
+export function Links ({ isAuthenticated }) {
   return isAuthenticated === true
     ? <ul
         id='navigation'

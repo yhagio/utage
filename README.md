@@ -85,3 +85,14 @@ firebase login
 firebase init
 firebase deploy
 ```
+
+#### Testing
+- [Mocha for test runner](https://mochajs.org/)
+- [Chai for assertion](http://chaijs.com/)
+- [Sinon for spy](http://sinonjs.org/)
+- [Enzyme for component testing](https://github.com/airbnb/enzyme)
+
+Testing folder `./test`
+```
+npm run test
+```
