@@ -1,7 +1,13 @@
 [My personal note](https://gist.github.com/yhagio/419af7f29920ed71515708bf16c6d981)
 
 # Todo
-- Profile Pic
+- Profile Pic on event page
+- Notification 
 - Testing Components & Redux
 - Account (User info)
 - Conversations (Users can comment on an event)
+- Event Location with if the address is not found on Map
+
+Other browsers checks:
+- Test on Firefox, Safari, Opera
+- Date Input validation

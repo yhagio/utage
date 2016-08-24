@@ -34,7 +34,8 @@ const EventPageContainer = React.createClass({
   componentDidMount () {
     // Let's calcualte the distance from your current location
     let self = this;
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
       if (position.coords.latitude &&
           position.coords.longitude &&
           self.props.eventLatLng.get('lat') &&
@@ -46,7 +47,7 @@ const EventPageContainer = React.createClass({
             self.props.eventLatLng.get('lng'));
       }
     }, (error) => {
-      self.props.calculateDistance('Nop', 'Nop', self.props.eventLatLng.lat, self.props.eventLatLng.lng)
+      self.props.calculateDistance('Nop', 'Nop', self.props.eventLatLng.get('lat'), self.props.eventLatLng.get('lng'))
     });
     this.props.fetchAndHandleEvent(this.props.params.id);
     this.props.fetchEventAttendance(this.props.params.id);

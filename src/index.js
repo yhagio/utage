@@ -14,6 +14,7 @@ import thunk from 'redux-thunk';
 import { checkIfAuthed } from './helpers/authentication';
 import * as reducers from 'redux/modules';
 import getRoutes from './config/routes';
+import { ref } from './config/constants';
 
 // redux store set up
 const store = createStore(
@@ -62,32 +63,51 @@ function checkAuth (nextState, replace) {
 
 /** ***************
  * Send Notification when new event is available
- * ON HOLD
+*****************/
 
-var count = 0;
-var latestTitle; // Need to store somewhere like redux or firebase
-firebase.database().ref('events').limitToLast(1).on('child_added', (snapshot) => {
-  // console.log('New Event!', snapshot.val() );
+let count = 0;
+let eventsSize = 0;
+let isNewEventAdded = true;
+let latestTitle = '';
 
-  // Notify new event,
+ref.child('events').on('value', (snapshot) => {
+    // Events objects
+    const events = snapshot.val() || {};
+
+    // If previous eventSize is greater than new eventsSize,
+    // that means that an event is removed
+    if (eventsSize >= Object.keys(events).length) {
+      isNewEventAdded = false;
+    } else {
+      isNewEventAdded = true;
+    }
+    eventsSize = Object.keys(events).length;
+
+});
+
+ref.child('events').limitToLast(1).on('child_added', (snapshot) => {
+  // Notify new event:
   // IF Notification is permitted (granted),
   // IF Event author is not yourself,
   // IF the latest event was previously seen / loaded
+  // IF event is added, NOT event is removed
   if (Notification.permission === 'granted' &&
       count > 0 &&
       latestTitle !== snapshot.val().title &&
-      store.getState().users.get('uid')' !== snapshot.val().uid) {
-    new Notification('Latest event info', {
-      body: snapshot.val().title,
-      icon: '../images/iconmonstr-info-6-64.png'
-    });
+      store.getState().users.get('authedUser').get('uid') !== snapshot.val().uid &&
+      isNewEventAdded === true) {
+
+      new Notification('Latest event info', {
+        body: `Event: ${snapshot.val().title}`,
+        icon: '../images/iconmonstr-info-6-64.png'
+      });
   }
 
   count++;
   latestTitle = snapshot.val().title;
 });
 
-*****************/
+
 
 render(
   <Provider store={ store }>

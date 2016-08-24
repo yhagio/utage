@@ -22,7 +22,6 @@ const AccountContainer = React.createClass({
   },
 
   render () {
-    console.log(this.props.authedUser);
     return (
       <Account
         user={ this.props.authedUser }

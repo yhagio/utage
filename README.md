@@ -13,10 +13,9 @@
 - Offline first. App works in bad internet connection or offline
 - Accessibility (Visuality impaired, Screen reader, Keyboard only navigation, Color blindness friendly)
 - Using Geolocation API to calculate the distance to the event location
-
-### In Future
 - Account / Setting Page (Notification enable/disable, Userinfo, etc)
 - Push Notification / Web Notification API on newly available event
+### In Future
 - Conversation / Comments section in Single Event Page
 - Testing
 - Better icons, photos, etc
@@ -56,6 +55,7 @@ npm run start
 - [X] Production ready
 - [X] Deployment on Firebase
 - [X] Use Immutable.js for states
+- [X] Experimental Web Notifications on new event creation
 
 ## Resources
 

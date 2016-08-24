@@ -42,7 +42,8 @@ export default function Account (props) {
     if ('Notification' in window) {
       if (Notification.permission === 'default') {
         Notification.requestPermission()
-          .then((newStatus) => props.handleUpdateNotification(newStatus));
+          .then((newStatus) => rops.handleUpdateNotification(newStatus))
+          .catch((error) => console.warn('requestPermission failed', error));
       } else if (Notification.permission === 'granted') {
         console.log('Notification is permitted');
       } else {
