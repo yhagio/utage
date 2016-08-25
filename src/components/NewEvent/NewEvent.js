@@ -45,7 +45,7 @@ NewEventForm.propTypes = {
   warnEndDateError: func.isRequired
 };
 
-function SubmitButton (props) {
+export function SubmitButton (props) {
   if (
     props.titleError ||
     props.descriptionError ||
