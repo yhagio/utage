@@ -23,8 +23,12 @@ describe('Component: NewEventForm', () => {
   const authedUser = {
     uid: '12345',
     name: 'Yo Bro',
-    photoURL : 'https://www.whateva.co.jp'
+    photoURL : 'https://www.whateva.co.jp',
+    get(arg) {
+      return this[arg]
+    }
   };
+  console.log('TEST: ', authedUser.get('uid') );
 
   let wrapper;
   before(() => {
@@ -121,8 +125,8 @@ describe('Component: NewEventForm', () => {
   });
 
   it('can submit if all inputs are filled', () => {
-    wrapper.find('form').simulate('submit', { preventDefault() {}, uid: 'uid', title: 'title', description: 'description', address: 'address', startDate: 'aaa', endDate: 'bbb', category: 'Social' } );
-    expect(createEvent.called).to.be.true;
+    wrapper.find('form').simulate('submit', { preventDefault() {} });      
+    expect(createEvent.calledOnce).to.be.true;
   });
 });
 
