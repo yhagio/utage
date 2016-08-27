@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Map } from 'immutable';
-import { EventContainer } from 'containers';
+// import { EventContainer } from 'containers';
+import EventContainer from '../../containers/Event/EventContainer';
 import {
   eventListBox,
   filter,
