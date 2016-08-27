@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Map, List } from 'immutable';
 import { Link } from 'react-router';
-import { GoogleMap } from 'components';
+// import { GoogleMap } from 'components';
+import GoogleMap from '../GoogleMap/GoogleMap';
 import {
   container,
   title,
@@ -51,7 +52,7 @@ DisplayDistance.propTypes = {
   distance: number.isRequired
 };
 
-function GoingCancelButton (props) {
+export function GoingCancelButton (props) {
   return props.going === true
     ? <button
         className={ actionButtonNot }
@@ -63,7 +64,7 @@ function GoingCancelButton (props) {
         role='button'>{ 'Confirm Going' }</button>;
 }
 
-function DisplayDistance (props) {
+export function DisplayDistance (props) {
   return props.distanceCalculating === true
     ? <p className={ dotdotdot }>Distance: Let me check</p>
     : <p>Distance: { props.distance !== 0 ? `${props.distance} km` : 'N/A' }</p>;

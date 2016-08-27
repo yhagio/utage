@@ -46,6 +46,5 @@ export default function Events (props) {
           eventId={ id.get('eventId') }
           key= { id.get('eventId') } />
       )) }
-
     </div>;
 }
