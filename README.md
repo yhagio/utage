@@ -1,8 +1,8 @@
-### Senior Web Developer Nanodegree - Capstone Project
+# Utage
 
 ### What is this app?
 
-**Utage** : Event / Party Planning app that is installable and accesible, with offline usability.
+Event / Party Planning app that is installable and accesible, with offline usability.
 
 ![Screenshot](/scrn.png)
 
