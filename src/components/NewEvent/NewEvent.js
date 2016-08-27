@@ -18,7 +18,6 @@ NewEventForm.propTypes = {
   updateDescription: func.isRequired,
   updateAddress: func.isRequired,
   updatePrice: func.isRequired,
-  updateLimit: func.isRequired,
   updateStartDate: func.isRequired,
   updateEndDate: func.isRequired,
   updateCategory: func.isRequired,

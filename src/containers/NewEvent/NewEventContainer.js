@@ -14,7 +14,6 @@ const NewEventContainer = React.createClass({
     updateDescription: func.isRequired,
     updateAddress: func.isRequired,
     updatePrice: func.isRequired,
-    updateLimit: func.isRequired,
     updateStartDate: func.isRequired,
     updateEndDate: func.isRequired,
     updateCategory: func.isRequired,
@@ -48,7 +47,6 @@ const NewEventContainer = React.createClass({
         updateDescription={ this.props.updateDescription }
         updateAddress={ this.props.updateAddress }
         updatePrice={ this.props.updatePrice }
-        updateLimit={ this.props.updateLimit }
         updateStartDate={ this.props.updateStartDate }
         updateEndDate={ this.props.updateEndDate }
         updateCategory={ this.props.updateCategory }
