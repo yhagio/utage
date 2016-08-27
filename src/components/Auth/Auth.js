@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { FacebookAuth } from 'components';
+import { errorStyle } from './styles.css';
 
 Auth.propTypes = {
   error: PropTypes.string.isRequired,
@@ -14,7 +15,7 @@ export default function Auth ({ onAuth, isFetching, error }) {
         isFetching={ isFetching }
         onAuth={ onAuth } />
         { error
-          ? <p className=''>{ error }</p>
+          ? <h3 className={ errorStyle }>{ error }</h3>
           : null }
     </div>
   );

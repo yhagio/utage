@@ -91,8 +91,14 @@ firebase deploy
 - [Chai for assertion](http://chaijs.com/)
 - [Sinon for spy](http://sinonjs.org/)
 - [Enzyme for component testing](https://github.com/airbnb/enzyme)
+- [Istanbul for the coverage](https://github.com/gotwarlost/istanbul)
 
-Testing folder `./test`
+Testing files are in `./test` directory. To run testing,
 ```
 npm run test
+```
+To see the report in browser,
+```
+npm run cover
+open coverage/lcov-report/*.html
 ```

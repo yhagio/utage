@@ -18,8 +18,7 @@ const AuthContainer = React.createClass({
 
   handleAuth (e) {
     e.preventDefault();
-    this.props.fetchAndHandleAuthedUser()
-      .then(() => this.context.router.replace('/'));
+    this.props.fetchAndHandleAuthedUser();
   },
 
   render () {

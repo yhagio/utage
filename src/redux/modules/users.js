@@ -1,4 +1,5 @@
 import { Map } from 'immutable';
+import { hashHistory } from 'react-router';
 import auth, { saveUser, signout } from '../../helpers/authentication';
 
 // Constants
@@ -64,10 +65,13 @@ export function fetchAndHandleAuthedUser () {
       return dispatch(fetchingUserSuccess(userInfo));
     })
     // Save user info in Firebase
-      .then(({ user }) => saveUser(user))
+    .then(({ user }) => saveUser(user))
     // Set authenticated user
-      .then((user) => dispatch(authUser(user)))
-      .catch((error) => dispatch(fetchingUserFailure(error)));
+    .then((user) => {
+      hashHistory.push('/');
+      return dispatch(authUser(user))
+    })
+    .catch((error) => dispatch(fetchingUserFailure(error)));
   };
 }
 

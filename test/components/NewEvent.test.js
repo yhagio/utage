@@ -28,7 +28,6 @@ describe('Component: NewEventForm', () => {
       return this[arg]
     }
   };
-  console.log('TEST: ', authedUser.get('uid') );
 
   let wrapper;
   before(() => {

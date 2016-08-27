@@ -11,7 +11,8 @@
     "prod": "cp node_modules/sw-toolbox/sw-toolbox.js src/sw-toolbox.js && webpack -p && npm run preprodrun && npm run precache",
     "prod:run": "cd dist && http-server",
     "precache": "sw-precache --root=dist --config=sw-precache-config.json",
-    "test": "mocha --require babel-core/register --require ignore-styles ./test/**/**/*.js"
+    "test": "mocha --require babel-core/register --require ignore-styles ./test/**/**/*.js",
+    "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers babel-core/register --require test/setup.js --recursive 'test/**/*.test.js'"
   },
   "repository": {
     "type": "git",
@@ -76,6 +77,7 @@
     "http-server": "^0.9.0",
     "ignore-styles": "^4.0.0",
     "image-webpack-loader": "^2.0.0",
+    "istanbul": "^1.0.0-alpha.2",
     "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.3.1",
     "sinon": "^1.17.5",
