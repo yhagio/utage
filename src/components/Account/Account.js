@@ -9,8 +9,8 @@ ToggleButton.propTypes = {
 };
 
 export function ToggleButton (props) {
-  if ('Notification' in window) {
-    if (Notification.permission === 'default') {
+  if ('Notification' in window || window.Notification) {
+    if (window.Notification.permission === 'default') {
       return (
         <div>
           <p>Would you like to get notified when a new event is available?</p>
@@ -20,7 +20,7 @@ export function ToggleButton (props) {
             className={ notifyButton }>Enable Notification</button>
         </div>
       );
-    } else if (Notification.permission === 'granted') {
+    } else if (window.Notification.permission === 'granted') {
       return <p>Notification is enabled</p>;
     } else {
       return <p>Notification is disabled</p>;
@@ -39,12 +39,12 @@ export default function Account (props) {
   // debugger;
   function requestPermission () {
     // Request Notification
-    if ('Notification' in window) {
-      if (Notification.permission === 'default') {
-        Notification.requestPermission()
+    if ('Notification' in window || window.Notification) {
+      if (window.Notification.permission === 'default') {
+        window.Notification.requestPermission()
           .then((newStatus) => rops.handleUpdateNotification(newStatus))
           .catch((error) => console.warn('requestPermission failed', error));
-      } else if (Notification.permission === 'granted') {
+      } else if (window.Notification.permission === 'granted') {
         console.log('Notification is permitted');
       } else {
         console.log('Notification is denied');

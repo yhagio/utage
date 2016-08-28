@@ -78,6 +78,7 @@
     "ignore-styles": "^4.0.0",
     "image-webpack-loader": "^2.0.0",
     "istanbul": "^1.0.0-alpha.2",
+    "jsdom": "^9.4.2",
     "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.3.1",
     "sinon": "^1.17.5",
