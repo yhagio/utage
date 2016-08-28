@@ -30,7 +30,6 @@ describe('Component: Events', () => {
       filteredEvents={ Map(obj) }
       isFetching={ true }
       filterEventsByCategory={ filterEventsByCategory }
-      fetchAndHandleEvents={ fetchAndHandleEvents }
       error={ '' }
       searchCategory={ '' }
       events={ Map(obj) } >
@@ -38,12 +37,23 @@ describe('Component: Events', () => {
     expect(wrapper.find('h2').at(0).text()).to.equal('Loading');
   });
 
+  it('displays "No event yet" when loaded with no events', () => {
+    const wrapper = shallow(<Events 
+      filteredEvents={ Map([]) }
+      isFetching={ false }
+      filterEventsByCategory={ filterEventsByCategory }
+      error={ '' }
+      searchCategory={ '' }
+      events={ Map({}) } >
+    </Events>);
+    expect(wrapper.find('h2').at(0).text()).to.equal('No event yet');
+  });
+
   it('displays events when loaded', () => {
     const wrapper = shallow(<Events 
       filteredEvents={ Map(obj) }
       isFetching={ false }
       filterEventsByCategory={ filterEventsByCategory }
-      fetchAndHandleEvents={ fetchAndHandleEvents }
       error={ '' }
       searchCategory={ 'Birthday' }
       events={ Map(obj) } >
@@ -51,16 +61,16 @@ describe('Component: Events', () => {
     expect(wrapper.find('Connect(EventContainer)').at(0).prop('eventId')).to.equal('123');
   });
 
-  it('displays "No event yet" when loaded with no events', () => {
+  it('filterEventsByCategory is called when the selected value changes', () => {
     const wrapper = shallow(<Events 
-      filteredEvents={ Map([]) }
+      filteredEvents={ Map(obj) }
       isFetching={ false }
       filterEventsByCategory={ filterEventsByCategory }
-      fetchAndHandleEvents={ fetchAndHandleEvents }
       error={ '' }
       searchCategory={ '' }
-      events={ Map({}) } >
+      events={ Map(obj) } >
     </Events>);
-    expect(wrapper.find('h2').at(0).text()).to.equal('No event yet');
+    wrapper.find('#filterSelection').simulate('change', {target: {value: 'Birthday'}});
+    expect(filterEventsByCategory.calledWith('Birthday')).to.be.true;
   });
 });

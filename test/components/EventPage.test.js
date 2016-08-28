@@ -70,13 +70,30 @@ describe('Component: EventPage', () => {
 });
 
 describe('Component: GoingCancelButton', () => {
+  const handleConfirmAttendance = spy();
+  const handleCancelAttendance = spy();
+  
   it('displays "Cancel" button if already confirmed', ()=> {
     const wrapper = shallow(<GoingCancelButton going={true} eventId={ '123' }/>);
     expect(wrapper.text()).to.equal('Cancel');
   });
+
+  it('displays "Cancel" button if already confirmed', ()=> {
+    const wrapper = shallow(<GoingCancelButton going={true} eventId={ '123' } handleCancelAttendance={ handleCancelAttendance } />);
+    wrapper.find('button').simulate('click');
+    expect(handleCancelAttendance.calledWith('123')).to.be.true;
+  });
+  
+
   it('displays "Confirm Going" button if not responded yet', ()=> {
     const wrapper = shallow(<GoingCancelButton going={false} eventId={ '123' }/>);
     expect(wrapper.text()).to.equal('Confirm Going');
+  });
+  
+  it('displays "Confirm Going" button if not responded yet', ()=> {
+    const wrapper = shallow(<GoingCancelButton going={false} eventId={ '123' } handleConfirmAttendance={ handleConfirmAttendance } />);
+    wrapper.find('button').simulate('click');
+    expect(handleConfirmAttendance.calledWith('123')).to.be.true;
   });
 });
 
