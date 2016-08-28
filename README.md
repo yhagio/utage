@@ -1,3 +1,5 @@
+[![travis build](https://img.shields.io/travis/yhagio/utage.svg?style=flat-square)](https://travis-ci.org/yhagio/utage)
+
 # Utage
 
 ### What is this app?
