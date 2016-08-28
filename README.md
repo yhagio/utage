@@ -97,8 +97,7 @@ Testing files are in `./test` directory. To run testing,
 ```
 npm run test
 ```
-To see the report in browser,
+To see the coverage + to see the report in your browser,
 ```
 npm run cover
-open coverage/lcov-report/*.html
 ```

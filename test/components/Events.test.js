@@ -4,24 +4,63 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { mount, shallow } from 'enzyme';
 import Events from '../../src/components/Events/Events';
-import EventContainer from '../../src/containers/Event/EventContainer';
 
 describe('Component: Events', () => {
-  it('displays "Loading" when fetching');
-  it('displays events when loaded');
-  it('displays "No event yet" when loaded with no events', () => {
-    const fetchAndHandleEvents = spy();
-    const filterEventsByCategory = spy();
+  const fetchAndHandleEvents = spy();
+  const filterEventsByCategory = spy();
+  let obj = {};
 
+  const event = {
+    eventId: '123',
+    title: 'Sample Title',
+    description: 'Sample Desc',
+    price: 10,
+    category: 'Birthday',
+    address: 'whatever 123 street',
+    startDate: '2016-08-30T15:00',
+    endDate: '2016-08-30T15:30',
+    get(arg) { // Hack
+      return this[arg]
+    }
+  };
+  obj[event.eventId] = event;
+
+  it('displays "Loading" when fetching', () => {
+    const wrapper = shallow(<Events 
+      filteredEvents={ Map(obj) }
+      isFetching={ true }
+      filterEventsByCategory={ filterEventsByCategory }
+      fetchAndHandleEvents={ fetchAndHandleEvents }
+      error={ '' }
+      searchCategory={ '' }
+      events={ Map(obj) } >
+    </Events>);
+    expect(wrapper.find('h2').at(0).text()).to.equal('Loading');
+  });
+
+  it('displays events when loaded', () => {
+    const wrapper = shallow(<Events 
+      filteredEvents={ Map(obj) }
+      isFetching={ false }
+      filterEventsByCategory={ filterEventsByCategory }
+      fetchAndHandleEvents={ fetchAndHandleEvents }
+      error={ '' }
+      searchCategory={ 'Birthday' }
+      events={ Map(obj) } >
+    </Events>);
+    expect(wrapper.find('Connect(EventContainer)').at(0).prop('eventId')).to.equal('123');
+  });
+
+  it('displays "No event yet" when loaded with no events', () => {
     const wrapper = shallow(<Events 
       filteredEvents={ Map([]) }
       isFetching={ false }
       filterEventsByCategory={ filterEventsByCategory }
       fetchAndHandleEvents={ fetchAndHandleEvents }
       error={ '' }
-      category={ '' }
-      events={ {} } >
-      </Events>);
+      searchCategory={ '' }
+      events={ Map({}) } >
+    </Events>);
     expect(wrapper.find('h2').at(0).text()).to.equal('No event yet');
   });
 });

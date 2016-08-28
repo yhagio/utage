@@ -12,7 +12,7 @@
     "prod:run": "cd dist && http-server",
     "precache": "sw-precache --root=dist --config=sw-precache-config.json",
     "test": "mocha --require babel-core/register --require ignore-styles ./test/**/**/*.js",
-    "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers babel-core/register --require test/setup.js --recursive 'test/**/*.test.js'"
+    "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers babel-core/register --require test/setup.js --recursive 'test/**/*.test.js' && open coverage/lcov-report/*.html"
   },
   "repository": {
     "type": "git",

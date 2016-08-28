@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/EventPage/EventPage.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">components/EventPage</a> EventPage.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/14</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { PropTypes } from 'react';
+import { Map, List } from 'immutable';
+import { Link } from 'react-router';
+// import { GoogleMap } from 'components';
+import GoogleMap from '../GoogleMap/GoogleMap';
+import {
+  container,
+  title,
+  details,
+  category,
+  subInfo,
+  host,
+  description,
+  mapArea,
+  actionArea,
+  actionButton,
+  actionButtonNot,
+  authorLink,
+  editButton,
+  dotdotdot
+} from './styles.css';
+import {
+  formatDateTime
+} from '../../helpers/utils';
+&nbsp;
+const { string, func, bool, array, object, number } = PropTypes;
+&nbsp;
+EventPage.propTypes = {
+  authedUserID: string.isRequired,
+  event: PropTypes.instanceOf(Map),
+  eventHost: PropTypes.instanceOf(Map),
+  eventLatLng: PropTypes.instanceOf(Map),
+  isFetching: bool.isRequired,
+  error: string.isRequired,
+  rsvp: bool.isRequired,
+  going: bool.isRequired,
+  comments: PropTypes.instanceOf(List),
+  attendance: number,
+  handleConfirmAttendance: func.isRequired,
+  handleCancelAttendance: func.isRequired,
+  distanceCalculating: bool.isRequired,
+  distance: number.isRequired
+};
+&nbsp;
+GoingCancelButton.propTypes = {
+  eventId: string.isRequired,
+  going: bool.isRequired
+};
+&nbsp;
+DisplayDistance.propTypes = {
+  distanceCalculating: bool.isRequired,
+  distance: number.isRequired
+};
+&nbsp;
+export function GoingCancelButton (props) {
+  return props.going === true
+    ? &lt;button
+        className={ actionButtonNot }
+        onClick={ <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>e) =&gt; props.handleCancelAttendance(props.eventId, e) }</span>
+        role='button'&gt;{ 'Cancel' }&lt;/button&gt;
+    : &lt;button
+        className={ actionButton }
+        onClick={ <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>e) =&gt; props.handleConfirmAttendance(props.eventId, e) }</span>
+        role='button'&gt;{ 'Confirm Going' }&lt;/button&gt;;
+}
+&nbsp;
+export function DisplayDistance (props) {
+  return props.distanceCalculating === true
+    ? &lt;p className={ dotdotdot }&gt;Distance: Let me check&lt;/p&gt;
+    : &lt;p&gt;Distance: { props.distance !== 0 ? `${props.distance} km` : <span class="branch-1 cbranch-no" title="branch not covered" >'N/A' }&lt;/p&gt;;</span>
+}
+&nbsp;
+export default function EventPage (props) {
+  return props.isFetching === true
+    ? &lt;h2 className={ dotdotdot }&gt;Loading event&lt;/h2&gt;
+    : &lt;div className={ container } &gt;
+        &lt;h1 className={ title }&gt;{ props.event.get('title') }&lt;/h1&gt;
+&nbsp;
+        &lt;div className={ actionArea }&gt;
+          { props.authedUserID &amp;&amp; props.event.get('eventId')
+            ? &lt;GoingCancelButton
+              going={ props.going }
+              eventId={ props.event.get('eventId') }
+              handleConfirmAttendance={ props.handleConfirmAttendance }
+              handleCancelAttendance={ props.handleCancelAttendance } /&gt;
+            : <span class="branch-1 cbranch-no" title="branch not covered" >null }</span>
+&nbsp;
+          { props.authedUserID === props.event.get('uid')
+            ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;Link</span>
+              className={ editButton }
+              to={ `events/${props.event.get('eventId')}/edit` }
+              role='button'&gt;
+              { 'Edit Event' }
+            &lt;/Link&gt;
+            : null }
+        &lt;/div&gt;
+&nbsp;
+        &lt;div className={ details } &gt;
+          &lt;p className={ category }&gt;{ props.event.get('category') }&lt;/p&gt;
+          &lt;p&gt;{ p</span>rops.event.get('price') === 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >'FREE' : '$' + props.event.get('price') }&lt;/p&gt;
+          &lt;p&gt;Going: &lt;span&gt;{ props.attendance }&lt;/span&gt;&lt;/p&gt;
+        &lt;/div&gt;
+&nbsp;
+        &lt;div className={ subInfo } &gt;
+          &lt;div className={ host }&gt;
+            &lt;DisplayDistance
+              distanceCalculating={ props.distanceCalculating }
+              distance={ props.distance } /&gt;
+            &lt;p&gt;Start: { formatDateTime(props.event.get('startDate')) }&lt;/p&gt;
+            posted by
+            &lt;Link
+              className={ authorLink }
+              to={ `events/${props.event.get('eventId')}` }
+              role='link'&gt;
+              { props.eventHost.get('name') }
+            &lt;/Link&gt;
+          &lt;/div&gt;
+          &lt;p className={ description }&gt;
+            { props.event.get('description') }
+          &lt;/p&gt;
+        &lt;/div&gt;
+&nbsp;
+        &lt;div className={ mapArea }&gt;
+          &lt;p&gt;{ props.event.get('address') }&lt;/p&gt;
+          &lt;GoogleMap
+            eventLatLng={ props.eventLatLng } /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Aug 27 2016 22:57:40 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
