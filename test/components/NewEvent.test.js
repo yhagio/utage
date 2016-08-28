@@ -68,6 +68,11 @@ describe('Component: NewEventForm', () => {
     expect(wrapper.find('h2').text()).to.equal('New Event');
   });
 
+  it('handles the title change', () => {
+    wrapper.find('#title').simulate('change', {target: {value: 'Awesome Title'}});
+    expect(updateTitle.calledWith('Awesome Title')).to.be.true;
+  });
+
   it('handles the description change', () => {
     wrapper.find('#description').simulate('change', {target: {value: 'Awesome description'}});
     expect(updateDescription.calledWith('Awesome description')).to.be.true;

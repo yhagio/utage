@@ -8,7 +8,7 @@ ToggleButton.propTypes = {
   requestPermission: PropTypes.func.isRequired
 };
 
-function ToggleButton (props) {
+export function ToggleButton (props) {
   if ('Notification' in window) {
     if (Notification.permission === 'default') {
       return (

@@ -64,7 +64,6 @@ describe('Component: EventPage', () => {
         distanceCalculating={ false }
         distance={ 1000 } />
     );
-    wrapper.debug();
     expect(wrapper.find('h1').text()).to.equal('Sample Title');
   });
 });

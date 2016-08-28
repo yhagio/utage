@@ -48,7 +48,7 @@ EventEdit.propTypes = {
   warnEndDateError: func.isRequired
 };
 
-function SubmitButton (props) {
+export function SubmitButton (props) {
   if (
     props.titleError ||
     props.descriptionError ||
@@ -212,6 +212,7 @@ export default function EventEdit (props) {
           endDateError={ props.endDateError } />
 
         <button
+          id="delete"
           className={ deleteButton }
           onClick={ handleRemoval }
           role='button'>DELETE</button>
