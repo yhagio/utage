@@ -2,12 +2,13 @@
 
 # Todo
 - Profile Pic on event page
-- Notification 
-- Testing Components & Redux
-- Account (User info)
 - Conversations (Users can comment on an event)
 - Event Location with if the address is not found on Map
 
 Other browsers checks:
 - Test on Firefox, Safari, Opera
 - Date Input validation
+
+### Issues
+- [ ] Redux Using nock to test firebase
+- [ ] Redux testing: eventAttendance going/not going
