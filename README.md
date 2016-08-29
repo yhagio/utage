@@ -104,3 +104,4 @@ To see the coverage + to see the report in your browser,
 ```
 npm run cover
 ```
+- [Redux testing doc](http://redux.js.org/docs/recipes/WritingTests.html)

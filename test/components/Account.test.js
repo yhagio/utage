@@ -35,7 +35,6 @@ describe('Component: Account', () => {
 describe('Component: ToggleButton', () => {
   const requestPermission = spy();
   it('requestPermission is triggered when clicked', () => {
-    window.Notifiaction = {};
     window.Notification = {};
     window.Notification.permission = 'default';
 
@@ -45,7 +44,6 @@ describe('Component: ToggleButton', () => {
   });
 
   it('displays enabled message if Notification is enabled', () => {
-    window.Notifiaction = {};
     window.Notification = {};
     window.Notification.permission = 'granted';
 
@@ -54,7 +52,6 @@ describe('Component: ToggleButton', () => {
   });
   
   it('displays disabled message if Notification is denied', () => {
-    window.Notifiaction = {};
     window.Notification = {};
     window.Notification.permission = 'denied';
 

@@ -2,13 +2,13 @@ import { Map } from 'immutable';
 // import { fetchSingleUser } from '../../helpers/firebaseAPI';
 // import { firebaseAuth } from '../../config/constants';
 
-const UPDATE_NOTIFICATION = 'UPDATE_NOTIFICATION';
-const CHECKED_NOTIFICATION = 'CHECKED_NOTIFICATION';
+export const UPDATE_NOTIFICATION = 'UPDATE_NOTIFICATION';
+export const CHECKED_NOTIFICATION = 'CHECKED_NOTIFICATION';
 // const FETCHING_USER_INFO = 'FETCHING_USER_INFO';
 // const FETCHING_USER_INFO_SUCCESS = 'FETCHING_USER_INFO_SUCCESS';
 // const FETCHING_USER_INFO_ERROR = 'FETCHING_USER_INFO_ERROR';
 
-function checkedNotification (bool, status) {
+export function checkedNotification (bool, status) {
   return {
     type: CHECKED_NOTIFICATION,
     bool,
@@ -16,7 +16,7 @@ function checkedNotification (bool, status) {
   };
 }
 
-function updateNotification (bool, status) {
+export function updateNotification (bool, status) {
   return {
     type: UPDATE_NOTIFICATION,
     bool,
@@ -44,22 +44,22 @@ function updateNotification (bool, status) {
 //   };
 // }
 
+// check notification status on initial load
 export function checkNotificationEnabled () {
   return function (dispatch) {
-    if (Notification.permission === 'granted') {
+    if (window.Notification.permission === 'granted') {
       return dispatch(checkedNotification(true, 'granted'));
     }
 
-    if (Notification.permission === 'denied') {
+    if (window.Notification.permission === 'denied') {
       return dispatch(checkedNotification(true, 'denied'));
     }
     return;
   };
 }
 
+// update notification status
 export function handleUpdateNotification (status) {
-  console.log('Invoked: ', status);
-
   return function (dispatch) {
     if (status === 'granted') {
       return dispatch(updateNotification(true, status));
