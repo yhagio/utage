@@ -3,12 +3,12 @@ import { hashHistory } from 'react-router';
 import auth, { saveUser, signout } from '../../helpers/authentication';
 
 // Constants
-const AUTH_USER = 'AUTH_USER';
-const UNAUTH_USER = 'UNAUTH_USER';
-const FETCHING_USER = 'FETCHING_USER';
-const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS';
-const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE';
-const STOP_FETCHING_USER = 'STOP_FETCHING_USER';
+export const AUTH_USER = 'AUTH_USER';
+export const UNAUTH_USER = 'UNAUTH_USER';
+export const FETCHING_USER = 'FETCHING_USER';
+export const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS';
+export const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE';
+export const STOP_FETCHING_USER = 'STOP_FETCHING_USER';
 
 // Actions
 export function authUser (user) {
@@ -18,19 +18,19 @@ export function authUser (user) {
   };
 }
 
-function unauthUser () {
+export function unauthUser () {
   return {
     type: UNAUTH_USER
   };
 }
 
-function fetchingUser () {
+export function fetchingUser () {
   return {
     type: FETCHING_USER
   };
 }
 
-function fetchingUserFailure (error) {
+export function fetchingUserFailure (error) {
   console.log('ERROR FETCHING USER: ', error);
   return {
     type: FETCHING_USER_FAILURE,

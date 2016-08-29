@@ -10,38 +10,38 @@ import {
 export const CONFIRM_GOING = 'CONFIRM_GOING';
 export const IM_NOT_GOING = 'IM_NOT_GOING';
 
-const FETCHING_ATTENDANCE = 'FETCHING_ATTENDANCE';
-const FETCHING_ATTENDANCE_SUCCESS = 'FETCHING_ATTENDANCE_SUCCESS';
-const FETCHING_ATTENDANCE_ERROR = 'FETCHING_ATTENDANCE_ERROR';
+export const FETCHING_ATTENDANCE = 'FETCHING_ATTENDANCE';
+export const FETCHING_ATTENDANCE_SUCCESS = 'FETCHING_ATTENDANCE_SUCCESS';
+export const FETCHING_ATTENDANCE_ERROR = 'FETCHING_ATTENDANCE_ERROR';
 
-function confirmGoing (eventId) {
+export function confirmGoing (eventId) {
   return {
     type: CONFIRM_GOING,
     eventId
   };
 }
 
-function imNotGoing (eventId) {
+export function imNotGoing (eventId) {
   return {
     type: IM_NOT_GOING,
     eventId
   };
 }
 
-function fetchingAttendance () {
+export function fetchingAttendance () {
   return {
     type: FETCHING_ATTENDANCE
   };
 }
 
-function fetchingAttendanceSuccess (attendance) {
+export function fetchingAttendanceSuccess (attendance) {
   return {
     type: FETCHING_ATTENDANCE_SUCCESS,
     attendance
   };
 }
 
-function fetchingAttendanceError (error) {
+export function fetchingAttendanceError (error) {
   console.error('fetchingAttendanceError', error);
   return {
     type: FETCHING_ATTENDANCE_ERROR,

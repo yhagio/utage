@@ -1,18 +1,18 @@
 import { fromJS } from 'immutable';
 import { fetchEvents } from '../../helpers/firebaseAPI';
 
-const FETCHING_EVENTS = 'FETCHING_EVENTS';
-const FETCHING_EVENTS_ERROR = 'FETCHING_EVENTS_ERROR';
-const FETCHING_EVENTS_SUCCESS = 'FETCHING_EVENTS_SUCCESS';
-const FILTER_EVENTS_CATEGORY = 'FILTER_EVENTS_CATEGORY';
+export const FETCHING_EVENTS = 'FETCHING_EVENTS';
+export const FETCHING_EVENTS_ERROR = 'FETCHING_EVENTS_ERROR';
+export const FETCHING_EVENTS_SUCCESS = 'FETCHING_EVENTS_SUCCESS';
+export const FILTER_EVENTS_CATEGORY = 'FILTER_EVENTS_CATEGORY';
 
-function fetchingEvents () {
+export function fetchingEvents () {
   return {
     type: FETCHING_EVENTS
   };
 }
 
-function fetchingEventsError (error) {
+export function fetchingEventsError (error) {
   console.error('fetchingEventsError', error);
   return {
     type: FETCHING_EVENTS_ERROR,
@@ -20,7 +20,7 @@ function fetchingEventsError (error) {
   };
 }
 
-function fetchingEventsSuccess (events, filteredEvents) {
+export function fetchingEventsSuccess (events, filteredEvents) {
   return {
     type: FETCHING_EVENTS_SUCCESS,
     events,
@@ -47,7 +47,7 @@ export function fetchAndHandleEvents () {
   };
 }
 
-function getFilteredEventIDs (baseEvents, category) {
+export function getFilteredEventIDs (baseEvents, category) {
   
   if (category !== '') {
     return baseEvents

@@ -5,22 +5,22 @@ import {
 } from '../../helpers/firebaseAPI';
 import { hashHistory } from 'react-router';
 
-const EDIT_TITLE = 'EDIT_TITLE';
-const EDIT_DESCRIPTION = 'EDIT_DESCRIPTION';
-const EDIT_ADDRESS = 'EDIT_ADDRESS';
-const EDIT_PRICE = 'EDIT_PRICE';
-const EDIT_LIMIT = 'EDIT_LIMIT';
-const EDIT_START_DATE = 'EDIT_START_DATE';
-const EDIT_END_DATE = 'EDIT_END_DATE';
-const EDIT_CATEGORY = 'EDIT_CATEGORY';
-const UPDATED_SUCCESSFULLY = 'UPDATED_SUCCESSFULLY';
-const UPDATE_ERROR = 'UPDATE_ERROR';
+export const EDIT_TITLE = 'EDIT_TITLE';
+export const EDIT_DESCRIPTION = 'EDIT_DESCRIPTION';
+export const EDIT_ADDRESS = 'EDIT_ADDRESS';
+export const EDIT_PRICE = 'EDIT_PRICE';
+// export const EDIT_LIMIT = 'EDIT_LIMIT';
+export const EDIT_START_DATE = 'EDIT_START_DATE';
+export const EDIT_END_DATE = 'EDIT_END_DATE';
+export const EDIT_CATEGORY = 'EDIT_CATEGORY';
+export const UPDATED_SUCCESSFULLY = 'UPDATED_SUCCESSFULLY';
+export const UPDATE_ERROR = 'UPDATE_ERROR';
 
-const TITLE_UPDATE_ERROR = 'TITLE_UPDATE_ERROR';
-const DESCRIPTION_UPDATE_ERROR = 'DESCRIPTION_UPDATE_ERROR';
-const ADDRESS_UPDATE_ERROR = 'ADDRESS_UPDATE_ERROR';
-const START_DATE_UPDATE_ERROR = 'START_DATE_UPDATE_ERROR';
-const END_DATE_UPDATE_ERROR = 'END_DATE_UPDATE_ERROR';
+export const TITLE_UPDATE_ERROR = 'TITLE_UPDATE_ERROR';
+export const DESCRIPTION_UPDATE_ERROR = 'DESCRIPTION_UPDATE_ERROR';
+export const ADDRESS_UPDATE_ERROR = 'ADDRESS_UPDATE_ERROR';
+export const START_DATE_UPDATE_ERROR = 'START_DATE_UPDATE_ERROR';
+export const END_DATE_UPDATE_ERROR = 'END_DATE_UPDATE_ERROR';
 
 // Actions
 export function updateTitle (title) {
@@ -51,12 +51,12 @@ export function updatePrice (price) {
   };
 }
 
-export function updateLimit (limit) {
-  return {
-    type: EDIT_LIMIT,
-    limit
-  };
-}
+// export function updateLimit (limit) {
+//   return {
+//     type: EDIT_LIMIT,
+//     limit
+//   };
+// }
 
 export function updateStartDate (startDate) {
   return {
@@ -79,13 +79,13 @@ export function updateCategory (category) {
   };
 }
 
-function submittedSuccessfully () {
+export function submittedSuccessfully () {
   return {
     type: UPDATED_SUCCESSFULLY
   };
 }
 
-function submissionError (error) {
+export function submissionError (error) {
   console.log('Submission Error: ', error);
   return {
     type: UPDATE_ERROR,
@@ -167,7 +167,7 @@ const initialState = Map({
   description: '',
   address: '',
   price: 0,
-  limit: 0,
+  // limit: 0,
   startDate: '',
   endDate: '',
   category: 'Social',
@@ -203,10 +203,10 @@ export default function eventEditReducer (state = initialState, action) {
         price: action.price
       });
 
-    case EDIT_LIMIT:
-      return state.merge({
-        limit: action.limit
-      });
+    // case EDIT_LIMIT:
+    //   return state.merge({
+    //     limit: action.limit
+    //   });
 
     case EDIT_START_DATE:
       return state.merge({

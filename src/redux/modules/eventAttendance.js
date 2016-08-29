@@ -5,17 +5,17 @@ import {
   IM_NOT_GOING
 } from './usersAttendance';
 
-const FETCHING_ATTENDANCE = 'FETCHING_ATTENDANCE';
-const FETCHING_ATTENDANCE_SUCCESS = 'FETCHING_ATTENDANCE_SUCCESS';
-const FETCHING_ATTENDANCE_ERROR = 'FETCHING_ATTENDANCE_ERROR';
+export const FETCHING_ATTENDANCE = 'FETCHING_ATTENDANCE';
+export const FETCHING_ATTENDANCE_SUCCESS = 'FETCHING_ATTENDANCE_SUCCESS';
+export const FETCHING_ATTENDANCE_ERROR = 'FETCHING_ATTENDANCE_ERROR';
 
-function fetchingAttendance () {
+export function fetchingAttendance () {
   return {
     type: FETCHING_ATTENDANCE
   };
 }
 
-function fetchingAttendanceSuccess (eventId, count) {
+export function fetchingAttendanceSuccess (eventId, count) {
   return {
     type: FETCHING_ATTENDANCE_SUCCESS,
     eventId,
@@ -23,7 +23,7 @@ function fetchingAttendanceSuccess (eventId, count) {
   };
 }
 
-function fetchingAttendanceError (error) {
+export function fetchingAttendanceError (error) {
   console.error('fetchingAttendanceError', error);
   return {
     type: FETCHING_ATTENDANCE_ERROR,

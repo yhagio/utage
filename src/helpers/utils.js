@@ -28,7 +28,7 @@ export function getDistanceFromLatLonInKm (lat1, lng1, lat2, lng2) {
     return 0;
   }
 
-  let R = 6371; // Radius of the earth in km
+  let RadiusEarthKm = 6371; // Radius of the earth in km
   let dLat = deg2rad(lat2 - lat1);  // deg2rad below
   let dLng = deg2rad(lng2 - lng1);
   let a =
@@ -37,14 +37,15 @@ export function getDistanceFromLatLonInKm (lat1, lng1, lat2, lng2) {
     Math.sin(dLng / 2) * Math.sin(dLng / 2)
     ;
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  let d = R * c; // Distance in km
+  let distanceKm = RadiusEarthKm * c; // Distance in km
 
-  if (typeof d !== 'number') {
+  if (typeof distanceKm !== 'number') {
     return 0;
   }
-  return Math.round(d);
+  return Math.round(distanceKm);
 }
 
+// Degree to radius
 function deg2rad (deg) {
   return deg * (Math.PI / 180);
 }

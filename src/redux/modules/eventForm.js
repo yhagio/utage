@@ -3,22 +3,22 @@ import { Map } from 'immutable';
 import { saveEvent } from '../../helpers/firebaseAPI';
 import { hashHistory } from 'react-router';
 
-const UPDATE_TITLE = 'UPDATE_TITLE';
-const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
-const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
-const UPDATE_PRICE = 'UPDATE_PRICE';
-const UPDATE_LIMIT = 'UPDATE_LIMIT';
-const UPDATE_START_DATE = 'UPDATE_START_DATE';
-const UPDATE_END_DATE = 'UPDATE_END_DATE';
-const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
-const SUBMITTED_SUCCESSFULLY = 'SUBMITTED_SUCCESSFULLY';
-const SUBMISSION_ERROR = 'SUBMISSION_ERROR';
+export const UPDATE_TITLE = 'UPDATE_TITLE';
+export const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
+export const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
+export const UPDATE_PRICE = 'UPDATE_PRICE';
+// export const UPDATE_LIMIT = 'UPDATE_LIMIT';
+export const UPDATE_START_DATE = 'UPDATE_START_DATE';
+export const UPDATE_END_DATE = 'UPDATE_END_DATE';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const SUBMITTED_SUCCESSFULLY = 'SUBMITTED_SUCCESSFULLY';
+export const SUBMISSION_ERROR = 'SUBMISSION_ERROR';
 
-const TITLE_ERROR = 'TITLE_ERROR';
-const DESCRIPTION_ERROR = 'DESCRIPTION_ERROR';
-const ADDRESS_ERROR = 'ADDRESS_ERROR';
-const START_DATE_ERROR = 'START_DATE_ERROR';
-const END_DATE_ERROR = 'END_DATE_ERROR';
+export const TITLE_ERROR = 'TITLE_ERROR';
+export const DESCRIPTION_ERROR = 'DESCRIPTION_ERROR';
+export const ADDRESS_ERROR = 'ADDRESS_ERROR';
+export const START_DATE_ERROR = 'START_DATE_ERROR';
+export const END_DATE_ERROR = 'END_DATE_ERROR';
 
 // Actions
 export function updateTitle (title) {
@@ -49,12 +49,12 @@ export function updatePrice (price) {
   };
 }
 
-export function updateLimit (limit) {
-  return {
-    type: UPDATE_LIMIT,
-    limit
-  };
-}
+// export function updateLimit (limit) {
+//   return {
+//     type: UPDATE_LIMIT,
+//     limit
+//   };
+// }
 
 export function updateStartDate (startDate) {
   return {
@@ -77,13 +77,13 @@ export function updateCategory (category) {
   };
 }
 
-function submittedSuccessfully () {
+export function submittedSuccessfully () {
   return {
     type: SUBMITTED_SUCCESSFULLY
   };
 }
 
-function submissionError (error) {
+export function submissionError (error) {
   console.error('Submission Error: ', error);
   return {
     type: SUBMISSION_ERROR,
