@@ -7,29 +7,29 @@ import {
   getDistanceFromLatLonInKm
 } from '../../helpers/utils';
 
-const FETCHING_EVENT = 'FETCHING_EVENT';
-const FETCHING_EVENT_ERROR = 'FETCHING_EVENT_ERROR';
-const FETCHING_EVENT_SUCCESS = 'FETCHING_EVENT_SUCCESS';
+export const FETCHING_EVENT = 'FETCHING_EVENT';
+export const FETCHING_EVENT_ERROR = 'FETCHING_EVENT_ERROR';
+export const FETCHING_EVENT_SUCCESS = 'FETCHING_EVENT_SUCCESS';
 
-const FETCHING_HOST = 'FETCHING_HOST';
-const FETCHING_HOST_SUCCESS = 'FETCHING_HOST_SUCCESS';
-const FETCHING_HOST_ERROR = 'FETCHING_HOST_ERROR';
+export const FETCHING_HOST = 'FETCHING_HOST';
+export const FETCHING_HOST_SUCCESS = 'FETCHING_HOST_SUCCESS';
+export const FETCHING_HOST_ERROR = 'FETCHING_HOST_ERROR';
 
-const CONVERTING_ADDRESS_TO_LATLNG = 'CONVERTING_ADDRESS_TO_LATLNG';
-const CONVERTED_ADDRESS_TO_LATLNG = 'CONVERTED_ADDRESS_TO_LATLNG';
-const CONVERTING_ADDRESS_TO_LATLNG_ERROR = 'CONVERTING_ADDRESS_TO_LATLNG_ERROR';
+export const CONVERTING_ADDRESS_TO_LATLNG = 'CONVERTING_ADDRESS_TO_LATLNG';
+export const CONVERTED_ADDRESS_TO_LATLNG = 'CONVERTED_ADDRESS_TO_LATLNG';
+export const CONVERTING_ADDRESS_TO_LATLNG_ERROR = 'CONVERTING_ADDRESS_TO_LATLNG_ERROR';
 
-const CALCULATING_DISTANCE = 'CALCULATING_DISTANCE';
-const CALCULATED_DISTANCE = 'CALCULATED_DISTANCE';
-const FAILED_CALCULATE_DISTANCE = 'FAILED_CALCULATE_DISTANCE';
+export const CALCULATING_DISTANCE = 'CALCULATING_DISTANCE';
+export const CALCULATED_DISTANCE = 'CALCULATED_DISTANCE';
+export const FAILED_CALCULATE_DISTANCE = 'FAILED_CALCULATE_DISTANCE';
 
-function fetchingEvent () {
+export function fetchingEvent () {
   return {
     type: FETCHING_EVENT
   };
 }
 
-function fetchingEventError (error) {
+export function fetchingEventError (error) {
   console.warn(error);
   return {
     type: FETCHING_EVENT_ERROR,
@@ -37,20 +37,20 @@ function fetchingEventError (error) {
   };
 }
 
-function fetchingEventSuccess (event) {
+export function fetchingEventSuccess (event) {
   return {
     type: FETCHING_EVENT_SUCCESS,
     event
   };
 }
 
-function fetchingHost () {
+export function fetchingHost () {
   return {
     type: FETCHING_HOST
   };
 }
 
-function fetchingHostError (error) {
+export function fetchingHostError (error) {
   console.error('fetchingHostError', error);
   return {
     type: FETCHING_HOST_ERROR,
@@ -58,27 +58,27 @@ function fetchingHostError (error) {
   };
 }
 
-function fetchingHostSuccess (eventHost) {
+export function fetchingHostSuccess (eventHost) {
   return {
     type: FETCHING_HOST_SUCCESS,
     eventHost
   };
 }
 
-function convertingAddressToLatlng () {
+export function convertingAddressToLatlng () {
   return {
     type: CONVERTING_ADDRESS_TO_LATLNG
   };
 }
 
-function convertedAddressToLatlng (eventLatLng) {
+export function convertedAddressToLatlng (eventLatLng) {
   return {
     type: CONVERTED_ADDRESS_TO_LATLNG,
     eventLatLng
   };
 }
 
-function convertingAddressToLatlngError (error) {
+export function convertingAddressToLatlngError (error) {
   console.error('convertingAddressToLatlngError', error);
   return {
     type: CONVERTING_ADDRESS_TO_LATLNG_ERROR,
@@ -86,20 +86,20 @@ function convertingAddressToLatlngError (error) {
   };
 }
 
-function calculatingDistance () {
+export function calculatingDistance () {
   return {
     type: CALCULATING_DISTANCE
   };
 }
 
-function calculatedDistance (distance) {
+export function calculatedDistance (distance) {
   return {
     type: CALCULATED_DISTANCE,
     distance
   };
 }
 
-function failedToGetDistance () {
+export function failedToGetDistance () {
   return {
     type: FAILED_CALCULATE_DISTANCE,
     error: 'Could not get the distance'
@@ -107,7 +107,7 @@ function failedToGetDistance () {
 }
 
 // Get single user info (HOST of the event)
-function fetchAndHandleHost (uid, dispatch) {
+export function fetchAndHandleHost (uid, dispatch) {
   dispatch(fetchingHost());
   fetchSingleUser(uid)
     .then((user) => dispatch(fetchingHostSuccess(user)))
@@ -115,7 +115,7 @@ function fetchAndHandleHost (uid, dispatch) {
 }
 
 // Convert Address to Lat Lng for Google Map Marker position
-function convertFromAddressToLatlng (address, dispatch) {
+export function convertFromAddressToLatlng (address, dispatch) {
   const geocoder = new google.maps.Geocoder();
   dispatch(convertingAddressToLatlng());
   return new Promise(function (resolve, reject) {
@@ -154,7 +154,7 @@ export function fetchAndHandleEvent (eventId) {
       })
       .then((event) => {
         // Get the event host
-        fetchAndHandleHost(event.event.uid, dispatch);
+        return fetchAndHandleHost(event.event.uid, dispatch);
       })
       .catch((error) => {
         // console.log('Error: ', error);
