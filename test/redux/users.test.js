@@ -101,7 +101,7 @@ describe('[Redux] - Users: reducers', () => {
     expect(
       usersRedux.default(state, {
         type: usersRedux.AUTH_USER,
-        authedUser
+        user: authedUser
       })
     ).to.deep.equal(
       state.merge({
@@ -111,9 +111,111 @@ describe('[Redux] - Users: reducers', () => {
     );
   });
 
-  it('should handle UNAUTH_USER');
-  it('should handle FETCHING_USER');
-  it('should handle FETCHING_USER_SUCCESS');
-  it('should handle FETCHING_USER_FAILURE');
-  it('should handle STOP_FETCHING_USER');
+  it('should handle UNAUTH_USER', () => {
+    const state = Map({
+      isFetching: false,
+      error: '',
+      isAuthenticated: true,
+      authedUser: { uid: '123', name: 'Ali Smith' }
+    });
+
+    expect(
+      usersRedux.default(state, {
+        type: usersRedux.UNAUTH_USER
+      })
+    ).to.deep.equal(
+      state.merge({
+        isAuthenticated: false,
+        authedUser: {}
+      })
+    );
+  });
+
+  it('should handle FETCHING_USER', () => {
+    const state = Map({
+      isFetching: false,
+      error: '',
+      isAuthenticated: false,
+      authedUser: {}
+    });
+
+    expect(
+      usersRedux.default(state, {
+        type: usersRedux.FETCHING_USER
+      })
+    ).to.deep.equal(
+      state.merge({
+        isFetching: true
+      })
+    );
+  });
+
+  it('should handle FETCHING_USER_SUCCESS', () => {
+    const state = Map({
+      isFetching: false,
+      error: '',
+      isAuthenticated: false,
+      authedUser: {}
+    });
+
+    const authedUser = {
+      name: 'Bob Sapp',
+      uid: '123das',
+      photoURL: 'www.orearer.co.jp'
+    };
+
+    expect(
+      usersRedux.default(state, {
+        type: usersRedux.FETCHING_USER_SUCCESS,
+        user: authedUser
+      })
+    ).to.deep.equal(
+      state.merge({
+        isFetching: false,
+        authedUser
+      })
+    );
+  });
+
+  it('should handle FETCHING_USER_FAILURE', () => {
+    const state = Map({
+      isFetching: false,
+      error: '',
+      isAuthenticated: false,
+      authedUser: {}
+    });
+
+    const error = 'Error on fetching user';
+
+    expect(
+      usersRedux.default(state, {
+        type: usersRedux.FETCHING_USER_FAILURE,
+        error
+      })
+    ).to.deep.equal(
+      state.merge({
+        isFetching: false,
+        error
+      })
+    );
+  });
+
+  it('should handle STOP_FETCHING_USER', () => {
+    const state = Map({
+      isFetching: false,
+      error: '',
+      isAuthenticated: false,
+      authedUser: {}
+    });
+
+    expect(
+      usersRedux.default(state, {
+        type: usersRedux.STOP_FETCHING_USER
+      })
+    ).to.deep.equal(
+      state.merge({
+        isFetching: false,
+      })
+    );
+  });
 });
