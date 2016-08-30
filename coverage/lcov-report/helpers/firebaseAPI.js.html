@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for helpers/firebaseAPI.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">helpers</a> firebaseAPI.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.63% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.63% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/38</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ref } from '../config/constants';
+&nbsp;
+/** ***************
+ * Event Creation
+ *****************/
+&nbsp;
+// Save a new event to '/events'
+f</span>unction <span class="fstat-no" title="function not covered" >saveToEvents (event) {
+  c</span>onst eventId = <span class="cstat-no" title="statement not covered" >ref.child('events').push().key;
+  c</span>onst eventPromise = <span class="cstat-no" title="statement not covered" >ref.child(`events/${eventId}`).set({...event, eventId});
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    eventId,
+    eventPromise
+  };
+}
+&nbsp;
+// Save a new event to the creator's events list
+f</span>unction <span class="fstat-no" title="function not covered" >saveToUsersEvents (event, eventId) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`usersEvents/${event.uid}/${eventId}`)</span>
+    .set({...event, eventId});
+}
+&nbsp;
+// Flow of saving a newly created event
+export f</span>unction <span class="fstat-no" title="function not covered" >saveEvent (event) <span class="cstat-no" title="statement not covered" ></span>{
+  const { eventId, eventPromise } = <span class="cstat-no" title="statement not covered" >saveToEvents(event);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return Promise.all([</span>
+    eventPromise,
+    saveToUsersEvents(event, eventId),
+    saveAttendance(eventId)
+  ]).then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; ({...event, eventId}));</span></span>
+}
+&nbsp;
+/** ***************
+ * Events (Home)
+ *****************/
+&nbsp;
+// Fetch all events
+export f</span>unction <span class="fstat-no" title="function not covered" >fetchEvents (callback, errorCallback) {
+<span class="cstat-no" title="statement not covered" >  ref.child('events').on('value', <span class="fstat-no" title="function not covered" >(</span>snapshot) =&gt; {</span>
+    // Events objects
+    c</span>onst events = <span class="cstat-no" title="statement not covered" >snapshot.val() || {};
+    
+    // DESC order of event ids by timestamp
+    c</span>onst sortedIds = <span class="cstat-no" title="statement not covered" >Object.keys(events).sort(<span class="fstat-no" title="function not covered" >(</span>a, b) =&gt; {
+<span class="cstat-no" title="statement not covered" >      return events[b].timestamp - events[a].timestamp;</span>
+    });
+&nbsp;
+    // DESC order of events by timestamp
+    l</span>et sortedEvents = <span class="cstat-no" title="statement not covered" >{};
+<span class="cstat-no" title="statement not covered" >    for(let i = 0; i &lt; sortedIds.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      sortedEvents[sortedIds[i]] = events[sortedIds[i]];</span>
+    }
+    // Callback all events objects &amp; array of DESC ordered IDs
+<span class="cstat-no" title="statement not covered" >    callback({sortedEvents, sortedIds});</span>
+  }, errorCallback);
+}
+&nbsp;
+/** ***************
+ * Single Event Page
+ *****************/
+&nbsp;
+// Get single event
+export f</span>unction <span class="fstat-no" title="function not covered" >fetchSingleEvent (eventId) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`events/${eventId}`).once('value')</span>
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>snapshot) =&gt; snapshot.val());</span>
+}
+&nbsp;
+// Get single user
+export f</span>unction <span class="fstat-no" title="function not covered" >fetchSingleUser (uid) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`users/${uid}`).once('value')</span>
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>snapshot) =&gt; snapshot.val());</span>
+}
+&nbsp;
+/** ***************
+ * Update an event as author
+ *****************/
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >updateEvent (eventId, event) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`events/${eventId}`).set(event)</span>
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; event);</span></span>
+}
+&nbsp;
+/** ***************
+ * Delete an event as author
+ *****************/
+&nbsp;
+// Delete from 'events', 'attendance', and 'usersEvents'
+export f</span>unction <span class="fstat-no" title="function not covered" >deleteEvent (eventId, event) {
+<span class="cstat-no" title="statement not covered" >  return Promise.all([</span>
+    ref.child(`events/${eventId}`).set(null),
+    ref.child(`attendance/${eventId}`).set(null),
+    ref.child(`usersEvents/${event.uid}/${eventId}`).set(null)
+  ]).then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; '/');</span></span>
+}
+&nbsp;
+/** ***************
+ * Attendance of an event
+ *****************/
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >fetchAttendance (eventId) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`attendance/${eventId}`).once('value')</span>
+    .then(<span class="fstat-no" title="function not covered" >(</span>snapshot) =&gt; {
+<span class="cstat-no" title="statement not covered" >      return snapshot.val() || 0;</span>
+    });
+}
+&nbsp;
+// This is called when an event is created
+export f</span>unction <span class="fstat-no" title="function not covered" >saveAttendance (eventId) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`attendance/${eventId}`).set(0);</span>
+}
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >incrementAttendance (eventId) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`attendance/${eventId}`)</span>
+    .transaction(<span class="fstat-no" title="function not covered" >(count = 0) =&gt; <span class="cstat-no" title="statement not covered" ></span>{</span>
+<span class="cstat-no" title="statement not covered" >      return count + 1;</span>
+    });
+}
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >decrementAttendance (eventId) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`attendance/${eventId}`)</span>
+    .transaction(<span class="fstat-no" title="function not covered" >(count = 0) =&gt; <span class="cstat-no" title="statement not covered" ></span>{</span>
+<span class="cstat-no" title="statement not covered" >      return count - 1;</span>
+    });
+}
+&nbsp;
+/** ***************
+ * User's attendance
+ *****************/
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >fetchUsersAttendance (uid) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`usersAttendance/${uid}`).once('value')</span>
+    .then(<span class="fstat-no" title="function not covered" >(</span>snapshot) =&gt; {
+<span class="cstat-no" title="statement not covered" >      return snapshot.val() || {};</span>
+    });
+}
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >saveToUsersAttendance (uid, eventId) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`usersAttendance/${uid}/${eventId}`).set(true);</span>
+}
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >deleteFromUsersAttendance (uid, eventId) {
+<span class="cstat-no" title="statement not covered" >  return ref.child(`usersAttendance/${uid}/${eventId}`).set(null);</span>
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 20:42:20 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

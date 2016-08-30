@@ -39,6 +39,7 @@ export function fetchAndHandleEvents () {
   return function (dispatch) {
     dispatch(fetchingEvents());
     fetchEvents(({ sortedEvents, sortedIds }) => {
+      debugger;
       return dispatch(fetchingEventsSuccess(sortedEvents, sortedIds));
     }, (error) => {
       // console.log('error', error);
@@ -48,7 +49,6 @@ export function fetchAndHandleEvents () {
 }
 
 export function getFilteredEventIDs (baseEvents, category) {
-  
   if (category !== '') {
     return baseEvents
       .sort((a, b) => {
@@ -101,7 +101,6 @@ export default function events (state = initialState, action) {
     case FILTER_EVENTS_CATEGORY :
       return state.merge({
         category: action.category,
-        searchText: '',
         filteredEvents: getFilteredEventIDs(state.get('events'), action.category)
       });
 

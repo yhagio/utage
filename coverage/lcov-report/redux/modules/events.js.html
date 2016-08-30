@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for redux/modules/events.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">redux/modules</a> events.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">38.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.77% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">40% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/30</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { fromJS } from 'immutable';
+import { fetchEvents } from '../../helpers/firebaseAPI';
+&nbsp;
+export const FETCHING_EVENTS = 'FETCHING_EVENTS';
+export const FETCHING_EVENTS_ERROR = 'FETCHING_EVENTS_ERROR';
+export const FETCHING_EVENTS_SUCCESS = 'FETCHING_EVENTS_SUCCESS';
+export const FILTER_EVENTS_CATEGORY = 'FILTER_EVENTS_CATEGORY';
+&nbsp;
+export function fetchingEvents () {
+  return {
+    type: FETCHING_EVENTS
+  };
+}
+&nbsp;
+export function fetchingEventsError (error) {
+  console.error('fetchingEventsError', error);
+  return {
+    type: FETCHING_EVENTS_ERROR,
+    error: 'Could not get events list ...'
+  };
+}
+&nbsp;
+export function fetchingEventsSuccess (events, filteredEvents) {
+  return {
+    type: FETCHING_EVENTS_SUCCESS,
+    events,
+    filteredEvents
+  };
+}
+&nbsp;
+export function filterEventsByCategory (category) {
+  return {
+    type: FILTER_EVENTS_CATEGORY,
+    category
+  };
+}
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >fetchAndHandleEvents () {
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >function (</span>dispatch) {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(fetchingEvents());</span>
+<span class="cstat-no" title="statement not covered" >    fetchEvents(<span class="fstat-no" title="function not covered" >({ sortedEvents, sortedIds }) =&gt; <span class="cstat-no" title="statement not covered" ></span></span>{</span>
+<span class="cstat-no" title="statement not covered" >      return dispatch(fetchingEventsSuccess(sortedEvents, sortedIds));</span>
+    }, <span class="fstat-no" title="function not covered" >(</span>error) =&gt; {
+      // console.log('error', error);
+<span class="cstat-no" title="statement not covered" >      return dispatch(fetchingEventsError(error));</span>
+    });
+  };
+}
+&nbsp;
+export f</span>unction <span class="fstat-no" title="function not covered" >getFilteredEventIDs (baseEvents, category) {
+  
+<span class="cstat-no" title="statement not covered" >  if (category !== '') {</span>
+<span class="cstat-no" title="statement not covered" >    return baseEvents</span>
+      .sort(<span class="fstat-no" title="function not covered" >(</span>a, b) =&gt; {
+        // DESC order by timestamp
+<span class="cstat-no" title="statement not covered" >        return b.get('timestamp') - a.get('timestamp');</span>
+      })
+      .filter(<span class="fstat-no" title="function not covered" >(</span>event) =&gt; {
+        // See if event's category matches with selected category to filter
+<span class="cstat-no" title="statement not covered" >        return event.get('category') === category;</span>
+      });
+  } else {
+    // Just return timely ordered IDs
+<span class="cstat-no" title="statement not covered" >    return baseEvents.sort(<span class="fstat-no" title="function not covered" >(</span>a, b) =&gt; {</span>
+      // DESC order by timestamp
+<span class="cstat-no" title="statement not covered" >      return b.get('timestamp') - a.get('timestamp');</span>
+    });
+  }
+}
+&nbsp;
+const initialState = fromJS({
+  events: {},
+  error: '',
+  isFetching: false,
+  category: '',
+  filteredEvents: {}
+});
+&nbsp;
+export default f</span>unction <span class="fstat-no" title="function not covered" >events (state = initialState, action) <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  switch (action.type) {</span>
+&nbsp;
+    case FETCHING_EVENTS :
+<span class="cstat-no" title="statement not covered" >      return state.merge({</span>
+        isFetching: true
+      });
+&nbsp;
+    case FETCHING_EVENTS_ERROR :
+<span class="cstat-no" title="statement not covered" >      return state.merge({</span>
+        isFetching: false,
+        error: action.error
+      });
+&nbsp;
+    case FETCHING_EVENTS_SUCCESS :
+<span class="cstat-no" title="statement not covered" >      return state.merge({</span>
+        isFetching: false,
+        error: '',
+        events: action.events,
+        filteredEvents: action.events
+      });
+&nbsp;
+    case FILTER_EVENTS_CATEGORY :
+<span class="cstat-no" title="statement not covered" >      return state.merge({</span>
+        category: action.category,
+        searchText: '',
+        filteredEvents: getFilteredEventIDs(state.get('events'), action.category)
+      });
+&nbsp;
+    default :
+<span class="cstat-no" title="statement not covered" >      return state;</span>
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 20:42:20 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

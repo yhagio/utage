@@ -5,10 +5,10 @@ import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as eaRedux from '../../src/redux/modules/eventAttendance';
-import * as uaRedux from '../../src/redux/modules/usersAttendance';
+import { IM_NOT_GOING, CONFIRM_GOING } from '../../src/redux/modules/usersAttendance';
 
-const middlewares = [ thunk ];
-const mockStore = configureMockStore(middlewares);
+// const middlewares = [ thunk ];
+// const mockStore = configureMockStore(middlewares);
 
 describe('[Redux] - EventAttendance: actions', () => {
   it('should create an action when fetching an event attendance', () => {
@@ -105,8 +105,7 @@ describe('[Redux] - EventAttendance: reducers', () => {
   });
 
   xit('should handle CONFIRM_GOING', () => {
-    const eventId = '123asd';
-    const count = 1;
+    const eventId = '-KPExnVauc3rVi-I5jJJ';
 
     let state = Map({
       isFetching: false,
@@ -116,28 +115,25 @@ describe('[Redux] - EventAttendance: reducers', () => {
     state.merge({
       isFetching: false,
       error: '',
-      [eventId]: count
+      [eventId]: 0
     });
 
     expect(
       eaRedux.default(state, {
-        type: uaRedux.CONFIRM_GOING,
+        type: CONFIRM_GOING,
         eventId
       })
     ).to.deep.equal(
-      Map({
-        isFetching: false,
-        error: '',
-        [eventId]: 2
+      state.merge({
+        [eventId]: state.get(eventId) + 1
       })
     );
   });
   
   xit('should handle IM_NOT_GOING', () => {
-    const eventId = '123asd';
-    const count = 1;
+    const eventId = "-KPExnVauc3rVi-I5jJJ";
 
-    let state = Map({
+    const state = Map({
       isFetching: false,
       error: ''
     });
@@ -145,19 +141,17 @@ describe('[Redux] - EventAttendance: reducers', () => {
     state.merge({
       isFetching: false,
       error: '',
-      [eventId]: count
+      [eventId]: 1
     });
 
     expect(
       eaRedux.default(state, {
-        type: uaRedux.IM_NOT_GOING,
+        type: IM_NOT_GOING,
         eventId
       })
     ).to.deep.equal(
-      Map({
-        isFetching: false,
-        error: '',
-        [eventId]: 0
+      state.merge({
+        [eventId]: state.get(eventId) - 1
       })
     );
   });
