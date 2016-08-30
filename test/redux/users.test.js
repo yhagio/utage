@@ -7,12 +7,61 @@ import thunk from 'redux-thunk';
 import * as usersRedux from '../../src/redux/modules/users';
 
 describe('[Redux] - Users: actions', () => {
-  it('should create an action when authenticating the user');
-  it('should create an action when unauthenticating the user');
-  it('should create an action when fetching the user');
-  it('should create an action when fetched the user successfully');
-  it('should create an action when failed to fetch the user');
-  it('should create an action when stopped fetching the user');
+  it('should create an action when authenticating the user', () => {
+    const user = Map({
+      name: 'Bob Sapp',
+      uid: '123das',
+      photoURL: 'www.orearer.co.jp'
+    });
+    const expectedAction = {
+      type: usersRedux.AUTH_USER,
+      user
+    };
+    expect(usersRedux.authUser(user)).to.deep.equal(expectedAction);
+  });
+  
+  it('should create an action when unauthenticating the user', () => {
+    const expectedAction = {
+      type: usersRedux.UNAUTH_USER
+    };
+    expect(usersRedux.unauthUser()).to.deep.equal(expectedAction);
+  });
+  
+  it('should create an action when fetching the user', () => {
+    const expectedAction = {
+      type: usersRedux.FETCHING_USER
+    };
+    expect(usersRedux.fetchingUser()).to.deep.equal(expectedAction);
+  });
+  
+  it('should create an action when fetched the user successfully', () => {
+    const user = {
+      name: 'Bob Sapp',
+      uid: '123das',
+      photoURL: 'www.orearer.co.jp'
+    };
+    const expectedAction = {
+      type: usersRedux.FETCHING_USER_SUCCESS,
+      user
+    };
+    expect(usersRedux.fetchingUserSuccess(user)).to.deep.equal(expectedAction);
+  });
+  
+  it('should create an action when failed to fetch the user', () => {
+    const error = 'Error on fetching user';
+    const expectedAction = {
+      type: usersRedux.FETCHING_USER_FAILURE,
+      error
+    };
+    expect(usersRedux.fetchingUserFailure(error)).to.deep.equal(expectedAction);
+  });
+
+  it('should create an action when stopped fetching the user', () => {
+    const expectedAction = {
+      type: usersRedux.STOP_FETCHING_USER
+    };
+    expect(usersRedux.stopFetchingUser()).to.deep.equal(expectedAction);
+  });
 });
 
 describe.skip('[Redux] - Users: action creators', () => {
@@ -22,8 +71,46 @@ describe.skip('[Redux] - Users: action creators', () => {
 });
 
 describe('[Redux] - Users: reducers', () => {
-  it('should return the initial state');
-  it('should handle AUTH_USER');
+  it('should return the initial state', () => {
+    expect(
+      usersRedux.default(undefined, {})
+    ).to.deep.equal(
+      Map({
+        isFetching: false,
+        error: '',
+        isAuthenticated: false,
+        authedUser: {}
+      })
+    );
+  });
+  
+  it('should handle AUTH_USER', () => {
+    const authedUser = {
+      name: 'Bob Sapp',
+      uid: '123das',
+      photoURL: 'www.orearer.co.jp'
+    };
+
+    const state = Map({
+      isFetching: false,
+      error: '',
+      isAuthenticated: false,
+      authedUser: {}
+    });
+
+    expect(
+      usersRedux.default(state, {
+        type: usersRedux.AUTH_USER,
+        authedUser
+      })
+    ).to.deep.equal(
+      state.merge({
+        isAuthenticated: true,
+        authedUser
+      })
+    );
+  });
+
   it('should handle UNAUTH_USER');
   it('should handle FETCHING_USER');
   it('should handle FETCHING_USER_SUCCESS');
