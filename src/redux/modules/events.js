@@ -39,7 +39,6 @@ export function fetchAndHandleEvents () {
   return function (dispatch) {
     dispatch(fetchingEvents());
     fetchEvents(({ sortedEvents, sortedIds }) => {
-      debugger;
       return dispatch(fetchingEventsSuccess(sortedEvents, sortedIds));
     }, (error) => {
       // console.log('error', error);
