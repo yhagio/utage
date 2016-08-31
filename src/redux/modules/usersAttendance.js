@@ -96,7 +96,6 @@ export function fetchUsersEventAttendance () {
     dispatch(fetchingAttendance());
     fetchUsersAttendance(uid)
       .then((attendance) => {
-        console.log('+++++++', attendance);
         return dispatch(fetchingAttendanceSuccess(attendance));
       })
       .catch((error) => {
