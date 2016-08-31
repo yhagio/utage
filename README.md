@@ -59,8 +59,8 @@ npm run start
 - [X] Use Immutable.js for states
 - [X] Experimental Web Notifications on new event creation
 - [X] Simple components testing with Enzyme, Chai, Sinon, and Mocha
-- [ ] Redux testing
-- [ ] Helpers testing
+- [X] Redux testing*
+- [X] Helpers testing
 
 ## Resources
 

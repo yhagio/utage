@@ -4,6 +4,7 @@
 - Profile Pic on event page
 - Conversations (Users can comment on an event)
 - Event Location with if the address is not found on Map
+- [postCSS](https://github.com/postcss/postcss)
 
 Other browsers checks:
 - Test on Firefox, Safari, Opera
