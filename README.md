@@ -1,10 +1,15 @@
-[![travis build](https://img.shields.io/travis/yhagio/utage.svg?style=flat-square)](https://travis-ci.org/yhagio/utage)
-
 # Utage
 
-### What is this app?
-
 Event / Party Planning app that is installable and accesible, with offline usability.
+
+[![travis build](https://img.shields.io/travis/yhagio/utage.svg?style=flat-square)](https://travis-ci.org/yhagio/utage)
+
+## Browsers support <sub><sup><sub><sub>made by <a href="https://godban.github.io">godban</a></sub></sub></sup></sub>
+
+| [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/firefox.png" alt="Firefox" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome.png" alt="Chrome" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/safari.png" alt="Safari" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/opera.png" alt="Opera" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
+| --------- | --------- | --------- | --------- |
+| last version| last version| last version| last version
+
 
 ![Screenshot](/scrn.png)
 
