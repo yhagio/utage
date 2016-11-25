@@ -19,15 +19,15 @@ describe('Component: Nav (when authenticated)', () => {
   });
 
   it('has <Link to="new-event" > ', () => {
-    expect(wrapper.find('Link').at(1).prop('to')).to.equal('new-event');
+    expect(wrapper.find('Link').at(2).prop('to')).to.equal('new-event');
   });
 
   it('has <Link to="signout" > ', () => {
-    expect(wrapper.find('Link').at(2).prop('to')).to.equal('signout');
+    expect(wrapper.find('Link').at(1).prop('to')).to.equal('signout');
   });
 
   it('has <Link to="account" > ', () => {
-    expect(wrapper.find('Link').at(3).prop('to')).to.equal('account');
+    expect(wrapper.find('Link').at(0).prop('to')).to.equal('account');
   });
   
 });
@@ -43,6 +43,6 @@ describe('Component: Nav (when unauthenticated)', () => {
   });
 
   it('has <Link to="authenticate" > ', () => {
-    expect(wrapper.find('Link').at(1).prop('to')).to.equal('authenticate');
+    expect(wrapper.find('Link').at(0).prop('to')).to.equal('authenticate');
   });
 });
