@@ -1,14 +1,14 @@
 .container {
-  background: rgba(256, 256, 256, 0.9);
   margin: 20px 5px 5px 5px;
   padding: 10px;
-  border-radius: 30px;
+  box-shadow: 0 0 10px #ccc;
   color: #333;
 }
 
 .title {
   margin: 15px auto 20px;
   text-align: center;
+  color: #ddd;
 }
 
 .actionArea {
@@ -21,10 +21,10 @@
   flex-grow: 1;
   max-width: 200px;
   padding: 10px 20px;
-  border: 2px solid dodgerblue;
+  border: 2px solid skyblue;
   border-radius: 20px;
   background: none;
-  color: dodgerblue;
+  color: #fff;
   font-size: 18px;
   margin-right: 5px;
 }
@@ -36,7 +36,7 @@
   border: 2px solid orangered;
   border-radius: 20px;
   background: none;
-  color: orangered;
+  color: #fff;
   font-size: 18px;
   margin-right: 5px;
 }
@@ -57,12 +57,13 @@
 
 .details p.category {
   border-radius: 20px;
-  background: deepskyblue;
+  background: #00BFFF;
+  background: linear-gradient(to right, #00BFFF, #696969 100%);
   max-width: 130px;
+  color: #fff;
 }
 
 .subInfo {
-  /*border: 1px solid black;*/
   padding: 5px;
 }
 
@@ -85,7 +86,7 @@
 }
 
 .authorLink {
-  color: dodgerblue;
+  color: #fff;
   margin-left: 10px;
 }
 

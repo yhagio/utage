@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 import {
   container,
+  title,
   labeled,
   inputField,
   textareaField,
@@ -89,7 +90,7 @@ export default function NewEventForm (props) {
   ? <h2>Loading</h2>
   :(
     <form onSubmit={ handleFormSubmit } className={ container }>
-      <h2>{ 'New Event' }</h2>
+      <h2 className={ title }>New Event</h2>
       <hr />
       <label className={ labeled }>Title*<br />
         <input

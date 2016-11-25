@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import {
   navigation,
+  title,
   menu,
   menuItem
 } from './styles.css';
@@ -15,34 +16,42 @@ export function Links ({ isAuthenticated }) {
     ? <ul
         id='navigation'
         className={ menu }>
+        <p className={ title }>Party Planner</p>
         <Link
           className={ menuItem }
           role='button'
-          to='/'>Home</Link>
+          tabIndex='4'
+          to='account'>Account</Link>
         <Link
           className={ menuItem }
           role='button'
+          tabIndex='3'
+          to='signout'>Log out</Link>
+        <Link
+          className={ menuItem }
+          role='button'
+          tabIndex='2'
           to='new-event'>New event</Link>
         <Link
           className={ menuItem }
           role='button'
-          to='signout'>Sign out</Link>
-        <Link
-          className={ menuItem }
-          role='button'
-          to='account'>Account</Link>
+          tabIndex='1'
+          to='/'>Events</Link>
       </ul>
     : <ul
         id='navigation'
         className={ menu }>
+        <p className={ title }>Party Planner</p>
         <Link
           className={ menuItem }
           role='button'
+          tabIndex='2'
+          to='authenticate'>Log in</Link>
+        <Link
+          className={ menuItem }
+          role='button'
+          tabIndex='1'
           to='/'>Home</Link>
-        <Link
-          className={ menuItem }
-          role='button'
-          to='authenticate'>Sign in</Link>
       </ul>;
 }
 

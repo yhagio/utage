@@ -22,6 +22,7 @@ Event / Party Planning app that is installable and accesible, with offline usabi
 - Using Geolocation API to calculate the distance to the event location
 - Account / Setting Page (Notification enable/disable, Userinfo, etc)
 - Push Notification / Web Notification API on newly available event
+
 ### In Future
 - Conversation / Comments section in Single Event Page
 - Testing
@@ -49,23 +50,6 @@ npm run start
 - Redux (state management)
 - SW-Precache + SW-Toolbox (Offline feature)
 - Webpack (Module bundling, development)
-
-### Checklist
-- [X] Google Map
-- [X] Responsive design
-- [X] Facebook login
-- [X] Keyboard only navigation
-- [X] Color blindness friendly
-- [X] Screen reader friendly
-- [X] Offline capability in production
-- [X] Optimize images (Minimize, Resize, Compress, Responsieve)
-- [X] Production ready
-- [X] Deployment on Firebase
-- [X] Use Immutable.js for states
-- [X] Experimental Web Notifications on new event creation
-- [X] Simple components testing with Enzyme, Chai, Sinon, and Mocha
-- [X] Redux testing*
-- [X] Helpers testing
 
 ## Resources
 

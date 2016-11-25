@@ -1,23 +1,14 @@
-.event {
-  padding: 5px;
-  color: #aaa;
-  background: rgba(256, 256, 256, 0.9);
-  border-radius: 10px;
-  width: 100%;
-  min-height: 100px;
-}
-
 .innerBox {
   display: block;
-
   width: 100%;
   margin: 5px 5px 5px 0;
-  padding: 5px;
-  border: 2px solid #fff;
-  border-radius: 10px;
+  padding: 5px 5px 5px 10px;
+  /*border: 2px solid #fff;*/
+  /*border-radius: 10px;*/
   min-height: 100px;
   color: #333;
-  background: rgba(256, 256, 256, 0.9);
+  /*background: rgba(256, 256, 256, 0.9);*/
+  box-shadow: 0 0 10px #fff;
 }
 
 .title {
@@ -41,7 +32,13 @@
   padding: 3px;
   display: block;
   border-radius: 20px;
-  background: deepskyblue;
+  /*background: deepskyblue;*/
+  color: #fff;
   text-align: center;
   max-width: 130px;
+
+  background: linear-gradient(to right, #00BFFF, #696969 100%);
+  /*background-image: linear-gradient(to bottom, #479bbb, #bfbdb6 100%);*/
+  /*background-repeat: no-repeat;*/
+  /*background-attachment: fixed;*/
 }

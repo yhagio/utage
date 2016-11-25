@@ -6,7 +6,7 @@ import { Nav } from 'components';
 import * as userActionCreators from 'redux/modules/users';
 import * as usersAttendanceActionCreators from 'redux/modules/usersAttendance';
 import { firebaseAuth } from 'config/constants';
-import { main } from './styles.css';
+import { main, mainContent } from './styles.css';
 
 const MainContainer = React.createClass({
   propTypes: {
@@ -23,7 +23,6 @@ const MainContainer = React.createClass({
     // Check if user is already authenticated on initial load
     firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
-        // console.log('USER', user);
         let userInfo = {
           uid: user.providerData[0].uid,
           name: user.providerData[0].displayName,
@@ -42,7 +41,9 @@ const MainContainer = React.createClass({
     return (
       <div className={ main }>
         <Nav isAuthenticated={ this.props.isAuthenticated }/>
-        { this.props.children }
+        <div className={ mainContent }>
+          { this.props.children }
+        </div>
       </div>
     );
   }

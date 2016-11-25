@@ -2,9 +2,13 @@
   padding: 10px 15px 10px 10px;
 }
 
+.title {
+  color: #fff;
+}
+
 .labeled {
   display: block;
-  color: #00e3ff;
+  color: #fff;
   font-size: 1.2em;
   margin: 15px 0 2px 0;
 }
@@ -40,9 +44,9 @@
 .submitButton {
   margin: 25px 3px 3px 3px;
   padding: 10px 5px;
-  border: 3px solid deepskyblue;
+  border: 1px solid #058398;
   text-align: center;
-  color: deepskyblue;
+  color: #058398;
   background: transparent;
   width: 100%;
   font-size: 1.3em;
@@ -51,9 +55,9 @@
 .noSubmit {
   margin: 25px 3px 3px 3px;
   padding: 10px 5px;
-  border: 3px solid red;
+  border: 1px solid #b53415;
   text-align: center;
-  color: red;
+  color: #b53415;
   background: transparent;
   width: 100%;
   font-size: 1.3em;

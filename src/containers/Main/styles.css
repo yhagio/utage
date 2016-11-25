@@ -1,8 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   height: 100%;
   font-family: 'Lato', sans-serif;
-  color: #fff;
-  background-color: #333;
+  color: #45494E;
+  background-color: #479bbb;
+  background-image: linear-gradient(to bottom, #479bbb, #bfbdb6 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 li {
@@ -13,18 +20,34 @@ a {
   text-decoration: none;
   color: #333;
 }
-/*
-.mainContianer {
-  min-height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}*/
 
 .main {
   margin: 0;
   padding: 0;
   width: 100%;
-  max-width: 700px;
   margin: auto;
+}
+
+.mainContent {
+  padding: 0;
+}
+
+@media screen and (min-width: 500px) {
+  .mainContent {
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .mainContent {
+    padding: 30px 50px;
+  }
+}
+
+/* Large Screen */
+@media screen and (min-width: 950px) {
+  .mainContent {
+    max-width: 950px;
+    margin: auto;
+  }
 }

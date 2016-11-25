@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Map } from 'immutable';
 import {
   container,
+  pageTitle,
   labeled,
   inputField,
   textareaField,
@@ -99,7 +100,7 @@ export default function EventEdit (props) {
   return props.isFetching === true
     ? <h2>Loading event data</h2>
     : <form onSubmit={ handleFormSubmit } className={ container }>
-        <h2>{ 'Edit Event' }</h2>
+        <h2 className={ pageTitle }>Edit Event</h2>
         <hr />
         <label className={ labeled }>Title<br />
           <input
